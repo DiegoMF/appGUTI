@@ -189,6 +189,9 @@ function Pager(tableName, itemsPerPage) {
 							de Usuarios</a></li>
 					<li><a href="#">Configuración de Accesos</a></li>
 				</ul></li>
+			<!-- SUBIR EXCEL -->
+			<li><a href="/pages/importExcel/importExcel.jsp">Importar
+					Excel</a></li>
 		
 		</ul>
 	</div>
