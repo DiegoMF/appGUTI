@@ -1,0 +1,66 @@
+.contenedor-tabs {
+  width: 100%;
+  max-width: 100%;
+	margin: 50px auto 0;
+	position: relative;
+}
+
+ul.tabs {
+	height: 30px;
+	width: 100%;
+	margin: 0;
+	padding: 0;
+	list-style: none
+}
+
+.tabs li {
+	float: left;
+	height: 30px;
+	background: #f5f5f5;
+	border-radius: 6px 6px 0 0
+}
+
+.tabs li.selected {
+	background: #fff;
+	border: solid #f5f5f5;
+	border-width: 1px 1px 0 1px
+}
+
+.tabs li a:link,.tabs li a:active,.tabs li a:visited,.tabs li a:hover {
+	line-height: 30px;
+	font-size: small;
+	font-weight:bold;
+	font-family: 'Lucida Grande', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	text-decoration: none;
+	display: block;
+	color: #00407E;
+	padding: 0 30px
+}
+
+.tabs li.selected a:link,.tabs li.selected a:active,.tabs li.selected a:visited,.tabs li.selected a:hover
+	{
+	font-size:small;
+	font-weight:bold;
+	color:#F36E29;
+	font-family: 'Lucida Grande', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+div.pestana {
+	background-color:#fff;
+	width: 100%;
+	margin: 0;
+	padding: 0;
+	border: 1px solid #fff;
+	padding: 0px;/*
+	position:inherit;
+	top: -1px;
+	z-index: -1;
+	border-radius: 0 0 6px 6px
+}
+
+.pestana p {
+	font-size: 1em;
+	 
+	line-height: 100%;
+	margin: 0;
+}

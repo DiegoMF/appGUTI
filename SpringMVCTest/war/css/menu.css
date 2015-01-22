@@ -1,0 +1,84 @@
+
+
+.menu ul {
+  text-align: left;
+  display: inline;
+  margin: 0;
+  padding: 15px 4px 17px 0;
+  list-style: none;
+  -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
+  -moz-box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
+}
+
+/*barra general */
+.menu ul li {
+  font:  11px;
+  font-family: 'Lucida Grande', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  display: inline-block;
+  margin-right: -4px;
+  position: relative;
+  padding: 15px 20px;
+  background: #00407E;
+  cursor: pointer;
+  -webkit-transition: all 0.2s;
+  -moz-transition: all 0.2s;
+  -ms-transition: all 0.2s;
+  -o-transition: all 0.2s;
+  transition: all 0.2s;
+}
+/* Seleccionado */
+.menu ul li:hover {
+  background: #F36E29;
+
+}
+.menu ul li ul {
+  padding: 0;
+  position: absolute;
+  top: 48px;
+  left: 0;
+  width:250px;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  display: none;
+  opacity: 0;
+  visibility: hidden;
+  -webkit-transiton: opacity 0.2s;
+  -moz-transition: opacity 0.2s;
+  -ms-transition: opacity 0.2s;
+  -o-transition: opacity 0.2s;
+  -transition: opacity 0.2s;
+ 
+}
+.menu ul li ul li { 
+  background: #00407E; 
+  display: block; 
+  color: #fff;
+  text-shadow: 0 -1px 0 #555;
+
+}
+.menu ul li ul li:hover { 
+	background: #F36E29; 
+	}
+.menu ul li:hover ul {
+  display: block;
+  opacity: 1;
+  visibility: visible;
+}
+
+
+
+ .menu li a {
+   text-decoration:none;  
+ color: white; 
+ outline-color: white;
+
+    
+}
+
+ .menu li  a.nounderline:link   
+{   
+ text-decoration:none;  
+ color: white;  
+} 

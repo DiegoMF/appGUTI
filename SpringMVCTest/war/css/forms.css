@@ -1,0 +1,161 @@
+.cabecera {
+	background-color: #fff;
+	height: 50px;
+}
+
+.cabecera h2 {
+	background-color: #fff;
+	margin: 0;
+	font-family: 'Lucida Grande', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  	font-size: 14px;
+	
+	color: #F36E29;
+	padding-top:5px;
+	text-transform: uppercase;
+}
+
+.cabecera hr {
+	border-color: #006aa6;
+	background-color: #fff;
+	border-bottom-width: 1px;
+	
+}
+.formulario hr{
+	
+	border-color: #006aa6;
+	background-color: #fff;
+	border-bottom-width: 1px;
+
+	
+}
+
+.formulario h2{
+	
+	background-color: #fff;
+	margin: 5px;
+	font-family: 'Lucida Grande', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  	font-size: normal;
+	
+	color: #F36E29;
+	padding-top:5px;
+	
+	
+}
+.formulario {
+	background-color: #fff;	
+	font-family: 'Lucida Grande', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  	font-size: small;
+  	text-align: left;
+  	color: #444444;	
+}
+
+.formulario label {
+	background-color: #fff;	
+	font-family: 'Lucida Grande', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  	font-size: small;
+  	text-align: left;
+  	color: #444444;	
+  	font-weight:bold;
+}
+
+.formulario input[type="submit"],input[type="button"],input[type="reset"],file {
+	-webkit-border-radius: 4;
+	-moz-border-radius: 4;
+	border-radius: 4px;
+	font-family: Arial;
+	color: #ffffff;
+	font-size: 12px;
+	background: #F36E29;
+	padding: 6px 12px 6px 12px;
+	text-decoration: none;
+}
+
+.formulario input[type="submit"]:HOVER {
+	background: #D6D6D6;
+	text-decoration: none;
+}
+.formulario mitextArea {
+	width: 300px;
+	height: 100px;
+}
+
+.formulario input[type="reset"]:HOVER {
+	background: #D6D6D6;
+	text-decoration: none;
+}
+
+.formulario input[type="button"]:HOVER {
+	background: #D6D6D6;
+	text-decoration: none;
+}
+
+.formulario form label {
+	/*
+    display: inline;
+    width:170px;
+    float:left;
+    margin:8px 0 2px 0;
+    padding:0;
+    */
+	display: block;
+	margin: .5em 0 0 0;
+}
+
+.formulario form fieldset legend
+{
+	font-weight: bold;
+	font-size: small;
+	font-family: 'Lucida Grande', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+.formulario form label.margin {
+	margin-left: 10px;
+}
+
+.formulario form input[type="text"],form input[type="password"] {
+	min-width: 190px;
+	max-width: 190px;
+}
+
+.formulario form input[type="Date"]{
+	min-width: 190px;
+	color: blue;
+
+}
+
+.formulario form select {
+	max-width: 193px;
+	min-width: 193px;
+	min-height: 22px;
+}
+
+.formulario form textArea {
+	min-width: 190px;
+}
+
+.formularioBoton
+{
+	background-color: #D6D6D6;
+	
+}
+.box {
+	border: 1px solid #666666;
+}
+
+.box h3 {
+	background: #666666;
+	color: white;
+	margin: 0;
+}
+
+.box div {
+	padding: 10px 10px 0px 10px;
+}
+
+.formulario fieldset {
+	
+}
+
+.btn {
+	display: block;
+	margin: 1em 0;
+}

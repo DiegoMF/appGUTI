@@ -1,0 +1,36 @@
+@import url(forms.css);
+
+@import url(tables.css);
+
+body {
+	width: 100%;
+	padding-top: 0px;
+	padding-bottom: 0px;
+	margin: 0px;
+	padding-left: 0px;
+	padding-right: 0px;
+
+  	background: #EBEBEB;
+  
+}
+
+#head {
+	width: auto; 
+	background : #fff;
+	height: 50px;
+
+}
+
+#menu {
+	background: #00407E;
+	color: white;
+}
+
+#body {
+	padding: 50px 50px 50px 50px;
+	
+}
+
+#foot {
+	height: 50px;
+}

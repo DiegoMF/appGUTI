@@ -1,0 +1,68 @@
+
+
+/*******/
+.tablaBotones {
+	width: 100%;
+	align: center;
+	padding-left: 5px;
+	padding-right: 5px;
+	vertical-align: top;
+}
+
+.tablaBotones td {
+	align: right;
+	background-color: #C0C0C0;
+	width: 1260px;
+}
+
+.tablaBotones td {
+	height: 40px;
+}
+/****/
+.tablaDatos
+{
+
+	
+}
+
+.tablaDatos td
+{
+width: 160px;
+	
+}
+/****/
+.tablaGrilla {
+	width: 100%;
+	border-collapse: collapse;
+	margin: 1em 0;
+	font-family: 'Lucida Grande', 'Helvetica Neue', Helvetica, Arial,
+		sans-serif;
+	font-size: 12px;
+	text-align: left;
+	color: #444444;
+}
+
+.tablaGrilla th
+{
+
+  background: #006aa6; 
+  color: white; 
+  font-weight: bold; 
+
+}
+
+.tablaGrilla  tr:nth-child(odd) {
+   background-color: #fff;
+   color:#777
+}
+
+.tablaGrilla  tr:nth-child(even) {
+   background-color: #DDD;
+   color:#777;
+}
+
+.tablaGrilla td, th { 
+  padding: 6px; 
+  border: 1px solid #ccc; 
+  text-align: left; 
+}

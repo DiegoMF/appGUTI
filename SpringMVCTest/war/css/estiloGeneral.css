@@ -1,0 +1,99 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 26-oct-2014, 1:22:32
+    Author     : Franz
+*/
+.textNumero
+{
+
+width: 100px;
+
+}
+ label{
+ 	color: red;
+ }
+
+select {
+	width: 100%;
+	height:23px;
+display: block;
+
+}
+
+.multiple
+{
+		smin-width: 300px;
+		 min-height:400px;
+	
+}
+option {
+	padding: 10px;
+}
+
+/*Cabecera de paginas*/
+.tablageneral {
+width:100%;
+height:55px;
+}
+
+.tituloMenu {
+font-family:Verdana ;
+    font-size: 16pt; 
+    text-align: center; 
+    font-family: 'Lucida Grande', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    color: #fff;
+    background-color:#00407E;
+}
+
+.logo {
+    width:135px;
+}
+
+.titulo {
+    width:830px;
+    font-family:Verdana ;
+    font-size: 14pt; 
+    text-align: left; 
+    color: #1464F6;
+}
+.usuario {
+    width:300px;
+    font-family:Calibri ;
+    font-size: 14pt; 
+    text-align: center;
+    color: #1464F6;
+
+}
+
+ .usuario a {
+   text-decoration:none;  
+ color: #1464F6; 
+ outline-color: #1464F6;
+
+    
+}
+
+ .usuario  a.nounderline:link   
+{   
+ text-decoration:none;  
+ color: #1464F6;  
+} 
+/* fin*/
+
+/*Pie de pagina*/
+
+
+.textoFooter {
+font-family:Verdana ;
+    font-size: 8pt; 
+    text-align: center; 
+    color: #444444;
+    background-color:#D6D6D6;
+}
+/*fin*/
+
+@media screen{body{overflow-y:scroll}.bcp-wrapper{max-width:80em;margin:0 auto}.bcp-wbox{padding:1.5em}body>header,body>nav,body>main,body>footer{min-width:760px}header{background:#fff;color:#ccc}header h1{background:transparent;color:#000}header .bcp-wbox{padding:1.5em 0 .3em 0}nav{background:#2f5995}main .info{margin-bottom:1.5em}main aside .bcp-gbox-right{border-left:1px #ddd solid}footer{background:#eee;color:#444}footer p{margin:0}footer .bcp-wbox{padding:1.5em}.bcp-gbox{padding:0 1.5em}.bcp-gbox-left{padding:0}.bcp-gbox-right{padding:1em}.bcp-skiplinks a.bcp-skip:focus,.bcp-skiplinks a.bcp-skip:active{color:#fff;background:#333;border-bottom:1px #000 solid;padding:10px 0;text-align:center;text-decoration:none}}@media screen and (min-width:0){body>header,body>nav,body>main,body>footer{min-width:0}}@media screen and (max-width:760px){.linearize-level-1,.linearize-level-1>[class*="bcp-c"],.linearize-level-1>[class*="bcp-g"]{display:block;float:none;padding:0;margin:0;width:auto !important}.linearize-level-1>[class*="bcp-c"]>[class*="bcp-cbox"],.linearize-level-1>[class*="bcp-g"]>[class*="bcp-gbox"]{margin:0;padding:0;overflow:hidden}.secondary{border-top:1px #888 solid;margin-top:1.5em !important;padding-top:1.5em !important}main aside .bcp-gbox-right{border:0 none}.bcp-searchform{display:block;float:none;width:auto;text-align:right}.bcp-searchform input[type="search"]{width:14%}}@media screen and (max-width:480px){.linearize-level-2,.linearize-level-2>[class*="bcp-c"],.linearize-level-2>[class*="bcp-g"]{display:block;float:none;padding:0;margin:0;width:auto !important}.linearize-level-2>[class*="bcp-c"]>[class*="bcp-cbox"],.linearize-level-2>[class*="bcp-g"]>[class*="bcp-gbox"]{margin:0;padding:0;overflow:hidden}header .bcp-wbox{padding:.75em 10px}header h1{font-size:1.5em;line-height:1em;margin:0}footer .bcp-wbox,.bcp-wbox,.bcp-searchform,nav .bcp-hlist ul{padding-left:10px;padding-right:10px}.bcp-searchform,nav .bcp-hlist ul,nav .bcp-hlist li{display:block;float:none;width:auto;text-align:left}.bcp-searchform input[type="search"]{width:75%}}
