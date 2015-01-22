@@ -29,7 +29,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.bcp.dao.uploadFileDAO;
 import com.bcp.modelo.dto.ExcelfileDTO;
-import com.bcp.modelo.dto.FileUploadDTO;
+import com.google.appengine.api.blobstore.BlobInfoFactory;
 import com.google.appengine.api.blobstore.BlobKey;
 import com.google.appengine.api.blobstore.BlobstoreService;
 import com.google.appengine.api.blobstore.BlobstoreServiceFactory;
@@ -45,13 +45,13 @@ public class importController {
 	private static final String extensionXLSM="XLSM";
 	
 	@RequestMapping(value = "/upload", method = RequestMethod.POST)
-	public String uploadFile(FileUploadDTO fileDTO, HttpServletRequest request, 
+	public String uploadFile(HttpServletRequest request, 
             HttpServletResponse response) throws IOException,Exception {
 		
 		String extension = "";
 		
 		List<ExcelfileDTO> excelfileDTOList = new ArrayList<ExcelfileDTO>();
-		ExcelfileDTO excelFileDTO = new ExcelfileDTO();//= null;
+		ExcelfileDTO excelFileDTO = null;
 		
 		POIFSFileSystem fileSystem = null;
 		
@@ -60,21 +60,15 @@ public class importController {
 
 		try {
 			if(ServletFileUpload.isMultipartContent(request)){
-				 
+											
 				Map<String, List<BlobKey>> blobs = blobstoreService.getUploads(request);
 			    BlobKey blobKey = blobs.get("file").get(0);
 			    
-			    excelFileDTO.sendDataDTO(7, blobs.values().size()+" "+request.toString());
-				
-			    extension = fileDTO.getFile().getOriginalFilename().replace(".", "@@");
+			    BlobInfoFactory info = new BlobInfoFactory();
+			    
+			    extension = info.loadBlobInfo(blobKey).getFilename().replace(".", "@@");
 			    extension = extension.split("@@")[1];
-			    
-			    excelFileDTO.sendDataDTO(6, extension);			    
-			    excelFileDTO.sendDataDTO(8, "hola");
-			    
-			    excelfileDTOList.add(excelFileDTO);
-				uploadFileDAO.getInstancia().insertDataFileUpload(excelfileDTOList);
-			    			    				
+		
 				if(extension.toUpperCase().compareTo(extensionXLS)==0){
 					
 					byte[] bytes = blobstoreService.fetchData(blobKey, 0, BlobstoreService.MAX_BLOB_FETCH_SIZE-1);
@@ -83,7 +77,8 @@ public class importController {
 					workBook = new HSSFWorkbook (fileSystem);		
 					sheet =  workBook.getSheetAt(1);
 					
-				}else if(extension.toUpperCase().compareTo(extensionXLSX)==0){
+				}else if(extension.toUpperCase().compareTo(extensionXLSX)==0 ||
+						extension.toUpperCase().compareTo(extensionXLSM)==0){
 					
 					byte[] bytes = blobstoreService.fetchData(blobKey, 0, BlobstoreService.MAX_BLOB_FETCH_SIZE-1);
 					workBook = new XSSFWorkbook(new ByteArrayInputStream(bytes));
@@ -96,7 +91,7 @@ public class importController {
 
 	            for(Row row : sheet){
 	            	
-//	            	excelFileDTO = new ExcelfileDTO();
+	            	excelFileDTO = new ExcelfileDTO();
 	            	
 	            	if(row.getRowNum() <= 2){
 	            		continue;
@@ -163,18 +158,18 @@ public class importController {
 		                        }
 	            		}
 //	            		System.out.println((count+1)+". Test value :: " + cellValue);
-//	            		excelFileDTO.sendDataDTO(count+1, cellValue);
+	            		excelFileDTO.sendDataDTO(count+1, cellValue);
 	            	 }
 //	            	System.out.println("*****************PRUEBA******************");
-//	            	excelfileDTOList.add(excelFileDTO);
+	            	excelfileDTOList.add(excelFileDTO);
 	            	break;
 	            }
 	            
 				blobstoreService.delete(blobKey);
 			}
 			
-//			String result = uploadFileDAO.getInstancia().insertDataFileUpload(excelfileDTOList);			
-//			System.out.println(result);
+			String result = uploadFileDAO.getInstancia().insertDataFileUpload(excelfileDTOList);			
+			System.out.println(result);
 			
 		}catch(IOException io){				
 			io.printStackTrace();
