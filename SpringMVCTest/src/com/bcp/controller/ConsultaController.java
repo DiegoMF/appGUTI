@@ -40,42 +40,53 @@ public class ConsultaController {
 	@RequestMapping(value="/listaFiltro", method = RequestMethod.POST)
 	public ModelAndView listarFiltro(@ModelAttribute("listaConsulta") Consulta consulta) throws Exception {
 		
-		ArrayList<Consulta_Columna> lista = Consulta_ColumnaDAO.getInstancia().buscar(Integer.parseInt(consulta.getComboFiltro()));
-		Consulta_Columna obj = new Consulta_Columna();
+		ArrayList<Consulta_Columna> listaDestino = null;
 		
-		ArrayList<Consulta_Columna> listaDestino = new ArrayList<Consulta_Columna>();
+		if(consulta.getComboFiltro()!=null && consulta.getComboFiltro().compareTo("")!=0){			
+			listaDestino = Consulta_ColumnaDAO.getInstancia().buscar(Integer.parseInt(consulta.getComboFiltro()));						
+		}else{			
+			listaDestino = new ArrayList<Consulta_Columna>();
+		}
+				
+		ModelAndView modelo = new ModelAndView("Auxiliar/ListaConsulta_Filtro");
+		modelo.addObject("ListaConsulta_Filtro", listaDestino);
+			
+		return modelo;
+	}
+	
+	@RequestMapping(value="/listaFiltro2", method = RequestMethod.POST)
+	public ModelAndView listarFiltro2(@ModelAttribute("listaConsulta") Consulta consulta) throws Exception {
+				
+		ArrayList<Consulta_Columna> lista = Consulta_ColumnaDAO.getInstancia().buscar(Integer.parseInt(consulta.getComboFiltro()));
+		
+		ArrayList<Consulta_Columna> listaDestino = null;
+		Consulta_Columna obj = null;
 		
 		if(consulta.getFiltroDestino() != null){
-
 			if(consulta.getFiltroDestino().size() != 0)
 			{
-			for (int i=0;i<consulta.getFiltroDestino().size(); i++){
+				listaDestino = new ArrayList<Consulta_Columna>();
+				obj = new Consulta_Columna();
 				
-				obj.setIdConsulta_Columna(Integer.parseInt(consulta.getFiltroDestino().get(i)));
-				listaDestino.add(obj);
-			}
-			
-			
-			for(Consulta_Columna object: lista){
-				
-				  System.out.println(object.getIdConsulta_Columna());
-				  
-				  if((object.getIdConsulta_Columna()) == obj.getIdConsulta_Columna())
-				  {
-					  lista.remove(object.getIdConsulta_Columna());
-				  }
-				  
+				for(String lstFiltro : consulta.getFiltroDestino()){
+					for(Consulta_Columna cltLista : lista){
+						if(lstFiltro.compareTo(String.valueOf(cltLista.getIdConsulta_Columna()))!=0){
+							obj = cltLista;
+							listaDestino.add(obj);
+						}
+					}
 				}
-			/*listaFinal.add(obj);*/
+			}else{
+				listaDestino = new ArrayList<Consulta_Columna>();
+				listaDestino.addAll(lista);
 			}
+		}else{
+			listaDestino = new ArrayList<Consulta_Columna>();
+			listaDestino.addAll(lista);
 		}
-		
-
-		
-		
-		
+				
 		ModelAndView modelo = new ModelAndView("Auxiliar/ListaConsulta_Filtro");
-		modelo.addObject("ListaConsulta_Filtro", lista);
+		modelo.addObject("ListaConsulta_Filtro", listaDestino);
 			
 		return modelo;
 	}
