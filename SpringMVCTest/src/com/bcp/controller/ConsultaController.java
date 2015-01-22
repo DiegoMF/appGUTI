@@ -36,83 +36,14 @@ public class ConsultaController {
 
 	}
 	
-	
-	@RequestMapping(value="/listaFiltro", method = RequestMethod.POST)
-	public ModelAndView listarFiltro(@ModelAttribute("listaConsulta") Consulta consulta) throws Exception {
-		
-		ArrayList<Consulta_Columna> lista = Consulta_ColumnaDAO.getInstancia().buscar(Integer.parseInt(consulta.getComboFiltro()));
-		Consulta_Columna obj = new Consulta_Columna();
-		
-		ArrayList<Consulta_Columna> listaDestino = new ArrayList<Consulta_Columna>();
-		
-		if(consulta.getFiltroDestino() != null){
-
-			if(consulta.getFiltroDestino().size() != 0)
-			{
-			for (int i=0;i<consulta.getFiltroDestino().size(); i++){
-				
-				obj.setIdConsulta_Columna(Integer.parseInt(consulta.getFiltroDestino().get(i)));
-				listaDestino.add(obj);
-			}
-			
-			
-			for(Consulta_Columna object: lista){
-				
-				  System.out.println(object.getIdConsulta_Columna());
-				  
-				  if((object.getIdConsulta_Columna()) == obj.getIdConsulta_Columna())
-				  {
-					  lista.remove(object.getIdConsulta_Columna());
-				  }
-				  
-				}
-			/*listaFinal.add(obj);*/
-			}
-		}
-		
-
-		
-		
-		
-		ModelAndView modelo = new ModelAndView("Auxiliar/ListaConsulta_Filtro");
-		modelo.addObject("ListaConsulta_Filtro", lista);
-			
-		return modelo;
-	}
-
-	
-	@RequestMapping(value="/listaColumna", method = RequestMethod.POST)
-	public ModelAndView listarColumnas(@ModelAttribute("listaConsulta") Consulta consulta) throws Exception {
-		
-		ArrayList<Consulta_Columna> lista = Consulta_ColumnaDAO.getInstancia().buscar(Integer.parseInt(consulta.getComboColumna()));
-
-		
-		ModelAndView modelo = new ModelAndView("Auxiliar/ListaConsulta_Columna");
-				modelo.addObject("ListaConsulta_Columna", lista);
-			
-		return modelo;
-	}
-	
 	@RequestMapping(value = { "/BuscarColumna" }, method = RequestMethod.POST)
-	public ModelAndView BuscarColumna(HttpServletRequest request, ModelMap mod)
+	public ModelAndView BuscarColumna(HttpServletRequest request, ModelMap mod, HttpSession sesion)
 			throws Exception {
-		
-
-		
-		
+				
 		ArrayList<Consulta_Columna> lista = Consulta_ColumnaDAO.getInstancia().buscar(Integer.parseInt(request.getParameter("idConsulta_Seccion")));
-		ArrayList<Consulta_Columna> listaOrigen = new ArrayList<Consulta_Columna>();
-		ArrayList<Consulta_Columna> listaDestino = new ArrayList<Consulta_Columna>();
-		String datos = request.getParameter("filtroDestino");
-		
-		char[] aCaracteres = datos.toCharArray();
-			
-	
-		
-		
 		
 		ModelAndView model = new ModelAndView("Auxiliar/ListaConsulta_Columna");
-		model.addObject("ListaConsulta_Columna", listaOrigen);
+		model.addObject("ListaConsulta_Columna", lista);
 
 		return model;
 
@@ -170,7 +101,7 @@ public class ConsultaController {
 	for (int i=0;i<listaFiltros.size(); i++){
 			
 			objeto.setId_consulta(id_consulta);
-			objeto.setIdConsultaFiltro(Integer.parseInt(listaFiltros.get(i)));
+			objeto.setId_consulta_filtro(Integer.parseInt(listaFiltros.get(i)));
 			Consulta_ColumnaDAO.getInstancia().ingresarFiltro(objeto);
 		
 		}
@@ -178,11 +109,14 @@ public class ConsultaController {
 		for (int i=0;i<listaColumnas.size(); i++){
 			
 			objeto.setId_consulta(id_consulta);
-			objeto.setIdConsultaColumna(Integer.parseInt(listaColumnas.get(i)));
+			objeto.setId_consulta_columna(Integer.parseInt(listaColumnas.get(i)));
 			Consulta_ColumnaDAO.getInstancia().ingresarColumna(objeto);
 		
 		}
+	
 
+	
+		
 		ModelAndView modelo = new ModelAndView("bitacoraConsultas");
 		
 		return modelo;

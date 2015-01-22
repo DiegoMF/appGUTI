@@ -28,9 +28,6 @@ import com.bcp.dao.AccesosRevisionPrivilegiosUsuariosDAO;
 import com.bcp.dao.AmbienteAppNoITDAO;
 import com.bcp.dao.AplicacionEspecializadaDAO;
 import com.bcp.dao.AppEspImpactoDAO;
-import com.bcp.dao.AppEspNivelCumplimientoDAO;
-import com.bcp.dao.AppEspNivelCumplimientoLineamientosDAO;
-import com.bcp.dao.AppEspNivelesCumplimientoEstandaresDAO;
 import com.bcp.dao.ConsultaAplicacionEspecializadaDAO;
 import com.bcp.dao.AppEspCaracteristicasParticularesDAO;
 import com.bcp.dao.AppEspCaracteristicasTecnicasDAO;
@@ -105,9 +102,6 @@ import com.bcp.dao.usuarioDAO;
 import com.bcp.dao.SubDominioDAO;
 import com.bcp.dao.ActividadDAO;
 import com.bcp.dao.EstadoRevisionAplicacionDAO;
-import com.bcp.modelo.AppEspNivelCumplimiento;
-import com.bcp.modelo.AppEspNivelCumplimientoLineamientos;
-import com.bcp.modelo.AppEspNivelesCumplimientoEstandares;
 import com.bcp.modelo.LogAuditoria;
 import com.bcp.modelo.usuario;
 import com.bcp.modelo.AccesosAplicacion;
@@ -380,12 +374,6 @@ public class AplicacionesEspecializadasController {
 	BitacoraActualizaciones bitacoraActualizaciones = new BitacoraActualizaciones();
 	ArrayList<CampoInventario> campoInventario;
 	ArrayList<GrupoInventario> grupoInventario;
-	
-	AppEspNivelesCumplimientoEstandares nivelEstandar = new AppEspNivelesCumplimientoEstandares();
-	AppEspNivelCumplimientoLineamientos nivelLineamiento = new AppEspNivelCumplimientoLineamientos();
-	
-	AppEspNivelCumplimiento nivelCumplimiento = new AppEspNivelCumplimiento();
-	AppEspNivelCumplimiento nivelCumplimientoP = new AppEspNivelCumplimiento();
 
 	public ArrayList<ConsultaGeneralAplicacionesDTO> getListausuario() {
 		return listaAplicaciones;
@@ -855,10 +843,8 @@ public class AplicacionesEspecializadasController {
 
 		aplicaciones.setNombreAplicacion(request.getParameter("nombreAplicacion"));
 	
-
 		aplicaciones.setIdEstadoAplicacion(Integer.parseInt(request.getParameter("estadoAplicacion")));
 	
-
 		aplicaciones.setIdClasificacion(Integer.parseInt(request.getParameter("clasificacion")));
 		
 
@@ -883,7 +869,6 @@ else
 
 		aplicaciones.setProcesoClave(request.getParameter("procesoClave"));
 		
-
 		listaAplicaciones = ConsultaAplicacionEspecializadaDAO.getInstancia().obtenerAplicaciones(aplicaciones);
 		
 		if(listaAplicaciones.size() ==0)
@@ -1521,36 +1506,8 @@ else
 		
 		model.addObject("impacto",impacto);
 		
-		/*
-		nivelEstandar = new AppEspNivelesCumplimientoEstandares();
-		AppEspNivelesCumplimientoEstandares nEstandar = new AppEspNivelesCumplimientoEstandares();
-		nEstandar.setIdAplicacionEspecializada(ID_APLICACION_ESPECIALIZADA);
-		nEstandar.setIdVersion(ID_VERSION);
-		nivelEstandar = AppEspNivelesCumplimientoEstandaresDAO.getInstancia().obtenerNivelCumplimientoEstandares(nEstandar);
-		model.addObject("nivelEstandar",nivelEstandar);
 		
-	
-		nivelLineamiento = new AppEspNivelCumplimientoLineamientos();
-		AppEspNivelCumplimientoLineamientos nLineamiento = new AppEspNivelCumplimientoLineamientos();
-		nLineamiento.setIdAplicacionEspecializada(ID_APLICACION_ESPECIALIZADA);
-		nLineamiento.setIdVersion(ID_VERSION);
-		nivelLineamiento = AppEspNivelCumplimientoLineamientosDAO.getInstancia().obtenerNivelCumplimientoLineamientos(nLineamiento);
-		model.addObject("nivelLineamiento",nivelLineamiento);
-		*/
-		/*
-		nivelCumplimiento = new AppEspNivelCumplimiento();
-		AppEspNivelCumplimiento nCumplimiento = new AppEspNivelCumplimiento();
-		nCumplimiento.setIdAplicacionEspecializada(ID_APLICACION_ESPECIALIZADA);
-		nCumplimiento.setIdVersion(ID_VERSION);
-		nivelCumplimiento = AppEspNivelCumplimientoDAO.getInstancia().obtenerNivelCumplimiento(nCumplimiento);
-		model.addObject("nCumplimiento",nivelCumplimiento);
-		
-		nivelCumplimientoP = new AppEspNivelCumplimiento();
-		AppEspNivelCumplimiento nCumplimientoP = new AppEspNivelCumplimiento();
-		nCumplimientoP.setIdAplicacionEspecializada(ID_APLICACION_ESPECIALIZADA);
-		nCumplimientoP.setIdVersion(ID_VERSION);
-		nivelCumplimientoP = AppEspNivelCumplimientoDAO.getInstancia().obtenerNivelCumplimientoPost(nCumplimientoP);
-		model.addObject("nCumplimientoP",nivelCumplimientoP);*/
+
 		
 		System.out.println("llegaaaaa");
 		return model;
@@ -2690,8 +2647,6 @@ else
 		objAppEsp.setDescripcionFuente(request.getParameter("descripcionFuente"));
 
 		AplicacionEspecializadaDAO.getInstancia().ingresarAplicacionEspecializada(objAppEsp);
-		//AppEspNivelCumplimientoDAO.getInstancia().ingresarNivelCumplimiento(objAppEsp);
-		//AppEspNivelCumplimientoDAO.getInstancia().ingresarNivelCumplimientoPost(objAppEsp);
 
 		
 		message="Se registró correctamente";
@@ -3839,9 +3794,6 @@ else
 		objAppEsp.setDescripcionFuente(request.getParameter("descripcionFuente"));
 
 		AplicacionEspecializadaDAO.getInstancia().ingresarAplicacionEspecializada(objAppEsp);
-		//AppEspNivelCumplimientoDAO.getInstancia().ingresarNivelCumplimiento(objAppEsp);
-		//AppEspNivelCumplimientoDAO.getInstancia().ingresarNivelCumplimientoPost(objAppEsp);
-
 		message="Se actualizó correctamente";
 		
 		//Registro log de auditoría
