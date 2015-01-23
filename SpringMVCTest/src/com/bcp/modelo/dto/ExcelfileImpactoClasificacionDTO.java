@@ -51,16 +51,16 @@ public class ExcelfileImpactoClasificacionDTO {
 
 	public void sendDataDTO(int count, String obj) {
 		switch (count) {
-		case 1:
+		case 24:
 			impacto_confidencialidad = obj;
 			break;
-		case 2:
+		case 34:
 			impacto_integridad = obj;
 			break;
-		case 3:
+		case 46:
 			impacto_disponibilidad = obj;
 			break;
-		case 4:
+		case 56:
 			impacto_privacidad = obj;
 			break;
 		default:

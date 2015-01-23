@@ -27,6 +27,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.bcp.dao.uploadFileDAO;
 import com.bcp.modelo.dto.ExcelfileDTO;
 import com.bcp.modelo.dto.ExcelfileDatamartDTO;
 import com.bcp.modelo.dto.ExcelfileImpactoClasificacionDTO;
@@ -61,7 +62,6 @@ public class importController {
 		List<ExcelfileImpactoClasificacionDTO> excelfileImpactoDTOList = new ArrayList<ExcelfileImpactoClasificacionDTO>();
 
 		POIFSFileSystem fileSystem = null;
-
 		Workbook workBook = null;
 		Sheet sheet = null;
 
@@ -115,9 +115,11 @@ public class importController {
 				blobstoreService.delete(blobKey);
 			}
 
-			// String result =
-			// uploadFileDAO.getInstancia().insertDataFileUpload(excelfileDTOList);
-			// System.out.println(result);
+			String result = uploadFileDAO.getInstancia().insertDataFileUpload(
+					excelfileDTOList, excelfileStandarDTOList,
+					excelfileLineamientoDTOList, excelfileDatamartDTOList,
+					excelfileImpactoDTOList);
+			 System.out.println(result);
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -601,34 +603,42 @@ public class importController {
 			}
 
 			int totalCellRowCount = totalReadRows;
+			int validatorClass = 0;
+			
+			for (int count = 0; count < totalCellRowCount; count++) {
+				 excelfileImpactoDTO = new
+				 ExcelfileImpactoClasificacionDTO();
+				for (Row row : sheet) {					
 
-			for (Row row : sheet) {
+					if (row.getRowNum() <= 23) {
+						continue;
+					}
 
-				excelfileImpactoDTO = new ExcelfileImpactoClasificacionDTO();
+					if (row.getRowNum() >= 25 && row.getRowNum() <= 33) {
+						continue;
+					}
 
-				if (row.getRowNum() <= 23) {
-					continue;
-				}
+					if (row.getRowNum() >= 35 && row.getRowNum() <= 45) {
+						continue;
+					}
 
-				if (row.getRowNum() >= 25 && row.getRowNum() <= 33) {
-					continue;
-				}
+					if (row.getRowNum() >= 47 && row.getRowNum() <= 55) {
+						continue;
+					}
 
-				if (row.getRowNum() >= 35 && row.getRowNum() <= 45) {
-					continue;
-				}
+					if (row.getRowNum() >= 57) {
+						break;
+					}
 
-				if (row.getRowNum() >= 47 && row.getRowNum() <= 55) {
-					continue;
-				}
+					// Lee a partir de la 4 fila.
 
-				if (row.getRowNum() >= 57) {
-					break;
-				}
+					Cell cell = row
+							.getCell(5 + count, Row.CREATE_NULL_AS_BLANK);
 
-				// Lee a partir de la 4 fila.
-				for (int count = 0; count < totalCellRowCount; count++) {
-					Cell cell = row.getCell(5+count, Row.CREATE_NULL_AS_BLANK);
+					if (count == validatorClass) {
+						excelfileImpactoDTO = new ExcelfileImpactoClasificacionDTO();
+						validatorClass++;
+					}
 
 					String cellValue = "";
 
@@ -692,8 +702,9 @@ public class importController {
 						break;
 					}
 					}
-					// System.out.println((count + 1) + ". Test value :: " + cellValue);
-					excelfileImpactoDTO.sendDataDTO(count + 1, cellValue);
+					// System.out.println(row.getRowNum() + ". Test value :: " +
+					// cellValue);
+					excelfileImpactoDTO.sendDataDTO(row.getRowNum(), cellValue);
 				}
 				excelfileImpactoDTOList.add(excelfileImpactoDTO);
 			}
