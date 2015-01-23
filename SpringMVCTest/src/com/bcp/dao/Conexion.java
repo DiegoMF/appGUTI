@@ -15,15 +15,12 @@ public class Conexion {
         String url = "jdbc:mysql://127.0.0.1:3306/dbtest";*/
         
         /*conexion local*/
-        String usuario = "admin";
-        String clave = "admin";
+        String usuario = "root";
+        String clave = "root";
         String url = "jdbc:mysql://127.0.0.1:3306/dbtest";
         
         DriverManager.registerDriver(new com.mysql.jdbc.Driver());
         
-       
-        
-      
         if (SystemProperty.environment.value() == SystemProperty.Environment.Value.Production) {
         	  // Load the class that provides the new "jdbc:google:mysql://" prefix.
         		usuario = "root";
@@ -35,14 +32,10 @@ public class Conexion {
         	} else {
         		
         	  Class.forName("com.mysql.jdbc.Driver");
-        	  url = "jdbc:mysql://7.227.104.92:8282/BDPortafolio";
+        	  url = "jdbc:mysql://localhost:3306/bdportafolio1";
+//        	  url = "jdbc:mysql://7.227.104.181:8282/bdportafolio";
 
         	}
-        
-        
-      
-        
-        
         //Class.forName("com.mysql.jdbc.Driver");
         
         con = DriverManager.getConnection(url, usuario, clave);
