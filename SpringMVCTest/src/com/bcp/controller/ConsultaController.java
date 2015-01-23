@@ -43,7 +43,33 @@ public class ConsultaController {
 		ArrayList<Consulta_Columna> listaDestino = null;
 		
 		if(consulta.getComboFiltro()!=null && consulta.getComboFiltro().compareTo("")!=0){			
-			listaDestino = Consulta_ColumnaDAO.getInstancia().buscar(Integer.parseInt(consulta.getComboFiltro()));						
+			ArrayList<Consulta_Columna> lista = Consulta_ColumnaDAO.getInstancia().buscar(Integer.parseInt(consulta.getComboFiltro()));	
+			
+			if(consulta.getFiltroDestino() != null){
+				if(consulta.getFiltroDestino().size() != 0)
+				{
+					listaDestino = new ArrayList<Consulta_Columna>();				
+					listaDestino.addAll(lista);
+					
+					for(Consulta_Columna cltLista : lista){
+						for(int i = 0; i<consulta.getFiltroDestino().size(); i++){
+							int value = Integer.parseInt(consulta.getFiltroDestino().get(i));
+													
+							if(cltLista.getIdConsulta_Columna() == value){
+								listaDestino.remove(cltLista);
+								break;
+							}						
+						}
+					}
+				}else{
+					listaDestino = new ArrayList<Consulta_Columna>();
+					listaDestino.addAll(lista);
+				}
+			}else{
+				listaDestino = new ArrayList<Consulta_Columna>();
+				listaDestino.addAll(lista);
+			}
+			
 		}else{			
 			listaDestino = new ArrayList<Consulta_Columna>();
 		}
@@ -60,20 +86,21 @@ public class ConsultaController {
 		ArrayList<Consulta_Columna> lista = Consulta_ColumnaDAO.getInstancia().buscar(Integer.parseInt(consulta.getComboFiltro()));
 		
 		ArrayList<Consulta_Columna> listaDestino = null;
-		Consulta_Columna obj = null;
 		
 		if(consulta.getFiltroDestino() != null){
 			if(consulta.getFiltroDestino().size() != 0)
 			{
-				listaDestino = new ArrayList<Consulta_Columna>();
-				obj = new Consulta_Columna();
+				listaDestino = new ArrayList<Consulta_Columna>();				
+				listaDestino.addAll(lista);
 				
-				for(String lstFiltro : consulta.getFiltroDestino()){
-					for(Consulta_Columna cltLista : lista){
-						if(lstFiltro.compareTo(String.valueOf(cltLista.getIdConsulta_Columna()))!=0){
-							obj = cltLista;
-							listaDestino.add(obj);
-						}
+				for(Consulta_Columna cltLista : lista){
+					for(int i = 0; i<consulta.getFiltroDestino().size(); i++){
+						int value = Integer.parseInt(consulta.getFiltroDestino().get(i));
+												
+						if(cltLista.getIdConsulta_Columna() == value){
+							listaDestino.remove(cltLista);
+							break;
+						}						
 					}
 				}
 			}else{

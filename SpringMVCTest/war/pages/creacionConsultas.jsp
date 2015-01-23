@@ -9,9 +9,10 @@
 							return !$('#fOrigen option:selected').remove().appendTo('#filtroDestino');});
 				$('.quitar').click(
 						function() {
+							$('#filtroDestino option:selected').remove();
+							$('#filtroDestino option').prop('selected', 'selected');
 							ListarFiltro2();
-							return !$('#filtroDestino option:selected').remove();});	
-
+							return ;});
 				$('.agregarC').click(						
 						function() {							
 							return !$('#cOrigen option:selected').remove().appendTo('#columnaDestino');});
@@ -25,10 +26,6 @@
 			});
 	
 	function ListarFiltro2() {
-		var nLineamiento = document.getElementById("filtroDestino");
-		console.log(nLineamiento.options);
-// 		var data2 = {"filtroDestino":nLineamiento.options}; 
-
 		var data = $("#formulario").serialize();
 		var url = "/Consulta/listaFiltro2";
 		$.post(url, data, function(resultado) {	$("#divListaFiltro").html(resultado);});
