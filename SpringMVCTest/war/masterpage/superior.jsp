@@ -28,6 +28,7 @@
 <title>Gesti&oacute;n de Portafolios para Aplicaciones GUTI</title>
 
 <style type="text/css">
+
 .pg-normal {
 	color: #0000FF;
 	font-weight: normal;

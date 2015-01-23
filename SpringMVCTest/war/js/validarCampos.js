@@ -23,3 +23,18 @@
                 el.value = "0.00";
             }
         }
+        
+        function checkFile() {
+            var fileElement = document.getElementById("file");
+            var fileExtension = "";
+            if (fileElement.value.lastIndexOf(".") > 0) {
+                fileExtension = fileElement.value.substring(fileElement.value.lastIndexOf(".") + 1, fileElement.value.length);
+            }
+            if (fileExtension == "xls" || fileExtension == "xlsx" || fileExtension == "xlsm") {
+                return true;
+            }
+            else {
+                alert("Seleccione un archivo con extensión XLS");
+                return false;
+            }
+        }
