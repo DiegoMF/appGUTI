@@ -3,7 +3,7 @@
 						<thead>
 							<tr align="center">
 								<th>#</th>
-								<th>Nombre de reporte general</th>
+								<th>Nombresss de reporte general</th>
 								<th>Fecha de creación</th>
 								<th>Usuario de creación</th>
 								<th>Estado</th>							

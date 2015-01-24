@@ -178,6 +178,7 @@ public class AplicacionEspecializadaDTO {
 	private int idIncidentesCumplimientoCodigoMaliciosoPRE;
 	private int idIntegridadConfidencialidadDatosPruebaPRE;
 	private int idRespaldosGestionRespaldoRecuperacionPRE;
+	private String observaciones;
 	
 	/**POST ATENCION**/ /*&&*/ 
 	private int idSwBaseEstandarSistemaOperativoPOST;
@@ -212,6 +213,7 @@ public class AplicacionEspecializadaDTO {
 	private int idIncidentesCumplimientoCodigoMaliciosoPOST;
 	private int idIntegridadConfidencialidadDatosPruebaPOST;
 	private int idRespaldosGestionRespaldoRecuperacionPOST;
+	private String observacionesPost;
 	
 	
 	
@@ -1466,6 +1468,19 @@ public class AplicacionEspecializadaDTO {
 	}
 	public void setIdImpProcesoClave(int idImpProcesoClave) {
 		this.idImpProcesoClave = idImpProcesoClave;
+	}
+
+	public String getObservaciones() {
+		return observaciones;
+	}
+	public void setObservaciones(String observaciones) {
+		this.observaciones = observaciones;
+	}
+	public String getObservacionesPost() {
+		return observacionesPost;
+	}
+	public void setObservacionesPost(String observacionesPost) {
+		this.observacionesPost = observacionesPost;
 	}
 	
 }

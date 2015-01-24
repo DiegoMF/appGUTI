@@ -1537,7 +1537,7 @@ else
 		nivelLineamiento = AppEspNivelCumplimientoLineamientosDAO.getInstancia().obtenerNivelCumplimientoLineamientos(nLineamiento);
 		model.addObject("nivelLineamiento",nivelLineamiento);
 		*/
-		/*
+		
 		nivelCumplimiento = new AppEspNivelCumplimiento();
 		AppEspNivelCumplimiento nCumplimiento = new AppEspNivelCumplimiento();
 		nCumplimiento.setIdAplicacionEspecializada(ID_APLICACION_ESPECIALIZADA);
@@ -1550,7 +1550,7 @@ else
 		nCumplimientoP.setIdAplicacionEspecializada(ID_APLICACION_ESPECIALIZADA);
 		nCumplimientoP.setIdVersion(ID_VERSION);
 		nivelCumplimientoP = AppEspNivelCumplimientoDAO.getInstancia().obtenerNivelCumplimientoPost(nCumplimientoP);
-		model.addObject("nCumplimientoP",nivelCumplimientoP);*/
+		model.addObject("nCumplimientoP",nivelCumplimientoP);
 		
 		System.out.println("llegaaaaa");
 		return model;
@@ -2421,6 +2421,8 @@ else
 			objAppEsp.setIdRespaldosGestionRespaldoRecuperacionPRE(Integer.parseInt(request.getParameter("idRespaldosGestionRespaldoRecuperacionPRE")));
 		}
 		
+		objAppEsp.setObservaciones(request.getParameter("observaciones"));
+		
 
 		/** POST ATENCION **/
 
@@ -2658,6 +2660,8 @@ else
 		{
 			objAppEsp.setIdRespaldosGestionRespaldoRecuperacionPOST(Integer.parseInt(request.getParameter("idRespaldosGestionRespaldoRecuperacionPOST")));
 		}
+		
+		objAppEsp.setObservacionesPost(request.getParameter("observacionesPost"));
 
 		/** INFORMACION ADICIONAL **/
 
@@ -2688,10 +2692,17 @@ else
 		
 		
 		objAppEsp.setDescripcionFuente(request.getParameter("descripcionFuente"));
+		
+		
+
 
 		AplicacionEspecializadaDAO.getInstancia().ingresarAplicacionEspecializada(objAppEsp);
-		//AppEspNivelCumplimientoDAO.getInstancia().ingresarNivelCumplimiento(objAppEsp);
-		//AppEspNivelCumplimientoDAO.getInstancia().ingresarNivelCumplimientoPost(objAppEsp);
+		System.out.println("se ingreso todo");
+		AppEspNivelCumplimientoDAO.getInstancia().ingresarNivelCumplimiento(objAppEsp);
+		System.out.println("se ingreso nivel cumpli");
+
+		AppEspNivelCumplimientoDAO.getInstancia().ingresarNivelCumplimientoPost(objAppEsp);
+		System.out.println("se ingreso nivel cumpli post");
 
 		
 		message="Se registró correctamente";
@@ -3570,6 +3581,8 @@ else
 			objAppEsp.setIdRespaldosGestionRespaldoRecuperacionPRE(Integer.parseInt(request.getParameter("idRespaldosGestionRespaldoRecuperacionPRE")));
 		}
 		
+		objAppEsp.setObservaciones(request.getParameter("observaciones"));
+		
 
 		/** POST ATENCION **/
 
@@ -3807,6 +3820,8 @@ else
 		{
 			objAppEsp.setIdRespaldosGestionRespaldoRecuperacionPOST(Integer.parseInt(request.getParameter("idRespaldosGestionRespaldoRecuperacionPOST")));
 		}
+		
+		objAppEsp.setObservacionesPost(request.getParameter("observacionesPost"));
 
 		/** INFORMACION ADICIONAL **/
 
@@ -3837,10 +3852,12 @@ else
 		
 		
 		objAppEsp.setDescripcionFuente(request.getParameter("descripcionFuente"));
+		
+	
 
 		AplicacionEspecializadaDAO.getInstancia().ingresarAplicacionEspecializada(objAppEsp);
-		//AppEspNivelCumplimientoDAO.getInstancia().ingresarNivelCumplimiento(objAppEsp);
-		//AppEspNivelCumplimientoDAO.getInstancia().ingresarNivelCumplimientoPost(objAppEsp);
+		AppEspNivelCumplimientoDAO.getInstancia().ingresarNivelCumplimiento(objAppEsp);
+		AppEspNivelCumplimientoDAO.getInstancia().ingresarNivelCumplimientoPost(objAppEsp);
 
 		message="Se actualizó correctamente";
 		

@@ -132,9 +132,6 @@ public class Consulta {
 	public void setfOrigen(ArrayList<String> fOrigen) {
 		this.fOrigen = fOrigen;
 	}
-
-
-
 	public String getStrPredeterminado() {
 		return strPredeterminado;
 	}

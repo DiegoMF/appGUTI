@@ -23,6 +23,7 @@ public class AppEspPostAtencionLineamientos {
 	private int idIncidentesCumplimientoCodigoMalicioso;
 	private int idIntegridadConfidencialidadDatosPrueba;
 	private int idRespaldosGestionRespaldoRecuperacion;
+	private String observacionesPost;
 	
 	public int getIdAplicacionEspecializada() {
 		return idAplicacionEspecializada;
@@ -168,6 +169,12 @@ public class AppEspPostAtencionLineamientos {
 	}
 	public void setIdVersion(int idVersion) {
 		this.idVersion = idVersion;
+	}
+	public String getObservacionesPost() {
+		return observacionesPost;
+	}
+	public void setObservacionesPost(String observacionesPost) {
+		this.observacionesPost = observacionesPost;
 	}
 	
 	

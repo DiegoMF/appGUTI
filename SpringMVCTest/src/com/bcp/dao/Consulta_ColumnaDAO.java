@@ -108,20 +108,82 @@ public class Consulta_ColumnaDAO {
         }
         return id;
     }
-	public void ingresarColumna(Consulta consulta) throws Exception {
+
+	
+	public int modificarConsultaReporte(Consulta consulta) throws Exception{
+		int id = 0;
         try {
+        	
             cnn = Conexion.getConexion();
             CallableStatement cs = null;
-            cs = cnn.prepareCall("call consulta_columna_INSERT(?,?)");
-            cs.setInt(1, consulta.getIdConsulta());
-            cs.setInt(2, consulta.getIdConsultaColumna());   
-            cs.execute();
+            cs = cnn.prepareCall("call consulta_reporte_UPDATE(?,?,?,?,?,?)");
+            cs.setInt(1, consulta.getIdReporte());
+
+
+            cs.setString(2, consulta.getNombreReporte());
+            cs.setString(3, consulta.getEstado());
+            cs.setString(4, consulta.getFechaCreacion());
+            cs.setString(5, consulta.getMatricula());
+            cs.setBoolean(6, consulta.getTipo());
+       
+            rs = cs.executeQuery();
+            while (rs.next()) {
+            	id = rs.getInt("_ID_CONSULTA");                
+            }
+            
+           
             cnn.close();
             cs.close();
         } catch (SQLException ex) {
             throw ex;
         }
+        return id;
+		
+	}
+	
+	
+	public int ingresarConsultaReporte(Consulta consulta) throws Exception {
+		int id = 0;
+        try {
+        	
+            cnn = Conexion.getConexion();
+            CallableStatement cs = null;
+            cs = cnn.prepareCall("call consulta_reporte_INSERT(?,?,?,?,?)");
+            cs.setString(1, consulta.getNombreReporte());
+            cs.setString(2, consulta.getEstado());
+            cs.setString(3, consulta.getFechaCreacion());
+            cs.setString(4, consulta.getMatricula());
+            cs.setBoolean(5, consulta.getTipo());
+       
+            rs = cs.executeQuery();
+            while (rs.next()) {
+            	id = rs.getInt("ID_CONSULTA");                
+            }
+            
+           
+            cnn.close();
+            cs.close();
+        } catch (SQLException ex) {
+            throw ex;
+        }
+        return id;
     }
+	
+	
+	public void ingresarColumna(Consulta consulta) throws Exception {
+	        try {
+	            cnn = Conexion.getConexion();
+	            CallableStatement cs = null;
+	            cs = cnn.prepareCall("call consulta_columna_INSERT(?,?)");
+	            cs.setInt(1, consulta.getIdConsulta());
+	            cs.setInt(2, consulta.getIdConsultaColumna());   
+	            cs.execute();
+	            cnn.close();
+	            cs.close();
+	        } catch (SQLException ex) {
+	            throw ex;
+	        }
+	    }
 	public void ingresarFiltro(Consulta consulta) throws Exception {
         try {
             cnn = Conexion.getConexion();

@@ -24,7 +24,7 @@ function buscar() {
 function modificar(idReporte){
 	
 	var data = $("#formulario").serialize();
-	var url = "/Reporte/modificarReporte";
+	var url = "/Reporte/verReporte";
 	
 	$("#idReporte").val(idReporte);
 	
@@ -78,7 +78,7 @@ function modificar(idReporte){
 						<thead>
 							<tr align="center">
 								<th>#</th>
-								<th>Nombressss de reporte general</th>
+								<th>Nombres de reporte general</th>
 								<th>Fecha de creación</th>
 								<th>Usuario de creación</th>
 								<th>Estado</th>							

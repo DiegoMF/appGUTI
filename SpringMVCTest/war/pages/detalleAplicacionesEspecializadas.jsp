@@ -765,13 +765,13 @@ function eliminarE(a,b){
 window.onload = function () {
 	var nLineamiento = document.getElementById("nCumplimientoLineamientoTotal").value;
 	var noCumpleLineamiento = (100-nLineamiento);
-	alert(nLineamiento);
+	//alert(nLineamiento);
 
 	var chart = new CanvasJS.Chart("chartContainerLineamientos",
 	{
 		title:{
 			text: "Nivel de cumplimiento - Lineamientos",
-			fontFamily: "arial black",
+			fontFamily: "Lucida Grande",
 			fontSize:15
 			
 		},
@@ -780,7 +780,7 @@ window.onload = function () {
 			verticalAlign: "bottom",
 			horizontalAlign: "center"
 		},
-		theme: "theme1",
+		theme: "theme2",
 		width: 320,
 		height: 300,
 		data: [
@@ -797,7 +797,7 @@ window.onload = function () {
 			showInLegend: true,			
 			dataPoints: [
 				{  y: nLineamiento,indexLabel: nLineamiento + "%", name: "Cumple", legendMarkerType: "square"},
-				{  y: noCumpleLineamiento,indexLabel: "50.0%", name: "No cumple", legendMarkerType: "square"},
+				{  y: noCumpleLineamiento,indexLabel: noCumpleLineamiento + "%", name: "No cumple", legendMarkerType: "square"},
 				
 			]
 		}
@@ -810,7 +810,7 @@ window.onload = function () {
 	
 	var nameValue = document.getElementById("nCumplimientoTotal").value;
 	var noCumpleEstandar = (100- nameValue);
-	alert(nameValue);
+	//alert(nameValue);
 
 	var chart = new CanvasJS.Chart("chartContainer",
 	{
@@ -855,7 +855,7 @@ window.onload = function () {
 	var nGeneral = document.getElementById("nCumplimientoGeneral").value;
 	var noCumpleGeneral= (100-nGeneral);
 		
-	alert(nGeneral);
+	//alert(nGeneral);
 
 	var chart = new CanvasJS.Chart("chartContainerGeneral",
 	{
@@ -888,6 +888,138 @@ window.onload = function () {
 			dataPoints: [
 				{  y: nGeneral,indexLabel: nGeneral + "%", name: "Cumple", legendMarkerType: "square"},
 				{  y: noCumpleGeneral,indexLabel: noCumpleGeneral + "%", name: "No cumple", legendMarkerType: "square"},
+				
+			]
+		}
+		]
+	});
+	chart.render();
+	
+	var nLineamientoP = document.getElementById("nCumplimientoLineamientoTotalP").value;
+	var noCumpleLineamientoP = (100-nLineamientoP);
+	//alert(nLineamientoP);
+
+	var chart = new CanvasJS.Chart("chartContainerLineamientosP",
+	{
+		title:{
+			text: "Nivel de cumplimiento - Lineamientos",
+			fontFamily: "Lucida Grande",
+			fontSize:15
+			
+		},
+                animationEnabled: true,
+		legend: {
+			verticalAlign: "bottom",
+			horizontalAlign: "center"
+		},
+		theme: "theme2",
+		width: 320,
+		height: 300,
+		data: [
+		{        
+			type: "pie",
+			indexLabelFontFamily: "Garamond",       
+			indexLabelFontSize: 20,
+			indexLabelFontWeight: "bold",
+			startAngle:0,
+			indexLabelFontColor: "MistyRose",       
+			indexLabelLineColor: "darkgrey", 
+			indexLabelPlacement: "inside", 
+			toolTipContent: "{name}: {y}%",
+			showInLegend: true,			
+			dataPoints: [
+				{  y: nLineamientoP,indexLabel: nLineamientoP + "%", name: "Cumple", legendMarkerType: "square"},
+				{  y: noCumpleLineamientoP,indexLabel: noCumpleLineamientoP + "%", name: "No cumple", legendMarkerType: "square"},
+				
+			]
+		}
+		]
+	});
+	chart.render();
+	
+	
+	
+	
+	var nameValueP = document.getElementById("nCumplimientoTotalP").value;
+	var noCumpleEstandarP = (100- nameValueP);
+	//alert(nameValueP);
+
+	var chart = new CanvasJS.Chart("chartContainerP",
+	{
+		title:{
+			text: "Nivel de cumplimiento - Estándares Tecnológicos",
+			fontFamily: "Lucida Grande",
+			fontSize:15
+			
+		},
+                animationEnabled: true,
+		legend: {
+			verticalAlign: "bottom",
+			horizontalAlign: "center"
+		},
+		theme: "theme2",
+		width: 320,
+		height: 300,
+		data: [
+		{        
+			type: "pie",
+			indexLabelFontFamily: "Garamond",       
+			indexLabelFontSize: 20,
+			indexLabelFontWeight: "bold",
+			startAngle:0,
+			indexLabelFontColor: "MistyRose",       
+			indexLabelLineColor: "darkgrey", 
+			indexLabelPlacement: "inside", 
+			toolTipContent: "{name}: {y}%",
+			showInLegend: true,			
+			dataPoints: [
+				{  y: nameValueP,indexLabel: nameValueP + "%", name: "Cumple", legendMarkerType: "square"},
+				{  y: noCumpleEstandarP,indexLabel: noCumpleEstandarP + "%", name: "No cumple", legendMarkerType: "square"},
+				
+			]
+		}
+		]
+	});
+	chart.render();
+	
+	
+	
+	var nGeneralP = document.getElementById("nCumplimientoGeneralP").value;
+	var noCumpleGeneralP= (100-nGeneralP);
+		
+	//alert(nGeneralP);
+
+	var chart = new CanvasJS.Chart("chartContainerGeneralP",
+	{
+		title:{
+			text: "Nivel de cumplimiento General",
+			fontFamily: "Lucida Grande",
+			fontSize:15
+			
+		},
+                animationEnabled: true,
+		legend: {
+			verticalAlign: "bottom",
+			horizontalAlign: "center"
+		},
+		theme: "theme2",
+		width: 320,
+		height: 300,
+		data: [
+		{        
+			type: "pie",
+			indexLabelFontFamily: "Garamond",       
+			indexLabelFontSize: 20,
+			indexLabelFontWeight: "bold",
+			startAngle:0,
+			indexLabelFontColor: "MistyRose",       
+			indexLabelLineColor: "darkgrey", 
+			indexLabelPlacement: "inside", 
+			toolTipContent: "{name}: {y}%",
+			showInLegend: true,			
+			dataPoints: [
+				{  y: nGeneralP,indexLabel: nGeneralP + "%", name: "Cumple", legendMarkerType: "square"},
+				{  y: noCumpleGeneralP,indexLabel: noCumpleGeneralP + "%", name: "No cumple", legendMarkerType: "square"},
 				
 			]
 		}
@@ -1875,14 +2007,14 @@ window.onload = function () {
 						<td>
 							<fieldset>
 								<legend align="left">Pre atención - Software base - Estándares tecnológicos</legend>
-								<table>
-								<tr>
 								
-								<td>
-								<table width="100%">
-									<tr>
+						<table width="100%">
+							<tr>
+								<td width="90%">
+							<table width="100%">
+								<tr>
 										<td>Estándar - Sistema operativo.:</td>
-										<td><select		
+										<td ><select		
 											onchange="cambiarEstandarSistemaOperativo($(this));"
 											name="idSwBaseEstandarSistemaOperativoPRE"
 											id="idSwBaseEstandarSistemaOperativoPRE">
@@ -1977,23 +2109,25 @@ window.onload = function () {
 											value="${preswBaseEstandarTecnologico.swBaseFrameworkOtros}"
 											maxlength="50"  disabled="disabled"” /></td>
 									</tr>
-									<tr>
+									
+							</table>
+
+					</td>
+					<td width="10%">
+							
+							<table  >
+								<tr>
 										<td>Observaciones adicionales.:</td>
-										<td><input type="text"
+										<td><TEXTAREA COLS=50 ROWS=5
 											name="swBaseObservacionesAdicionalesPRE"
 											value="${preswBaseEstandarTecnologico.swBaseObservacionesAdicionales}"
-											maxlength="500" /></td>
+											maxlength="500" /></TEXTAREA></td>
 									</tr>
-								
-								</table>
-								</td>
-							
-								<td>
-								<table>
-									
-								</table>
-								</td>
-								</table>
+							</table>
+					</td>
+					</tr>
+			</table>
+		
 							</fieldset>
 						</td>
 					</tr>
@@ -2001,9 +2135,13 @@ window.onload = function () {
 						<td>
 							<fieldset>
 								<legend align="left">Pre Atención - Lineamiento</legend>
-								<table>
+								<table width="100%">
 									<tr>
+									<td width="90%">
+										<table width="100%">
+											<tr>
 										<td>Accesos - Gestión de privilegios en los sistemas.:</td>
+										
 										<td><select name="idAccesosGestionPrivilegiosSistemasPRE"
 											id="idAccesosGestionPrivilegiosSistemasPRE">}
 												<option value="">Seleccione</option>
@@ -2013,6 +2151,8 @@ window.onload = function () {
 															value="${preagps.descripcionAccesosGestionPrivilegiosSistemas}" /></option>
 												</c:forEach>
 										</select></td>
+										<td>
+										</td>
 										<td>Accesos - Revisión de los privilegios de los
 											usuarios.:</td>
 										<td><select
@@ -2025,6 +2165,8 @@ window.onload = function () {
 															value="${prearpu.descripcionAccesosRevisionPrivilegiosUsuarios}" /></option>
 												</c:forEach>
 										</select></td>
+									</tr>
+									<tr>
 										<td>Accesos - Gestión de contraseñas.:</td>
 										<td><select name="idAccesosGestionContrasenasPRE"
 											id="idAccesosGestionContrasenasPRE">
@@ -2068,6 +2210,8 @@ window.onload = function () {
 															value="${preagc2.descripcionAccesosGestionClaves2}" /></option>
 												</c:forEach>
 										</select></td>
+									</tr>
+									<tr>
 										<td>Accesos - Gestión de claves 3.:</td>
 										<td><select name="idAccesosGestionClaves3PRE"
 											id="idAccesosGestionClaves3PRE">
@@ -2119,6 +2263,8 @@ window.onload = function () {
 															value="${preregistroEventos.descripcionAuditoriaRegistroEventosAdministradores}" /></option>
 												</c:forEach>
 										</select></td>
+										</tr>
+										<tr>
 										<td>Auditoría - Conformidad con las políticas de
 											seguridad y los estándares.:</td>
 										<td><select name="idAuditoriaConformidadPoliticasPRE"
@@ -2168,6 +2314,8 @@ window.onload = function () {
 															value="${preprocedimientoInfraestructura.descripcionControlCambiosProcedimientosInfraestructura}" /></option>
 												</c:forEach>
 										</select></td>
+									</tr>
+									<tr>
 										<td>Documentación- Manejo de documentación.:</td>
 										<td><select name="idDocumentacionManejoPRE"
 											id="idDocumentacionManejoPRE">
@@ -2222,6 +2370,8 @@ window.onload = function () {
 															value="${pregestionParches.descripcionIncidentesCumplimientoGestionParches}" /></option>
 												</c:forEach>
 										</select></td>
+									</tr>
+									<tr>
 										<td>Integridad y confidencialidad Protección de datos de
 											prueba.:</td>
 										<td><select
@@ -2247,24 +2397,28 @@ window.onload = function () {
 												</c:forEach>
 										</select></td>
 									</tr>
-								</table>
+									
+										</table>
+
+								</td>
+								<td>
+								</td>
+								<td width="10%">
+							
+							<table  >
+								<tr>
+										<td>Observaciones adicionales.:</td>
+										<td><TEXTAREA COLS=50 ROWS=5 name="observaciones" id="observaciones" value="${preLineamientos.observaciones}"
+											maxlength="500"  ></TEXTAREA></td>
+									</tr>
+							</table>
+					</td>
+					</tr>
+							</table>
 							</fieldset>
 						</td>
 					</tr>
-					<tr>
-								<td>
-									<fieldset>
-										<legend align="left">Comentarios</legend>
-										<table>
-											<tr>
-												<td>Observaciones.:</td>
-												<td><TEXTAREA COLS=130 ROWS=5 name="observaciones" id="observaciones" value="${preLineamientos.observaciones}"
-											maxlength="500"  ></TEXTAREA></td>
-											</tr>
-										</table>
-									</fieldset>
-								</td>
-							</tr>
+				
 					<tr>
 						<td>
 						<div>
@@ -3035,6 +3189,42 @@ window.onload = function () {
 						</div>
 						</td>
 					</tr>
+					
+					<tr>
+								<td>
+									<fieldset >
+									<input type="hidden" id="nCumplimientoTotalP" name="nCumplimientoTotalP"	value="${nCumplimientoP.total}">
+							<input type="hidden" id="nCumplimientoLineamientoTotalP" name="nCumplimientoLineamientoTotalP"	value="${nCumplimientoP.nivelCumplimientoTotal}">
+							<input type="hidden" id="nCumplimientoGeneralP" name="nCumplimientoGeneralP" value="${nCumplimientoP.nivelCumplimientoFinal}">
+										<legend align="left">Graficos</legend>
+										<table>
+											<tr>
+												<td>
+												</td>
+												<td>
+													<div id="chartContainerP" style="height: 300px; width: 100%;"></div>
+												</td>
+												<td>
+												</td>
+												<td>
+												</td>
+												<td>
+													<div id="chartContainerGeneralP" style="height: 300px; width: 100%;"></div>
+												</td>
+												<td>
+												</td>
+												<td>
+												</td>
+												<td>
+													<div id="chartContainerLineamientosP" style="height: 300px; width: 100%;"></div>
+												</td>
+												<td>
+												</td>
+											</tr>
+										</table>
+									</fieldset>
+								</td>
+							</tr>
 
 					<tr>
 						<td>

@@ -23,6 +23,7 @@ public class AppEspLineamientos {
 	private int idIncidentesCumplimientoCodigoMalicioso;
 	private int idIntegridadConfidencialidadDatosPrueba;
 	private int idRespaldosGestionRespaldoRecuperacion;
+	private String observaciones;
 	
 	public int getIdAplicacionEspecializada() {
 		return idAplicacionEspecializada;
@@ -168,6 +169,12 @@ public class AppEspLineamientos {
 	}
 	public void setIdVersion(int idVersion) {
 		this.idVersion = idVersion;
+	}
+	public String getObservaciones() {
+		return observaciones;
+	}
+	public void setObservaciones(String observaciones) {
+		this.observaciones = observaciones;
 	}
 	
 }
