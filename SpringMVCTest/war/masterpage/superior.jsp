@@ -163,36 +163,45 @@ function Pager(tableName, itemsPerPage) {
 
 	</div>
 
-	<div id="menu" align="center" class="menu">
-		<ul>
-			<li><a href="/pages/consultaGeneral.jsp">Consultas</a>
-				<ul>
-					<li><a href="/pages/consultaGeneral.jsp">Consulta General</a></li>
-				</ul></li>
-			<li><a href="#">Gestión de Consultas</a>
-				<ul>
-					<li><a href="/pages/bitacoraConsultas.jsp">Bitacora de
-							Consultas</a></li>
-					<li><a href="/Consulta/Load">Registro de Consultas</a></li>
-				</ul></li>
-			<li><a href="#">Gestión de Aplicaciones Especializadas</a>
-				<ul>
-					<li><a href="/aplicacionEspecializada/load">Registro
-							Aplicaciones Especializadas</a></li>
-				</ul></li>
-			<li><a href="#">Reportes</a></li>
-			<li><a href="#">Gestión de Reportes</a></li>
-			<li><a href="#">Seguridad</a>
-				<ul>
-					<li><a href="/pages/consultaUsuario.jsp">Consultas de
-							Usuarios</a></li>
-					<li><a href="/pages/mantenimientoUsuario.jsp">Mantenimiento
-							de Usuarios</a></li>
-					<li><a href="#">Configuración de Accesos</a></li>
-				</ul></li>
-			<!-- SUBIR EXCEL -->
-			<li><a href="/pages/importExcel/importExcel.jsp">Importar
-					Excel</a></li>
-		
-		</ul>
-	</div>
+	       <div id="menu" align="center" class="menu">
+             <ul>
+                    <li><a href="/pages/consultaGeneral.jsp">Consultas</a>
+                          <ul>
+                                 <li><a href="/pages/consultaGeneral.jsp">Consulta General</a></li>
+                          </ul></li>
+                    <li><a href="#">Gestión de Consultas</a>
+                          <ul>
+                                 <li><a href="/pages/bitacoraConsultas.jsp">Bitacora de
+                                              Consultas</a></li>
+                                 <li><a href="/Consulta/Load">Registro de Consultas</a></li>
+                          </ul></li>
+                    <li><a href="#">Gestión de Aplicaciones Especializadas</a>
+                          <ul>
+                                 <li><a href="/aplicacionEspecializada/loadCumplimiento">Registro
+                                              Aplicaciones Especializadas</a></li>
+                          </ul></li>
+                    <li><a href="#">Reportes</a>
+                          <ul>
+                                 <li><a href="/pages/listaReporteGeneral.jsp">Reporte
+                                              General</a></li>
+                                 <li><a href="/Reporte/load">Reporte de Nivel de
+                                              Cumplimiento</a></li>
+
+                          </ul></li>
+                    <li><a href="#">Gestión de Reportes</a></li>
+                    <li><a href="#">Seguridad</a>
+                          <ul>
+                                 <li><a href="/pages/consultaUsuario.jsp">Consultas de
+                                              Usuarios</a></li>
+                                 <li><a href="/pages/mantenimientoUsuario.jsp">Mantenimiento
+                                              de Usuarios</a></li>
+                                 <li><a href="#">Configuración de Accesos</a></li>
+                          </ul></li>
+                    <!-- SUBIR EXCEL -->
+                    <li><a href="/pages/importExcel/importExcel.jsp">Importar
+                                 Excel</a></li>
+
+             </ul>
+       </div>
+
+	
