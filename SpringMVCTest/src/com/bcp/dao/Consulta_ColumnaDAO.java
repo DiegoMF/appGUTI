@@ -65,7 +65,7 @@ public class Consulta_ColumnaDAO {
 			while (rs.next()) {
 				Consulta objeto = new Consulta();
 				objeto.setNumero(i);
-				objeto.setId_consulta(rs.getInt("idConsulta"));
+				objeto.setIdConsulta(rs.getInt("idConsulta"));
 				objeto.setNombreConsulta(rs.getString("Descripcion"));
 				objeto.setStrPredeterminado(rs.getString("Predeterminado"));
 				objeto.setEstado(rs.getString("Activo"));
@@ -109,25 +109,25 @@ public class Consulta_ColumnaDAO {
         return id;
     }
 	public void ingresarColumna(Consulta consulta) throws Exception {
-	        try {
-	            cnn = Conexion.getConexion();
-	            CallableStatement cs = null;
-	            cs = cnn.prepareCall("call consulta_columna_INSERT(?,?)");
-	            cs.setInt(1, consulta.getId_consulta());
-	            cs.setInt(2, consulta.getIdConsultaColumna());   
-	            cs.execute();
-	            cnn.close();
-	            cs.close();
-	        } catch (SQLException ex) {
-	            throw ex;
-	        }
-	    }
+        try {
+            cnn = Conexion.getConexion();
+            CallableStatement cs = null;
+            cs = cnn.prepareCall("call consulta_columna_INSERT(?,?)");
+            cs.setInt(1, consulta.getIdConsulta());
+            cs.setInt(2, consulta.getIdConsultaColumna());   
+            cs.execute();
+            cnn.close();
+            cs.close();
+        } catch (SQLException ex) {
+            throw ex;
+        }
+    }
 	public void ingresarFiltro(Consulta consulta) throws Exception {
         try {
             cnn = Conexion.getConexion();
             CallableStatement cs = null;
             cs = cnn.prepareCall("call consulta_filtro_INSERT(?,?)");
-            cs.setInt(1, consulta.getId_consulta());
+            cs.setInt(1, consulta.getIdConsulta());
             cs.setInt(2, consulta.getIdConsultaFiltro());
        
             cs.execute();

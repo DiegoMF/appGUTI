@@ -7,8 +7,14 @@
 $(document).ready(function(){ 
 	
 
+$("#divfiltro").html('${filtro}');
+$("#divResultado").html('${resultado}');
 	
 });
+
+
+
+
 function buscar() {
 	
 	
@@ -82,6 +88,8 @@ function eliminar(idAplicacion){
 <div class="formulario">
     
     	<form method="POST" action="<c:url value="/aplicacionEspecializada/buscar"/>" id="consultaGeneral">
+        
+        <div id="divfiltro">
         <table bgcolor="#FFFFFF" width="100%" height="80%" border="0" cellspacing="0" cellpadding="0">
             
             <tr height="40px">
@@ -96,7 +104,6 @@ function eliminar(idAplicacion){
                         <option value="0">Seleccione</option>
                         <option value="1">Vigente</option>
                         <option value="2">No vigente</option>
-                        <option value="3">En desarrollo</option>
                     </select>
                 </td>
             </tr>
@@ -109,9 +116,6 @@ function eliminar(idAplicacion){
                         <option value="0">Seleccione</option>
                         <option value="1">En proceso</option>
                         <option value="2">Pendiente de planificación</option>
-                        <option value="4">Cerrado</option>
-                        <option value="3">Eliminado Administrativamente</option>
-                        
                     </select>
                 </td>
                 <td>Nombre de Aplicación:</td>
@@ -127,23 +131,18 @@ function eliminar(idAplicacion){
                 <td>Clasificación:</td>
                 <td> 
                     <select name="clasificacion" id="clasificacion">
-                        <option value="0">Seleccione</option>
-                        <option value="1">Público</option>
-                        <option value="2">Restringido</option>
-                        <option value="3">Uso interno</option>
-                        <option value="4">#N/A</option>
-                        <option value="5">Unidad levantada con plantilla antigua</option>
+                    	<option value="0">Seleccione</option>
+                        <option value="1">clasificación 1</option>
+                        <option value="2">clasificación 2</option>
                     </select>
-                    
                 </td>
                 <td>Criticidad Final:</td>
                 <td> 
                     <select name="criticidadFinal" id="clasificacion">
-                         <option value="0">Seleccione</option>
+                    	<option value="0">Seleccione</option>
                         <option value="1">Crítico</option>
                         <option value="2">No crítico</option>
                     </select>
-                    
                 </td>
                 <td>¿Toca algún proceso clave?: </td>
                 <!--   <input name="procesoClave" type="radio" value="Si"/>Si
@@ -168,6 +167,15 @@ function eliminar(idAplicacion){
                 <td>&nbsp;</td>
             </tr>
             <td>&nbsp;</td>
+           
+           
+           </table>
+           </div>
+           
+           
+           <div id="divResultado">
+           <table width="100%" >
+           
             <tr>
                 <td>&nbsp;</td>
                 <td colspan="8">
@@ -227,6 +235,7 @@ function eliminar(idAplicacion){
                <td colspan="50">&nbsp;</td>
             </tr>
         </table>
+        </div>
     </form>
 </div>
 

@@ -4,7 +4,7 @@
 <jsp:include page="../masterpage/superior.jsp" />
 <script src="/js/jquery.js"></script>
 <script src="/js/jquery.validate.js"></script>
-
+<script src="/js/canvasjs.min.js"  type="text/javascript"></script>
 <html>
 <head>
 
@@ -661,6 +661,8 @@ $('.pestana').hide().eq(0).show();
 </script>
 <script>
 
+
+
 function modificarE(a){
 	
 	
@@ -755,6 +757,145 @@ function eliminarE(a,b){
 			
 					
 		}
+</script>
+
+
+
+<script type="text/javascript">
+window.onload = function () {
+	var nLineamiento = document.getElementById("nCumplimientoLineamientoTotal").value;
+	var noCumpleLineamiento = (100-nLineamiento);
+	alert(nLineamiento);
+
+	var chart = new CanvasJS.Chart("chartContainerLineamientos",
+	{
+		title:{
+			text: "Nivel de cumplimiento - Lineamientos",
+			fontFamily: "arial black",
+			fontSize:15
+			
+		},
+                animationEnabled: true,
+		legend: {
+			verticalAlign: "bottom",
+			horizontalAlign: "center"
+		},
+		theme: "theme1",
+		width: 320,
+		height: 300,
+		data: [
+		{        
+			type: "pie",
+			indexLabelFontFamily: "Garamond",       
+			indexLabelFontSize: 20,
+			indexLabelFontWeight: "bold",
+			startAngle:0,
+			indexLabelFontColor: "MistyRose",       
+			indexLabelLineColor: "darkgrey", 
+			indexLabelPlacement: "inside", 
+			toolTipContent: "{name}: {y}%",
+			showInLegend: true,			
+			dataPoints: [
+				{  y: nLineamiento,indexLabel: nLineamiento + "%", name: "Cumple", legendMarkerType: "square"},
+				{  y: noCumpleLineamiento,indexLabel: "50.0%", name: "No cumple", legendMarkerType: "square"},
+				
+			]
+		}
+		]
+	});
+	chart.render();
+	
+	
+	
+	
+	var nameValue = document.getElementById("nCumplimientoTotal").value;
+	var noCumpleEstandar = (100- nameValue);
+	alert(nameValue);
+
+	var chart = new CanvasJS.Chart("chartContainer",
+	{
+		title:{
+			text: "Nivel de cumplimiento - Estándares Tecnológicos",
+			fontFamily: "Lucida Grande",
+			fontSize:15
+			
+		},
+                animationEnabled: true,
+		legend: {
+			verticalAlign: "bottom",
+			horizontalAlign: "center"
+		},
+		theme: "theme2",
+		width: 320,
+		height: 300,
+		data: [
+		{        
+			type: "pie",
+			indexLabelFontFamily: "Garamond",       
+			indexLabelFontSize: 20,
+			indexLabelFontWeight: "bold",
+			startAngle:0,
+			indexLabelFontColor: "MistyRose",       
+			indexLabelLineColor: "darkgrey", 
+			indexLabelPlacement: "inside", 
+			toolTipContent: "{name}: {y}%",
+			showInLegend: true,			
+			dataPoints: [
+				{  y: nameValue,indexLabel: nameValue + "%", name: "Cumple", legendMarkerType: "square"},
+				{  y: noCumpleEstandar,indexLabel: noCumpleEstandar + "%", name: "No cumple", legendMarkerType: "square"},
+				
+			]
+		}
+		]
+	});
+	chart.render();
+	
+	
+	
+	var nGeneral = document.getElementById("nCumplimientoGeneral").value;
+	var noCumpleGeneral= (100-nGeneral);
+		
+	alert(nGeneral);
+
+	var chart = new CanvasJS.Chart("chartContainerGeneral",
+	{
+		title:{
+			text: "Nivel de cumplimiento General",
+			fontFamily: "Lucida Grande",
+			fontSize:15
+			
+		},
+                animationEnabled: true,
+		legend: {
+			verticalAlign: "bottom",
+			horizontalAlign: "center"
+		},
+		theme: "theme2",
+		width: 320,
+		height: 300,
+		data: [
+		{        
+			type: "pie",
+			indexLabelFontFamily: "Garamond",       
+			indexLabelFontSize: 20,
+			indexLabelFontWeight: "bold",
+			startAngle:0,
+			indexLabelFontColor: "MistyRose",       
+			indexLabelLineColor: "darkgrey", 
+			indexLabelPlacement: "inside", 
+			toolTipContent: "{name}: {y}%",
+			showInLegend: true,			
+			dataPoints: [
+				{  y: nGeneral,indexLabel: nGeneral + "%", name: "Cumple", legendMarkerType: "square"},
+				{  y: noCumpleGeneral,indexLabel: noCumpleGeneral + "%", name: "No cumple", legendMarkerType: "square"},
+				
+			]
+		}
+		]
+	});
+	chart.render();
+	
+}
 </script>
 
 </head>
@@ -1735,6 +1876,10 @@ function eliminarE(a,b){
 							<fieldset>
 								<legend align="left">Pre atención - Software base - Estándares tecnológicos</legend>
 								<table>
+								<tr>
+								
+								<td>
+								<table width="100%">
 									<tr>
 										<td>Estándar - Sistema operativo.:</td>
 										<td><select		
@@ -1754,6 +1899,8 @@ function eliminarE(a,b){
 											”
 											value="${preswBaseEstandarTecnologico.swBaseSistemaOperativoOtros}" disabled="disabled"/>
 										</td>
+									</tr>
+									<tr>
 										<td>Estándar - Herramientas de programación.:</td>
 										<td><select
 											onchange="cambiarEstandarHerramientaProgramacion($(this));"
@@ -1794,6 +1941,8 @@ function eliminarE(a,b){
 											id="swBaseLenguajeProgramacionOtrosPRE"
 											value="${preswBaseEstandarTecnologico.swBaseLenguajeProgramacionOtros}"
 											maxlength="50"  ”  disabled="disabled" /></td>
+									</tr>
+									<tr>
 										<td>Estándar - Gestor de base de datos.:</td>
 										<td><select
 											onchange="cambiarEstandarGestorBaseDatos($(this));"
@@ -1827,13 +1976,23 @@ function eliminarE(a,b){
 											id="swBaseFrameworkOtrosPRE"
 											value="${preswBaseEstandarTecnologico.swBaseFrameworkOtros}"
 											maxlength="50"  disabled="disabled"” /></td>
+									</tr>
+									<tr>
 										<td>Observaciones adicionales.:</td>
 										<td><input type="text"
 											name="swBaseObservacionesAdicionalesPRE"
 											value="${preswBaseEstandarTecnologico.swBaseObservacionesAdicionales}"
-											maxlength="50" /></td>
+											maxlength="500" /></td>
 									</tr>
-
+								
+								</table>
+								</td>
+							
+								<td>
+								<table>
+									
+								</table>
+								</td>
 								</table>
 							</fieldset>
 						</td>
@@ -2093,9 +2252,26 @@ function eliminarE(a,b){
 						</td>
 					</tr>
 					<tr>
+								<td>
+									<fieldset>
+										<legend align="left">Comentarios</legend>
+										<table>
+											<tr>
+												<td>Observaciones.:</td>
+												<td><TEXTAREA COLS=130 ROWS=5 name="observaciones" id="observaciones" value="${preLineamientos.observaciones}"
+											maxlength="500"  ></TEXTAREA></td>
+											</tr>
+										</table>
+									</fieldset>
+								</td>
+							</tr>
+					<tr>
 						<td>
 						<div>
 							<fieldset>
+							<input type="hidden" id="nCumplimientoTotal" name="nCumplimientoTotal"	value="${nCumplimiento.total}">
+							<input type="hidden" id="nCumplimientoLineamientoTotal" name="nCumplimientoLineamientoTotal"	value="${nCumplimiento.nivelCumplimientoTotal}">
+							<input type="hidden" id="nCumplimientoGeneral" name="nCumplimientoGeneral" value="${nCumplimiento.nivelCumplimientoFinal}">
 								<legend align="left">Pre Atención - Niveles de Cumplimiento</legend>
 								<table>
 								<tr>
@@ -2242,14 +2418,56 @@ function eliminarE(a,b){
 								</tbody>
 								</table>
 								</td>
+								
+								
+								
+								
 								</tr>
 								</table>
 								</fieldset>
 							
 					
 						</div>
+						
 						</td>
+						
 					</tr>
+					
+					<tr>
+								<td>
+									<fieldset >
+										<legend align="left">Graficos</legend>
+										<table>
+											<tr>
+												<td>
+												</td>
+												<td>
+													<div id="chartContainer" style="height: 300px; width: 100%;"></div>
+												</td>
+												<td>
+												</td>
+												<td>
+												</td>
+												<td>
+													<div id="chartContainerGeneral" style="height: 300px; width: 100%;"></div>
+												</td>
+												<td>
+												</td>
+												<td>
+												</td>
+												<td>
+													<div id="chartContainerLineamientos" style="height: 300px; width: 100%;"></div>
+												</td>
+												<td>
+												</td>
+											</tr>
+										</table>
+									</fieldset>
+								</td>
+							</tr>
+					
+					
+					
 					
 					<tr>
 						<td>
@@ -2645,6 +2863,20 @@ function eliminarE(a,b){
 							</fieldset>
 						</td>
 					</tr>
+					<tr>
+								<td>
+									<fieldset>
+										<legend align="left">Comentarios</legend>
+										<table>
+											<tr>
+												<td>Observaciones.:</td>
+												<td><TEXTAREA COLS=50 ROWS=5 name="observacionesPost" id="observacionesPost" value="${postLineamientos.observacionesPost}"
+											maxlength="500"></TEXTAREA></td>
+											</tr>
+										</table>
+									</fieldset>
+								</td>
+							</tr>
 					<tr>
 						<td>
 						<div>

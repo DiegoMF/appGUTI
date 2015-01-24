@@ -1477,6 +1477,8 @@ function nuevo() {
 													disabled=”disabled”
 													value="${preswBaseEstandarTecnologico.swBaseSistemaOperativoOtros}" />
 												</td>
+												</tr>
+												<tr>
 												<td>Estándar - Herramientas de programación.:</td>
 												<td><select
 													onchange="cambiarEstandarHerramientaProgramacion($(this));"
@@ -1818,7 +1820,19 @@ function nuevo() {
 									</fieldset>
 								</td>
 							</tr>
-							
+							<tr>
+								<td>
+									<fieldset>
+										<legend align="left">Comentarios</legend>
+										<table>
+											<tr>
+												<td>Observaciones.:</td>
+												<td><TEXTAREA COLS=130 ROWS=5 name="observaciones" id="observaciones"></TEXTAREA></td>
+											</tr>
+										</table>
+									</fieldset>
+								</td>
+							</tr>
 								<td>
 
 							<div class="formularioBoton" align="right">
@@ -2211,7 +2225,19 @@ function nuevo() {
 									</fieldset>
 								</td>
 							</tr>
-							
+							<tr>
+								<td>
+									<fieldset>
+										<legend align="left">Comentarios</legend>
+										<table>
+											<tr>
+												<td>Observaciones.:</td>
+												<td><TEXTAREA COLS=130 ROWS=5 name="observacionesPost" id="observacionesPost"></TEXTAREA></td>
+											</tr>
+										</table>
+									</fieldset>
+								</td>
+							</tr>
 
 							<tr>
 								<td>

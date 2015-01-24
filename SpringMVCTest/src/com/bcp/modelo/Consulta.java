@@ -7,7 +7,7 @@ public class Consulta {
 
 	
 	private int numero;
-	private int id_consulta;
+	private int idConsulta;
 	private String nombreConsulta;
 	private Byte predeterminado;
 	private String strPredeterminado;
@@ -25,11 +25,53 @@ public class Consulta {
 	private String comboColumna;
 	private String comboFiltro;
 	
-
+	private int idReporte;
+	private String nombreReporte;
+	private String fechaCreacion;
+	private int usuarioCreacion;
+	private String matricula;
+	
+	private Boolean tipo;
 	
 	
 	
 
+	public int getIdReporte() {
+		return idReporte;
+	}
+	public void setIdReporte(int idReporte) {
+		this.idReporte = idReporte;
+	}
+	public String getNombreReporte() {
+		return nombreReporte;
+	}
+	public void setNombreReporte(String nombreReporte) {
+		this.nombreReporte = nombreReporte;
+	}
+	public String getFechaCreacion() {
+		return fechaCreacion;
+	}
+	public void setFechaCreacion(String fechaCreacion) {
+		this.fechaCreacion = fechaCreacion;
+	}
+	public int getUsuarioCreacion() {
+		return usuarioCreacion;
+	}
+	public void setUsuarioCreacion(int usuarioCreacion) {
+		this.usuarioCreacion = usuarioCreacion;
+	}
+	public String getMatricula() {
+		return matricula;
+	}
+	public void setMatricula(String matricula) {
+		this.matricula = matricula;
+	}
+	public Boolean getTipo() {
+		return tipo;
+	}
+	public void setTipo(Boolean tipo) {
+		this.tipo = tipo;
+	}
 	public String getComboColumna() {
 		return comboColumna;
 	}
@@ -92,12 +134,7 @@ public class Consulta {
 	}
 
 
-	public int getId_consulta() {
-		return id_consulta;
-	}
-	public void setId_consulta(int id_consulta) {
-		this.id_consulta = id_consulta;
-	}
+
 	public String getStrPredeterminado() {
 		return strPredeterminado;
 	}
@@ -121,6 +158,12 @@ public class Consulta {
 	}
 	public void setIdConsultaFiltro(int idConsultaFiltro) {
 		this.idConsultaFiltro = idConsultaFiltro;
+	}
+	public int getIdConsulta() {
+		return idConsulta;
+	}
+	public void setIdConsulta(int idConsulta) {
+		this.idConsulta = idConsulta;
 	}
 
 	

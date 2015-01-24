@@ -19,7 +19,6 @@
 				$('.quitarC').click(
 						function() {
 							return !$('#columnaDestino option:selected').remove().appendTo('#cOrigen');});
-
 				$('.submit').click(function() {
 					$('#destino option').prop('selected', 'selected');
 				});
@@ -29,29 +28,19 @@
 		var data = $("#formulario").serialize();
 		var url = "/Consulta/listaFiltro2";
 		$.post(url, data, function(resultado) {	$("#divListaFiltro").html(resultado);});
-
 	}
 </script>
 <script>
-
 function ListarFiltro() {
-
 	var data = $("#formulario").serialize();
 	var url = "/Consulta/listaFiltro";
 	$.post(url, data, function(resultado) {	$("#divListaFiltro").html(resultado);});
-
 }
-
 	function ListarColumna() {
-
 		var data = $("#formulario").serialize();
 		var url = "/Consulta/listaColumna";
 		$.post(url,data,  function(resultado) {	$("#divListaColumna").html(resultado);});
-
 	}
-
-
-
 </script>
 <style>
 .selecter {
@@ -62,19 +51,15 @@ function ListarFiltro() {
 	padding: 10px;
 	border-radius: 10px 0 0 10px;
 }
-
 .diver {
 	
 	width: 50px;
 	text-align: center
 }
-
 .celda {
 	height: auto;
 	width: 200px;
 }
-
-
 </style>
 <div class="cabecera">
 	<h2>.:: Registro de Consultas</h2>
