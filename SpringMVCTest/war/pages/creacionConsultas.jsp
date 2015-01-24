@@ -11,7 +11,8 @@
 						function() {
 							$('#filtroDestino option:selected').remove();
 							$('#filtroDestino option').prop('selected', 'selected');
-							ListarFiltro2();
+							ListarFiltro2()
+							;
 							return ;});
 				$('.agregarC').click(						
 						function() {							
