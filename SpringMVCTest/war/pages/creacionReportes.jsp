@@ -30,18 +30,18 @@
 <script>
 	function ListarAgrupacion(combo) {
 
-		var idReporteSeccion = combo.val();
+		var idConsulta_Seccion = combo.val();
 		var url = "/Reporte/BuscarAgrupacion";
-		var data = {"idReporteSeccion" : idReporteSeccion};
+		var data = {"idConsulta_Seccion" : idConsulta_Seccion};
 		$.post(url, data, function(resultado) {	$("#divListaAgrupacion").html(resultado);});
 
 	}
 
 	function ListarFiltro(combo) {
 
-		var idReporteSeccion = combo.val();
+		var idConsulta_Seccion = combo.val();
 		var url = "/Reporte/BuscarFiltro";
-		var data = {"idReporteSeccion" : idReporteSeccion};	
+		var data = {"idConsulta_Seccion" : idConsulta_Seccion};	
 		$.post(url, data, function(resultado) {	$("#divListaFiltro").html(resultado);});
 
 	}
@@ -76,15 +76,16 @@
 	<hr>
 </div>
 <div class="formulario">
-	<form action="<c:url value="/Consulta/grabarConsulta" />" method="post" id="formulario">
+	<form action="<c:url value="/Reporte/grabarReporte" />" method="post" id="formulario">
+	<input	type="hidden" id="tipo" name="tipo" value=1>
 		<div>
 			<table class="tablaDatos">
 				<tr>
 					
 					<td><label>Nombre del Reporte.:</label></td>
-						<td><input type="text" name="nombreReporte" id="nombreReporte" style="width: 400px;" value="${listaReporte.nombreReporte}" maxlength="45"></td>
+						<td><input type="text" name="nombreReporte" id="nombreReporte" style="width: 400px;" value="${listaReporte.nombreReporte}" maxlength="100" required></td>
 						<td><label>Estado.:</label></td>
-						<td><select name="estado" id="estado">
+						<td><select name="estado" id="estado" required>
 						<option value="">Seleccionar</option>
 						<option value="activo">Activo</option>
 						<option value="inactivo">Inactivo</option>
@@ -116,7 +117,7 @@
 									<select id="pantallas" name="D3" onchange="ListarFiltro($(this)); return false;">
 											<option value="">Seleccione</option>
 											<c:forEach var="listValue" items="${reporteSeccionLista}">
-												<option value="${listValue.idReporteSeccion}">${listValue.descripcion}</option>
+												<option value="${listValue.idConsulta_Seccion}">${listValue.descripcion}</option>
 											</c:forEach>
 									</select>
 								</td>
@@ -136,7 +137,13 @@
 									</td>
 									<td style="min-width: 300px; ">
 										<div id="divListaFiltroSeleccionado">
-											<select name="filtroDestino" id="filtroDestino" multiple="multiple" size="8" class="filtro" style="min-width: 300px; min-height: 400px;"></select>
+											<select name="filtroDestino" id="filtroDestino" multiple="multiple" size="8" class="filtro" style="min-width: 300px; min-height: 400px;" required>
+												<c:forEach var="listValue" items="${datosReporteFiltro}">
+													<option value="${listValue.idReporteFiltro}">${listValue.nombreColumna}</option>
+
+
+												</c:forEach>
+											</select>
 										</div>
 									</td>
 								</tr>
@@ -152,7 +159,7 @@
 									<td ><select id="pantallas" name="D3" onchange="ListarAgrupacion($(this)); return false;">
 											<option value="">Seleccione</option>
 											<c:forEach var="listValue" items="${reporteSeccionLista}">
-												<option value="${listValue.idReporteSeccion}">${listValue.descripcion}</option>
+												<option value="${listValue.idConsulta_Seccion}">${listValue.descripcion}</option>
 											</c:forEach>
 									</select></td>
 									<td >&nbsp;</td>
@@ -172,7 +179,13 @@
 									</td>
 									<td style="min-width: 300px; ">
 									<div id="divListaAgrupacionSeleccionado">
-									<select name="columnaDestino" id="columnaDestino" multiple="multiple" size="8" class="filtro" style="min-width: 300px; min-height: 400px;"></select>
+									<select name="columnaDestino" id="columnaDestino" multiple="multiple" size="8" class="filtro" style="min-width: 300px; min-height: 400px;" required>
+										<c:forEach var="listValue" items="${datosReporteAgrupacion}">
+													<option value="${listValue.idConsultaColumnaColumna}">${listValue.nombreColumna}</option>
+
+
+										</c:forEach>
+									</select>
 									</div>
 									</td>
 								</tr>
@@ -183,34 +196,7 @@
 			</table>
 			
 		</div>
-		<div id="a">
-					<table  border="1" width="100%" class="tablaGrilla">
-						<thead>
-							<tr align="center">
-							
-								<th>idReporte</th>
-								<th>id columna</th>
-								<th>nombre columna</th>
-								<th></th>
-							</tr>
-						</thead>
-						<tbody>		
-							<c:forEach var="listValue" items="${datosReporteFiltro}">
-								<tr>
-									
-									<td>${listValue.idReporte}</td>
-									<td>${listValue.idReporteColumna}</td>
-									<td>${listValue.nombreColumna}</td>
-									
-									<td>
-								
-							
-									
-								</tr>
-							</c:forEach>
-						</tbody>
-					</table>
-				</div>
+		
 		<div ><br>
 		<table class="tablaBotones">
 				<tr>
