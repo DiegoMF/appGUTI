@@ -33,6 +33,7 @@ public class Conexion {
 
 			Class.forName("com.mysql.jdbc.Driver");
 			// url = "jdbc:mysql://localhost:3306/bdportafolio1";
+			
 			url = "jdbc:mysql://173.194.230.96:3306/bdportafolio";
 
 		}
