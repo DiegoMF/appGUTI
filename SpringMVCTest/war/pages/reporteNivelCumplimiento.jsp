@@ -16,6 +16,7 @@ function buscar() {
 	
 	var url = "/Reporte/buscarReporteNivelCumplimiento";
 	var data = $("#reporteNivelCumplimiento").serialize();
+	$("#reporteNivelCumplimiento").attr("action", url);
     $.post(url,data, function(resultado){  
         $("#divGraficoReporte").html(resultado);
 
@@ -160,7 +161,7 @@ function buscar() {
 					<hr>
 				</div>
 
-	<form action="<c:url value="/Reporte/buscarReporteNivelCumplimiento"/>"  method="POST" id="formulario">
+	<form action="<c:url value="/Reporte/buscarReporteNivelCumplimiento"/>"  method="POST" id="reporteNivelCumplimiento">
 					
 				<table class="tablaDatos">
 					<tr>
