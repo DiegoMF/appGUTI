@@ -177,15 +177,16 @@ function Pager(tableName, itemsPerPage) {
                           </ul></li>
                     <li><a href="#">Gestión de Aplicaciones Especializadas</a>
                           <ul>
-                                 <li><a href="/aplicacionEspecializada/loadCumplimiento">Registro
+                                 <li><a href="/aplicacionEspecializada/load">Registro
                                               Aplicaciones Especializadas</a></li>
                           </ul></li>
                     <li><a href="#">Reportes</a>
                           <ul>
                                  <li><a href="/pages/listaReporteGeneral.jsp">Reporte
                                               General</a></li>
-                                 <li><a href="/Reporte/load">Reporte de Nivel de
+                                 <li><a href="/Reporte/loadCumplimiento">Reporte de Nivel de
                                               Cumplimiento</a></li>
+                                 <li><a href="/pages/reporteVariacion.jsp">Reporte de Variación</a></li>
 
                           </ul></li>
                     <li><a href="#">Gestión de Reportes</a></li>

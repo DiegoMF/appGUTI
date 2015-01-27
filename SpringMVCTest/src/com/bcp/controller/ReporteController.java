@@ -339,15 +339,16 @@ public class ReporteController {
 		return modelo;
 	}
 	
+
 	
-	@RequestMapping(value = { "/loadCumplimiento" }, method = RequestMethod.POST)
+	@RequestMapping(value = { "/loadCumplimiento" }, method = RequestMethod.GET)
 	public ModelAndView loadReporteNivelCumplimiento(HttpServletRequest request, ModelMap mod) throws Exception {
 	
 		ArrayList<GerenciaCentral> gerencia;
 		ArrayList<Unidad> unidad;
 		ArrayList<Division> division;
 		ArrayList<Area> area;
-		
+		System.out.println("Entra al load");
 		gerencia = new ArrayList<>();
 		gerencia = GerenciaCentralDAO.getInstancia().obtenerGerenciaCentral();
 		unidad = new ArrayList<>();
@@ -356,9 +357,9 @@ public class ReporteController {
 		division = DivisionDAO.getInstancia().obtenerDivision();
 		area = new ArrayList<>();
 		area = AreaDAO.getInstancia().obtenerArea();
-
+		System.out.println("Antes de llamar a la vista");
 		ModelAndView model = new ModelAndView("reporteNivelCumplimiento");
-		
+		System.out.println("Despues de llamar a la vista");
 		
 		model.addObject("gerencia", gerencia);
 		model.addObject("unidad", unidad);
@@ -373,10 +374,15 @@ public class ReporteController {
 	public ModelAndView getAplicaciones(HttpServletRequest request, ModelMap mod)
 			throws Exception {
 
-		ArrayList<AplicacionEspecializadaDTO> listaFiltros = new ArrayList<>();
-	
+	//	ArrayList<AplicacionEspecializadaDTO> listaFiltros = new ArrayList<>();
+		AplicacionEspecializadaDTO listaFiltros = new AplicacionEspecializadaDTO();
 
+		System.out.println("controlador buscar reporte cumplimiento");
 		AplicacionEspecializadaDTO filtros = new AplicacionEspecializadaDTO();
+		
+		System.out.println("idGerencia Cetral" + request.getParameter("idGerenciaCentral"));
+	
+		
 		
 		filtros.setIdGerenciaCentral(Integer.parseInt(request.getParameter("idGerenciaCentral")));
 		filtros.setIdDivision(Integer.parseInt(request.getParameter("idDivision")));
@@ -386,23 +392,26 @@ public class ReporteController {
 		filtros.setIdUnidad(Integer.parseInt(request.getParameter("idUnidad")));
 		filtros.setCodigoAplicacionEspecializada(request.getParameter("codigoAplicacionEspecializada"));
 	
+		/*filtros.setIdGerenciaCentral(0);
+		filtros.setIdDivision(0);
+		filtros.setIdEstadoAplicacion(0);
+		filtros.setIdCriticidadFinal(0);
+		filtros.setIdArea(0);
+		filtros.setIdUnidad(0);
+		filtros.setCodigoAplicacionEspecializada("");
+		System.out.println("idGerencia Cetral" + filtros.getIdGerenciaCentral());*/
 		
-	//**	listaFiltros = ReporteDAO.getInstancia().obtenerReporteNivelCumplimiento(filtros);
+		listaFiltros = ReporteDAO.getInstancia().obtenerReporteNivelCumplimiento(filtros);
 		
 		
-		if(listaFiltros.size() ==0)
-		{
-		message = "No se encontraron datos.";
+		
 		ModelAndView model = new ModelAndView("Auxiliar/GraficoNivelCumplimiento");
-		model.addObject("mensajeInfo", message);
+		//ModelAndView model = new ModelAndView("reporteNivelCumplimiento");
+		model.addObject("listaFiltros", listaFiltros);
+		System.out.println("termina el contrlador");
+		System.out.println("filtro" + listaFiltros.getNivelCumplimientoTotal());
 		return model;
-		}
-		else
-		{
-			ModelAndView model = new ModelAndView("Auxiliar/GraficoNivelCumplimiento");
-			model.addObject("listaAplicaciones", filtros);
-			return model;
-		}
+		
 		
 
 	}

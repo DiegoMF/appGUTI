@@ -242,6 +242,10 @@ public class AplicacionEspecializadaDTO {
 	private String estadoEvento;
 	
 	
+	/**NIVEL DE CUMPLIMIENTO **/
+	private Double nivelCumplimientoTotal;
+	private Double nivelCumplimientoEstandaresPorcentaje;
+	private Double nivelCumplimientoLineamientosPorcentaje;
 	
 	public int getNumero() {
 		return numero;
@@ -1481,6 +1485,26 @@ public class AplicacionEspecializadaDTO {
 	}
 	public void setObservacionesPost(String observacionesPost) {
 		this.observacionesPost = observacionesPost;
+	}
+	public Double getNivelCumplimientoTotal() {
+		return nivelCumplimientoTotal;
+	}
+	public void setNivelCumplimientoTotal(Double nivelCumplimientoTotal) {
+		this.nivelCumplimientoTotal = nivelCumplimientoTotal;
+	}
+	public Double getNivelCumplimientoEstandaresPorcentaje() {
+		return nivelCumplimientoEstandaresPorcentaje;
+	}
+	public void setNivelCumplimientoEstandaresPorcentaje(
+			Double nivelCumplimientoEstandaresPorcentaje) {
+		this.nivelCumplimientoEstandaresPorcentaje = nivelCumplimientoEstandaresPorcentaje;
+	}
+	public Double getNivelCumplimientoLineamientosPorcentaje() {
+		return nivelCumplimientoLineamientosPorcentaje;
+	}
+	public void setNivelCumplimientoLineamientosPorcentaje(
+			Double nivelCumplimientoLineamientosPorcentaje) {
+		this.nivelCumplimientoLineamientosPorcentaje = nivelCumplimientoLineamientosPorcentaje;
 	}
 	
 }

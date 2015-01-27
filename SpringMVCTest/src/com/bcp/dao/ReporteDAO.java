@@ -95,7 +95,49 @@ public class ReporteDAO {
     }
 	
 	
-	
+	public AplicacionEspecializadaDTO obtenerReporteNivelCumplimiento(
+			AplicacionEspecializadaDTO aplicaciones) throws Exception {
+
+		//ArrayList<AplicacionEspecializadaDTO> datos = new ArrayList<AplicacionEspecializadaDTO>();
+		AplicacionEspecializadaDTO dato = new AplicacionEspecializadaDTO();
+		try {
+			cnn = Conexion.getConexion();
+			CallableStatement cs = null;
+			cs = cnn.prepareCall("call app_esp_Reporte_Cumplimiento_Lineamientos(?,?,?,?,?,?,?)");
+			
+			
+			cs.setString(1, aplicaciones.getCodigoAplicacionEspecializada());
+			cs.setInt(2, aplicaciones.getIdEstadoAplicacion());
+			cs.setInt(3, aplicaciones.getIdGerenciaCentral());
+			cs.setInt(4, aplicaciones.getIdDivision());
+			cs.setInt(5, aplicaciones.getIdArea());
+			cs.setInt(6, aplicaciones.getIdUnidad());
+			cs.setInt(7, aplicaciones.getIdCriticidadFinal());
+			
+			/*String nivelCump = aplicaciones.getNivelCumplimiento() == -1.0 ? ""
+					: String.valueOf(aplicaciones.getNivelCumplimiento());
+			cs.setString(6, nivelCump);
+			*/
+			
+			rs = cs.executeQuery();
+
+			
+			while (rs.next()) {
+				//AplicacionEspecializadaDTO dato = new AplicacionEspecializadaDTO();
+				dato.setNivelCumplimientoTotal(rs.getDouble("NIVEL_CUMPLIMIENTO_TOTAL"));
+				dato.setNivelCumplimientoEstandaresPorcentaje(rs.getDouble("NIVEL_CUMPLIMIENTO_ESTANDARES_PORCENTAJE"));
+				dato.setNivelCumplimientoLineamientosPorcentaje(rs.getDouble("NIVEL_CUMPLIMIENTO_LINEAMIENTOS_PORCENTAJE"));
+				//datos.add(dato);
+				
+			}
+			System.out.println("nivel de cumplimiento total" + dato.getNivelCumplimientoTotal());
+			cnn.close();
+			cs.close();
+		} catch (SQLException e) {
+			throw e;
+		}
+		return dato;
+	}
 	
 	
 }
