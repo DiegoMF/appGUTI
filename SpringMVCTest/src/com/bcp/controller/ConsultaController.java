@@ -23,13 +23,26 @@ import javax.servlet.http.HttpSession;
 public class ConsultaController {
 
 	ArrayList<Consulta> listaConsulta;
+	String message;
 
-	@RequestMapping(value = { "/Load" }, method = RequestMethod.GET)
+	@RequestMapping(value = { "/Load" }, method = RequestMethod.POST)
 	public ModelAndView load(HttpServletRequest request, ModelMap mod)
 			throws Exception {
 
-		ArrayList<Consulta_Seccion> lista = Consulta_SeccionDAO.getInstancia()
-				.buscar();
+		ArrayList<Consulta_Seccion> lista = Consulta_SeccionDAO.getInstancia().buscar();
+		
+		ModelAndView model = new ModelAndView("creacionConsultas");
+		model.addObject("ListaConsulta_Seccion", lista);
+
+		return model;
+
+	}
+	
+	@RequestMapping(value = { "/Nuevo" }, method = RequestMethod.GET)
+	public ModelAndView nuevo(HttpServletRequest request, ModelMap mod)
+			throws Exception {
+
+		ArrayList<Consulta_Seccion> lista = Consulta_SeccionDAO.getInstancia().buscar();
 		ModelAndView model = new ModelAndView("creacionConsultas");
 		model.addObject("ListaConsulta_Seccion", lista);
 
@@ -38,8 +51,7 @@ public class ConsultaController {
 	}
 
 	@RequestMapping(value = "/listaFiltro", method = RequestMethod.POST)
-	public ModelAndView listarFiltro(
-			@ModelAttribute("listaConsulta") Consulta consulta)
+	public ModelAndView listarFiltro(@ModelAttribute("listaConsulta") Consulta consulta)
 			throws Exception {
 
 		ArrayList<Consulta_Columna> listaDestino = null;
@@ -135,9 +147,7 @@ public class ConsultaController {
 
 		if (consulta.getComboFiltro() != null
 				&& consulta.getComboFiltro().compareTo("") != 0) {
-			ArrayList<Consulta_Columna> lista = Consulta_ColumnaDAO
-					.getInstancia().buscar(
-							Integer.parseInt(consulta.getComboColumna()));
+			ArrayList<Consulta_Columna> lista = Consulta_ColumnaDAO.getInstancia().buscar(Integer.parseInt(consulta.getComboColumna()));
 
 			if (consulta.getColumnaDestino() != null) {
 				if (consulta.getColumnaDestino().size() != 0) {
@@ -234,40 +244,32 @@ public class ConsultaController {
 	}
 
 	@RequestMapping(value = "/grabarConsulta", method = RequestMethod.POST)
-	public ModelAndView submitConsultaForm(
-			@ModelAttribute("listaConsulta") Consulta consulta)
-			throws Exception {
+	public ModelAndView submitConsultaForm(	@ModelAttribute("listaConsulta") Consulta consulta)	throws Exception {
 
-		int id_consulta = 0;
+		int idConsulta = 0;
 
-		id_consulta = Consulta_ColumnaDAO.getInstancia().ingresarConsulta(
-				consulta);
-		Consulta objeto = new Consulta();
-
-		ArrayList<String> listaColumnas = new ArrayList<String>();
-		ArrayList<String> listaFiltros = new ArrayList<String>();
-
-		listaColumnas = consulta.getColumnaDestino();
-		listaFiltros = consulta.getFiltroDestino();
-
-		for (int i = 0; i < listaFiltros.size(); i++) {
-
-			objeto.setIdConsulta(id_consulta);
-			objeto.setIdConsultaFiltro(Integer.parseInt(listaFiltros.get(i)));
-			Consulta_ColumnaDAO.getInstancia().ingresarFiltro(objeto);
-
+		if(consulta.getFiltroDestino().size() > 0 &&consulta.getColumnaDestino().size() > 0 )
+		{
+			idConsulta = Consulta_ColumnaDAO.getInstancia().ingresarConsulta(consulta);
+			consulta.setIdConsulta(idConsulta);	
+			Consulta_ColumnaDAO.getInstancia().ingresarFiltro(consulta);
+			Consulta_ColumnaDAO.getInstancia().ingresarColumna(consulta);
 		}
-
-		for (int i = 0; i < listaColumnas.size(); i++) {
-
-			objeto.setIdConsulta(id_consulta);
-			objeto.setIdConsultaColumna(Integer.parseInt(listaColumnas.get(i)));
-			Consulta_ColumnaDAO.getInstancia().ingresarColumna(objeto);
-
+		else
+		{
+			
+			ArrayList<Consulta_Seccion> lista = Consulta_SeccionDAO.getInstancia().buscar();
+			message = "Debe ingresar al menos un filtro o una columna.";
+			
+			ModelAndView model = new ModelAndView("creacionConsultas");
+			model.addObject("ListaConsulta_Seccion", lista);
+			model.addObject("mensajeInfo", message);
+			return model;
 		}
-
-		ModelAndView modelo = new ModelAndView("bitacoraConsultas");
-
+		
+		ModelAndView modelo = new ModelAndView("creacionConsultas");
+		message = "Consulta registrada correctamente.";
+		modelo.addObject("mensajeInfo", message);
 		return modelo;
 	}
 
@@ -276,13 +278,26 @@ public class ConsultaController {
 			@ModelAttribute("Datos") Consulta consulta) throws Exception {
 
 		listaConsulta = new ArrayList<>();
-		listaConsulta = Consulta_ColumnaDAO.getInstancia().buscarConsulta(
-				consulta);
+		listaConsulta = Consulta_ColumnaDAO.getInstancia().buscarConsulta(consulta);
 
+		
+		if(listaConsulta.size() < 1)
+		{
+			
+			
+		ModelAndView modelo = new ModelAndView("Auxiliar/ListaConsulta");
+		message = "No se encontró registros.";
+		modelo.addObject("mensajeInfo", message);
+		return modelo;
+		}
+		else
+		{
 		ModelAndView modelo = new ModelAndView("Auxiliar/ListaConsulta");
 
 		modelo.addObject("listaConsulta", listaConsulta);
 		return modelo;
+		}
+	
 	}
 
 	@RequestMapping(value = "/modificarConsulta", method = RequestMethod.POST)
@@ -297,11 +312,12 @@ public class ConsultaController {
 		return modelo;
 	}
 
+
 	@RequestMapping(value = { "/ConsultaGeneral" })
 	public ModelAndView ConsultaGeneral(HttpServletRequest request, ModelMap mod)
 			throws Exception {
 
-		int consulta = 0;
+		int consulta = ConsultaDAO.getInstancia().ObtenerConsultaPredeterminada();
 
 		if (request.getParameter("valor") != null) {
 			consulta = Integer.parseInt(request.getParameter("valor"));
@@ -319,7 +335,7 @@ public class ConsultaController {
 						+ "<tr><td>"
 						+ lista.get(i).getDescripcion().toString()
 						+ ": </td><td><select name=\""
-						+ lista.get(i).getDescripcion().toString()
+						+ lista.get(i).getColumnaForanea().toString()
 						+ "\">"
 						+ ConsultaFiltroDAO.getInstancia().listarcombos(
 								"select "
@@ -336,7 +352,7 @@ public class ConsultaController {
 				html = html + "<tr><td>"
 						+ lista.get(i).getDescripcion().toString()
 						+ ": </td><td><input type=\"text\" name=\""
-						+ lista.get(i).getDescripcion().toString()
+						+ lista.get(i).getColumnaForanea().toString()
 						+ "\" /></td></tr>";
 
 			}
@@ -349,50 +365,98 @@ public class ConsultaController {
 		ArrayList<ConsultaColumnaColumna> listacolumna = ConsultaColumnaColumnaDAO
 				.getInstancia().obtener(consulta);
 
-		String select = "select * from ";
-		String from = " from ";
-		String where = " where ";
+		String consulta2 = "select ";
 
 		for (int i = 0; i < listacolumna.size(); i++) {
 
-			select = select + "(";
-			if (listacolumna.get(i).isForaneo()) {
+			if (listacolumna.get(i).getDescripcionResultado() != ""
+					&& listacolumna.get(i).getDescripcionResultado() != null) {
 
-				select = select
-						+ "select x."
-						+ listacolumna.get(i).getDescripcionForanea()
-								.toString() + " from "
-						+ listacolumna.get(i).getTablaSeccion().toString()
-						+ " t left join "
-						+ listacolumna.get(i).getTabla().toString()
-						+ " x on x."
-						+ listacolumna.get(i).getColumnaForanea().toString()
-						+ " = t."
-						+ listacolumna.get(i).getColumnaForanea().toString();
-
-			} else {
-
-				select = select + "select "
-						+ listacolumna.get(i).getColumnaForanea() + " from "
-						+ listacolumna.get(i).getTablaSeccion();
-
+				consulta2 = consulta2
+						+ listacolumna.get(i).getDescripcionResultado()
+								.toString() + ",";
 			}
-
-			if (i == listacolumna.size() - 1) {
-				select = select + ") t" + i;
-			} else {
-				select = select + ") t" + i + ", ";
-			}
-
 		}
 
-		String consulta2 = select;
+		consulta2 = consulta2.substring(0, consulta2.length() - 1)
+				+ " from d_aplicacion_especializada";
 
 		String html2 = ConsultaFiltroDAO.getInstancia().listarResultado(
 				consulta2);
+		// String html2 = "";
 
 		ModelAndView model = new ModelAndView("consultaGeneral");
 		model.addObject("filtro", html);
+		model.addObject("resultado", html2);
+
+		return model;
+
+	}
+
+	@RequestMapping(value = { "/BuscarConsultaGeneral" })
+	public ModelAndView BuscarConsultaGeneral(HttpServletRequest request,
+			ModelMap mod) throws Exception {
+
+		int consulta = ConsultaDAO.getInstancia().ObtenerConsultaPredeterminada();
+
+		ArrayList<ConsultaFiltro> lista = new ArrayList<ConsultaFiltro>();
+
+		Map m = request.getParameterMap();
+		Set s = m.entrySet();
+		Iterator it = s.iterator();
+		while (it.hasNext()) {
+			Map.Entry<String, String[]> entry = (Map.Entry<String, String[]>) it.next();
+			String key = entry.getKey();
+			String[] value = entry.getValue();
+			ConsultaFiltro entidad = new ConsultaFiltro();
+			entidad.setDescripcionForanea(key);
+			System.out.println("Key is " + key + "<br>");
+			if (value.length > 1) {
+				for (int i = 0; i < value.length; i++) {
+					
+					System.out.println("<li>" + value[i].toString() + "</li><br>");
+				}
+			} else
+				entidad.setValor(value[0].toString());
+				System.out.println("Value is " + value[0].toString() + "<br>");
+			System.out.println("-------------------<br>");
+			lista.add(entidad);
+		}
+
+		ArrayList<ConsultaColumnaColumna> listacolumna = ConsultaColumnaColumnaDAO
+				.getInstancia().obtener(consulta);
+
+		String consulta2 = "select ";
+
+		for (int i = 0; i < listacolumna.size(); i++) {
+
+			if (listacolumna.get(i).getDescripcionResultado() != ""
+					&& listacolumna.get(i).getDescripcionResultado() != null) {
+
+				consulta2 = consulta2
+						+ listacolumna.get(i).getDescripcionResultado()
+								.toString() + ",";
+			}
+		}
+
+		consulta2 = consulta2.substring(0, consulta2.length() - 1)	+ " from d_aplicacion_especializada" ;
+		consulta2 = consulta2 + " where ";
+		
+		for (int i = 0; i < lista.size(); i++){
+			
+			
+			consulta2 = consulta2 + lista.get(i).getDescripcionForanea() + " = " + lista.get(i).getValor();
+			
+			if (i < lista.size() -1 ){
+			consulta2 = consulta2 + " and ";
+			}
+		}
+		
+
+		String html2 = ConsultaFiltroDAO.getInstancia().listarResultado(consulta2);
+		// String html2 = "";
+
+		ModelAndView model = new ModelAndView("Auxiliar/ListaConsultaResultado");
 		model.addObject("resultado", html2);
 
 		return model;
