@@ -11,6 +11,15 @@ public class Consulta_Columna {
 	private int idConsulta_Seccion;
 	private ArrayList<String> filtroDestino;
 	private ArrayList<String> columnaDestino;
+	private String DescripcionResultado;
+
+	public final String getDescripcionResultado() {
+		return DescripcionResultado;
+	}
+
+	public final void setDescripcionResultado(String descripcionResultado) {
+		DescripcionResultado = descripcionResultado;
+	}
 
 	public final int getIdConsulta_Columna() {
 		return idConsulta_Columna;

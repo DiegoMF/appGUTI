@@ -16,8 +16,8 @@ public class Conexion {
 		 */
 
 		/* conexion local */
-		String usuario = "root";
-		String clave = "root";
+		String usuario = "admin";
+		String clave = "admin";
 		String url = "jdbc:mysql://127.0.0.1:3306/dbtest";
 
 		DriverManager.registerDriver(new com.mysql.jdbc.Driver());
@@ -35,7 +35,7 @@ public class Conexion {
 			Class.forName("com.mysql.jdbc.Driver");
 			// url = "jdbc:mysql://localhost:3306/bdportafolio1";
 
-			url = "jdbc:mysql://173.194.230.96:3306/bdportafolio";
+			url = "jdbc:mysql://7.227.104.201:8282/bdportafolio";
 
 		}
 

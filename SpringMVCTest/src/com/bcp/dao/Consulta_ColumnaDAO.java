@@ -89,10 +89,12 @@ public class Consulta_ColumnaDAO {
         	
             cnn = Conexion.getConexion();
             CallableStatement cs = null;
-            cs = cnn.prepareCall("call consulta_INSERT(?,?,?)");
+            cs = cnn.prepareCall("call consulta_INSERT(?,?,?,?)");
             cs.setString(1, consulta.getNombreConsulta());
             cs.setByte(2, consulta.getPredeterminado());
             cs.setString(3, consulta.getEstado() );
+            cs.setString(4, consulta.getMatricula());
+            
             
        
             rs = cs.executeQuery();
@@ -175,24 +177,41 @@ public class Consulta_ColumnaDAO {
 	            cnn = Conexion.getConexion();
 	            CallableStatement cs = null;
 	            cs = cnn.prepareCall("call consulta_columna_INSERT(?,?)");
-	            cs.setInt(1, consulta.getIdConsulta());
-	            cs.setInt(2, consulta.getIdConsultaColumna());   
-	            cs.execute();
+	            ArrayList<String> listaColumnas = new ArrayList<String>();
+	    		listaColumnas = consulta.getColumnaDestino();
+	            
+	    		for (int i = 0; i < listaColumnas.size(); i++) {
+
+	    			cs.setInt(1, consulta.getIdConsulta());
+	    			cs.setInt(2, Integer.parseInt(listaColumnas.get(i)));  			
+	    			cs.execute();
+	    		}
+	    	
 	            cnn.close();
 	            cs.close();
 	        } catch (SQLException ex) {
 	            throw ex;
 	        }
 	    }
+	
 	public void ingresarFiltro(Consulta consulta) throws Exception {
         try {
             cnn = Conexion.getConexion();
             CallableStatement cs = null;
             cs = cnn.prepareCall("call consulta_filtro_INSERT(?,?)");
-            cs.setInt(1, consulta.getIdConsulta());
-            cs.setInt(2, consulta.getIdConsultaFiltro());
-       
-            cs.execute();
+            
+            ArrayList<String> listaFiltros = new ArrayList<String>();
+    		listaFiltros = consulta.getFiltroDestino();
+    		
+
+    		for (int i = 0; i < listaFiltros.size(); i++) {
+
+    			cs.setInt(1, consulta.getIdConsulta());
+    			cs.setInt(2, Integer.parseInt(listaFiltros.get(i)));
+    			    			
+    			cs.execute();
+    		}
+
             cnn.close();
             cs.close();
         } catch (SQLException ex) {

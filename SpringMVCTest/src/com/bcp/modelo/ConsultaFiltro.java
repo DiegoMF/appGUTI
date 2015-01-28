@@ -14,6 +14,9 @@ public class ConsultaFiltro {
 	private String Descripcion;
 	private String Tabla;
 	private boolean Foraneo;
+	
+	private String valor;
+	
 
 	public int getIdConsultaColumna() {
 		return idConsultaColumna;
@@ -68,6 +71,9 @@ public class ConsultaFiltro {
 	private String ColumnaForanea;
 	private String DescripcionForanea;
 	
+
+	
+	
 	
 	public int getIdReporteFiltro() {
 		return idReporteFiltro;
@@ -99,6 +105,13 @@ public class ConsultaFiltro {
 	public void setIdConsultaFiltro(int idConsultaFiltro) {
 		this.idConsultaFiltro = idConsultaFiltro;
 	}
+	public String getValor() {
+		return valor;
+	}
+	public void setValor(String valor) {
+		this.valor = valor;
+	}
+	
 	
 	
 

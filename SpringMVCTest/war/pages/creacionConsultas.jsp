@@ -68,11 +68,12 @@ function ListarFiltro() {
 </div>
 <div class="formulario">
 	<form action="<c:url value="/Consulta/grabarConsulta" />" method="post" id="formulario">
+	<input type="hidden" name="matricula" id="matricula" value="${sesionusuario}"/>
 		<div>
 			<table width="50%" border="0" cellspacing="0" cellpadding="0">
 				<tr>
 					<td class="celda"><label style="text-align: right;">Nombre consulta.:&nbsp;</label></td>
-					<td class="celda"><input type="text" id="nombreConsulta" name="nombreConsulta" size="60" /></td>
+					<td class="celda"><input type="text" id="nombreConsulta" name="nombreConsulta" size="60" value="${listaConsulta.nombreConsulta}"/></td>
 					<td class="celda"><label style="text-align: right;">Predeterminado.:&nbsp;</label></td>
 					<td class="celda"><input id="predeterminado" name="predeterminado" type="checkbox" value="1" />Si</td>
 					<td class="celda"><label style="text-align: right;">Estado.:&nbsp;</label></td>

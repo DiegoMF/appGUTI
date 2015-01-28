@@ -18,10 +18,10 @@ $("#divResultado").html('${resultado}');
 function buscar() {
 	
 	
-	var url = "/aplicacionEspecializada/buscar";
+	var url = "/Consulta/BuscarConsultaGeneral";
 	var data = $("#consultaGeneral").serialize();
     $.post(url,data, function(resultado){  
-        $("#divListaConsultaGeneral").html(resultado);
+        $("#divResultado").html(resultado);
         
     });  
 	
