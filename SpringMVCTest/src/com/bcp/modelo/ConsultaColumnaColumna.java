@@ -17,6 +17,7 @@ public class ConsultaColumnaColumna {
 	
 	private String ColumnaForanea;
 	private String DescripcionForanea;
+	private String DescripcionResultado;
 	
 	
 	public int getIdConsulta_Columna() {
@@ -84,6 +85,12 @@ public class ConsultaColumnaColumna {
 	}
 	public void setNombreColumna(String nombreColumna) {
 		this.nombreColumna = nombreColumna;
+	}
+	public String getDescripcionResultado() {
+		return DescripcionResultado;
+	}
+	public void setDescripcionResultado(String descripcionResultado) {
+		DescripcionResultado = descripcionResultado;
 	}
 	
 	

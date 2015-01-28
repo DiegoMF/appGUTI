@@ -47,6 +47,8 @@ public class ConsultaColumnaColumnaDAO {
         }
         return lista;
     }
+
+
 	public ArrayList<ConsultaColumnaColumna> obtener(int idConsulta) throws Exception {
 		ArrayList<ConsultaColumnaColumna> lista = new ArrayList<ConsultaColumnaColumna>();
 		try {
@@ -67,6 +69,7 @@ public class ConsultaColumnaColumnaDAO {
 				objeto.setTablaSeccion(rs.getString("TablaSeccion"));
 				objeto.setColumnaForanea(rs.getString("ColumnaForanea"));
 				objeto.setDescripcionForanea(rs.getString("DescripcionForanea"));
+				objeto.setDescripcionResultado(rs.getString("DescripcionResultado"));
 				lista.add(objeto);
 			}
 
@@ -77,6 +80,4 @@ public class ConsultaColumnaColumnaDAO {
 		}
 		return lista;
 	}
-
-
 }

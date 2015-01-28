@@ -7,7 +7,7 @@
 
 <script >
 
-function nuevo() {location.href = "/Consulta/Load";}
+function nuevo() {location.href = "/Consulta/Nuevo";}
 
 function buscar() {
 			var url = "/Consulta/buscarConsulta";
@@ -20,7 +20,7 @@ function buscar() {
 		function modificar(idconsulta){
 			
 			var data = $("#formulario").serialize();
-			var url = "/Consulta/modificarConsulta";
+			var url = "/Consulta/Load";
 			
 			$("#idconsulta").val(idconsulta);
 			

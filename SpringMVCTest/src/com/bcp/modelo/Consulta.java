@@ -33,6 +33,11 @@ public class Consulta {
 	
 	private Boolean tipo;
 	
+	public Consulta()
+	{
+		predeterminado = 0;
+		
+	}
 	
 	
 

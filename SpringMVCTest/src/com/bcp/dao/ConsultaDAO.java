@@ -95,4 +95,25 @@ public class ConsultaDAO {
         }
         return objeto;
     }
+
+	public int ObtenerConsultaPredeterminada() throws Exception {
+		int id = 0;
+        try {
+            cnn = Conexion.getConexion();
+            CallableStatement cs = null;
+            cs= cnn.prepareCall("call Consulta_GET_BY_Predeterminado()");
+            
+            rs = cs.executeQuery();
+            while (rs.next()) {
+            	            
+            	id = rs.getInt("idConsulta");
+
+            }
+            cnn.close();
+            cs.close();
+        } catch (SQLException ex) {
+            throw ex;
+        }
+        return id;
+    }
 }

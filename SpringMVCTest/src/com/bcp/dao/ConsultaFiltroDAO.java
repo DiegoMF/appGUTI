@@ -53,6 +53,8 @@ public class ConsultaFiltroDAO {
         }
         return lista;
     }
+
+	
 	public ArrayList<ConsultaFiltro> obtener(int idConsulta) throws Exception {
 		ArrayList<ConsultaFiltro> lista = new ArrayList<ConsultaFiltro>();
 		try {

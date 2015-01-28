@@ -18,12 +18,12 @@
 									<td>${listValue.nombreConsulta}</td>
 									<td>${listValue.strPredeterminado}</td>
 									<td>${listValue.estado}</td>
-									<td><a href="#"	onclick="modificar(${listValue.id_consulta});  return false;">Modificar</a>
+									<td><a href="#"	onclick="modificar(${listValue.idConsulta});  return false;">Modificar</a>
 
 								</tr>
 							</c:forEach>
 						</tbody>
-<tr><td colspan="5"><a style="color: red">${mensajeInfo}</a></td></tr>
+					<tr><td colspan="5"><a style="color: red">${mensajeInfo}</a></td></tr>
 					</table>
 	
 	

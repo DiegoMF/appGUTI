@@ -165,15 +165,15 @@ function Pager(tableName, itemsPerPage) {
 
 	       <div id="menu" align="center" class="menu">
              <ul>
-                    <li><a href="/pages/consultaGeneral.jsp">Consultas</a>
+                    <li><a href="/Consulta/ConsultaGeneral">Consultas</a>
                           <ul>
-                                 <li><a href="/pages/consultaGeneral.jsp">Consulta General</a></li>
+                                 <li><a href="/Consulta/ConsultaGeneral">Consulta General</a></li>
                           </ul></li>
                     <li><a href="#">Gestión de Consultas</a>
                           <ul>
                                  <li><a href="/pages/bitacoraConsultas.jsp">Bitacora de
                                               Consultas</a></li>
-                                 <li><a href="/Consulta/Load">Registro de Consultas</a></li>
+                                 <li><a href="/Consulta/Nuevo">Registro de Consultas</a></li>
                           </ul></li>
                     <li><a href="#">Gestión de Aplicaciones Especializadas</a>
                           <ul>
