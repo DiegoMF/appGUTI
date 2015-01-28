@@ -38,7 +38,10 @@ public class Consulta_ColumnaDAO {
 				objeto.setDescripcion(rs.getString("Descripcion"));
 				objeto.setForaneo(rs.getBoolean("Foraneo"));
 				objeto.setTabla(rs.getString("Tabla"));
-				
+				objeto.setTablaSeccion(rs.getString("TablaSeccion"));
+				objeto.setColumnaForanea(rs.getString("ColumnaForanea"));
+				objeto.setDescripcionForanea(rs.getString("DescripcionForanea"));
+				objeto.setDescripcionResultado(rs.getString("DescripcionResultado"));
 				lista.add(objeto);
 			}
 

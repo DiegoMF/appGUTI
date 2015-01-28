@@ -9,6 +9,11 @@ public class Consulta_Columna {
 	private String Tabla;
 	private Boolean Foraneo;
 	private int idConsulta_Seccion;
+	private String TablaSeccion;
+	private String ColumnaForanea;
+	private String DescripcionForanea;
+	private String DescripcionResultado;
+	
 	private ArrayList<String> filtroDestino;
 	private ArrayList<String> columnaDestino;
 
@@ -68,6 +73,38 @@ public class Consulta_Columna {
 
 	public void setColumnaDestino(ArrayList<String> columnaDestino) {
 		this.columnaDestino = columnaDestino;
+	}
+
+	public String getTablaSeccion() {
+		return TablaSeccion;
+	}
+
+	public void setTablaSeccion(String tablaSeccion) {
+		TablaSeccion = tablaSeccion;
+	}
+
+	public String getColumnaForanea() {
+		return ColumnaForanea;
+	}
+
+	public void setColumnaForanea(String columnaForanea) {
+		ColumnaForanea = columnaForanea;
+	}
+
+	public String getDescripcionForanea() {
+		return DescripcionForanea;
+	}
+
+	public void setDescripcionForanea(String descripcionForanea) {
+		DescripcionForanea = descripcionForanea;
+	}
+
+	public String getDescripcionResultado() {
+		return DescripcionResultado;
+	}
+
+	public void setDescripcionResultado(String descripcionResultado) {
+		DescripcionResultado = descripcionResultado;
 	}
 
 

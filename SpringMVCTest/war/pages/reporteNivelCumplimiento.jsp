@@ -177,9 +177,11 @@ function buscar() {
 						</select></td>
 						<td><label>Estado.:</label></td>
 						<td><select name="idEstadoAplicacion" id="idEstadoAplicacion">
-						<option value="0">Seleccionar</option>
-						<option value="activo">Activo</option>
-						<option value="inactivo">Inactivo</option>
+						<option value="0">Seleccione</option>
+												<c:forEach items="${estado}" var="estado">
+													<option value="<c:out value="${estado.idEstadoAplicacion}" />"><c:out
+															value="${estado.descripcionEstadoAplicacion}" /></option>
+												</c:forEach>
 						</select></td>
 						<td><label>División.:</label></td>
 						<td><select name="idDivision" id="idDivision">
@@ -190,10 +192,12 @@ function buscar() {
 												</c:forEach>
 						</select></td>
 						<td><label>Criticidad.:</label></td>
-						<td><select name="idCriticidad">
-						<option value="0">Seleccionar</option>
-						<option value="activo">Activo</option>
-						<option value="inactivo">Inactivo</option>
+						<td><select name="idCriticidadFinal" id="idCriticidadFinal">
+						<option value="0">Seleccione</option>
+												<c:forEach items="${criticidadfinal}" var="criticidadfinal">
+													<option value="<c:out value="${criticidadfinal.idCriticidadFinal}" />"><c:out
+															value="${criticidadfinal.descripcionCriticidadFinal}" /></option>
+												</c:forEach>
 						</select></td>
 					
 					</tr>

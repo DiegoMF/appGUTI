@@ -348,6 +348,9 @@ public class ReporteController {
 		ArrayList<Unidad> unidad;
 		ArrayList<Division> division;
 		ArrayList<Area> area;
+		ArrayList<EstadoAplicacion> estado;
+		ArrayList<CriticidadFinal> criticidadfinal;
+		
 		System.out.println("Entra al load");
 		gerencia = new ArrayList<>();
 		gerencia = GerenciaCentralDAO.getInstancia().obtenerGerenciaCentral();
@@ -357,6 +360,15 @@ public class ReporteController {
 		division = DivisionDAO.getInstancia().obtenerDivision();
 		area = new ArrayList<>();
 		area = AreaDAO.getInstancia().obtenerArea();
+		
+		estado = new ArrayList<>();
+		estado = EstadoAplicacionDAO.getInstancia().obtenerEstadoAplicacion();
+		
+		criticidadfinal = new ArrayList<>();
+		criticidadfinal = CriticidadFinalDAO.getInstancia().obtenerCriticidadFinal();
+		
+		
+		
 		System.out.println("Antes de llamar a la vista");
 		ModelAndView model = new ModelAndView("reporteNivelCumplimiento");
 		System.out.println("Despues de llamar a la vista");
@@ -365,7 +377,9 @@ public class ReporteController {
 		model.addObject("unidad", unidad);
 		model.addObject("division", division);
 		model.addObject("area", area);
-	
+		model.addObject("estado", estado);
+		model.addObject("criticidadfinal", criticidadfinal);
+
 		return model;
 	}
 	
@@ -374,15 +388,9 @@ public class ReporteController {
 	public ModelAndView getAplicaciones(HttpServletRequest request, ModelMap mod)
 			throws Exception {
 
-	//	ArrayList<AplicacionEspecializadaDTO> listaFiltros = new ArrayList<>();
 		AplicacionEspecializadaDTO listaFiltros = new AplicacionEspecializadaDTO();
 
-		System.out.println("controlador buscar reporte cumplimiento");
 		AplicacionEspecializadaDTO filtros = new AplicacionEspecializadaDTO();
-		
-		System.out.println("idGerencia Cetral" + request.getParameter("idGerenciaCentral"));
-	
-		
 		
 		filtros.setIdGerenciaCentral(Integer.parseInt(request.getParameter("idGerenciaCentral")));
 		filtros.setIdDivision(Integer.parseInt(request.getParameter("idDivision")));
@@ -392,24 +400,12 @@ public class ReporteController {
 		filtros.setIdUnidad(Integer.parseInt(request.getParameter("idUnidad")));
 		filtros.setCodigoAplicacionEspecializada(request.getParameter("codigoAplicacionEspecializada"));
 	
-		/*filtros.setIdGerenciaCentral(0);
-		filtros.setIdDivision(0);
-		filtros.setIdEstadoAplicacion(0);
-		filtros.setIdCriticidadFinal(0);
-		filtros.setIdArea(0);
-		filtros.setIdUnidad(0);
-		filtros.setCodigoAplicacionEspecializada("");
-		System.out.println("idGerencia Cetral" + filtros.getIdGerenciaCentral());*/
-		
 		listaFiltros = ReporteDAO.getInstancia().obtenerReporteNivelCumplimiento(filtros);
 		
-		
-		
 		ModelAndView model = new ModelAndView("Auxiliar/GraficoNivelCumplimiento");
-		//ModelAndView model = new ModelAndView("reporteNivelCumplimiento");
+	
 		model.addObject("listaFiltros", listaFiltros);
-		System.out.println("termina el contrlador");
-		System.out.println("filtro" + listaFiltros.getNivelCumplimientoTotal());
+		
 		return model;
 		
 		
@@ -417,5 +413,49 @@ public class ReporteController {
 	}
 
 	
+	@RequestMapping(value = { "/generarReporteVariacion" }, method = RequestMethod.POST)
+	public ModelAndView getReporteVariacion(HttpServletRequest request, ModelMap mod)
+			throws Exception {
+
+		AplicacionEspecializadaDTO listaFiltros = new AplicacionEspecializadaDTO();
+
+		AplicacionEspecializadaDTO filtros = new AplicacionEspecializadaDTO();
+		
+		/*filtros.setIdGerenciaCentral(Integer.parseInt(request.getParameter("idGerenciaCentral")));
+		filtros.setIdDivision(Integer.parseInt(request.getParameter("idDivision")));
+		filtros.setIdEstadoAplicacion(Integer.parseInt(request.getParameter("idEstadoAplicacion")));
+		filtros.setIdCriticidadFinal(Integer.parseInt(request.getParameter("idCriticidadFinal")));
+		filtros.setIdArea(Integer.parseInt(request.getParameter("idArea")));
+		filtros.setIdUnidad(Integer.parseInt(request.getParameter("idUnidad")));
+		filtros.setCodigoAplicacionEspecializada(request.getParameter("codigoAplicacionEspecializada"));
+	
+		listaFiltros = ReporteDAO.getInstancia().obtenerReporteNivelCumplimiento(filtros);*/
+		
+		ModelAndView model = new ModelAndView("Auxiliar/GraficoReporteVariacion");
+	
+		model.addObject("listaFiltros", listaFiltros);
+		
+		return model;
+		
+		
+
+	}
+	
+	
+
+
+	
+	@RequestMapping(value = { "/LoadReporteVariacion" }, method = RequestMethod.GET)
+	public ModelAndView loadReporteVariacion(HttpServletRequest request, ModelMap mod)
+			throws Exception {
+
+		ArrayList<Consulta_Seccion> lista = Consulta_SeccionDAO.getInstancia().buscar();
+		ModelAndView model = new ModelAndView("reporteVariacion");
+		model.addObject("reporteSeccionLista", lista);
+		
+
+		return model;
+
+	}
 	
 }
