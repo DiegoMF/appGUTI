@@ -25,6 +25,8 @@ public class Consulta {
 	private String comboColumna;
 	private String comboFiltro;
 	
+	private String cboSeccion; 
+	
 	private int idReporte;
 	private String nombreReporte;
 	private String fechaCreacion;
@@ -166,6 +168,18 @@ public class Consulta {
 	}
 	public void setIdConsulta(int idConsulta) {
 		this.idConsulta = idConsulta;
+	}
+
+
+
+	public String getCboSeccion() {
+		return cboSeccion;
+	}
+
+
+
+	public void setCboSeccion(String cboSeccion) {
+		this.cboSeccion = cboSeccion;
 	}
 
 	

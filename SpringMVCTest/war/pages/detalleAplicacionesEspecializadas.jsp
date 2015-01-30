@@ -2008,14 +2008,13 @@ window.onload = function () {
 							<fieldset>
 								<legend align="left">Pre atención - Software base - Estándares tecnológicos</legend>
 								
-						<table width="100%">
-							<tr>
-								<td width="90%">
-							<table width="100%">
-								<tr>
-										<td>Estándar - Sistema operativo.:</td>
-										<td ><select		
-											onchange="cambiarEstandarSistemaOperativo($(this));"
+						<table style="width: 100%"  border="0"> 
+            <tr>
+               
+                <td>Estándar - Sistema operativo.:</td>
+
+                	<td  >
+                	<select onchange="cambiarEstandarSistemaOperativo($(this));"
 											name="idSwBaseEstandarSistemaOperativoPRE"
 											id="idSwBaseEstandarSistemaOperativoPRE">
 												<option value="">Seleccione</option>
@@ -2025,16 +2024,25 @@ window.onload = function () {
 														value="<c:out value="${presistemaOperativo.idSwBaseEstandarSistemaOperativo}" />"><c:out
 															value="${presistemaOperativo.descripcionSwBaseEstandarSistemaOperativo}" /></option>
 												</c:forEach>
-										</select></td>
-										<td>Otros.:</td>
-										<td><input type="text"	name="swBaseSistemaOperativoOtrosPRE"	id="swBaseSistemaOperativoOtrosPRE" maxlength="50"
+										</select>
+
+									</td>
+									<td >&nbsp;</td>
+                <td style="width: 15%">Otros.:<input type="text"	name="swBaseSistemaOperativoOtrosPRE"	id="swBaseSistemaOperativoOtrosPRE" maxlength="50"
 											”
 											value="${preswBaseEstandarTecnologico.swBaseSistemaOperativoOtros}" disabled="disabled"/>
 										</td>
-									</tr>
-									<tr>
-										<td>Estándar - Herramientas de programación.:</td>
-										<td><select
+									<td >&nbsp;</td>
+ <td rowspan="5">Observaciones adicionales.:<textarea COLS=90 ROWS=7
+											name="swBaseObservacionesAdicionalesPRE"
+											value="${preswBaseEstandarTecnologico.swBaseObservacionesAdicionales}"
+											maxlength="500" /></textarea></td>
+
+            </tr>
+            <tr>
+                <td>Estándar - Herramientas de programación.:</td>
+
+                	<td><select
 											onchange="cambiarEstandarHerramientaProgramacion($(this));"
 											name="idSwBaseEstandarHeramientaProgramacionPRE"
 											id="idSwBaseEstandarHeramientaProgramacionPRE">
@@ -2046,15 +2054,15 @@ window.onload = function () {
 															value="${preherramientaProgramacion.descripcionSwBaseEstandarHerramientaProgramacion}" /></option>
 												</c:forEach>
 										</select></td>
-										<td>Otros.:</td>
-										<td><input type="text"
+										<td >&nbsp;</td>
+                					<td>Otros.:<input type="text"
 											name="swBaseHerramientaProgramacionOtrosPRE"
 											id="swBaseHerramientaProgramacionOtrosPRE"
 											value="${preswBaseEstandarTecnologico.swBaseHerramientaProgramacionOtros}"
 											maxlength="50" disabled="disabled" ” /></td>
-									</tr>
-									<tr>
-										<td>Lenguaje de programación.:</td>
+            </tr>
+            <tr>
+                <td>Lenguaje de programación.:</td>
 										<td><select
 											onchange="cambiarEstandarLenguajeProgramacion($(this));"
 											name="idSwBaseEstandarLenguajeProgramacionPRE"
@@ -2067,15 +2075,15 @@ window.onload = function () {
 															value="${prelenguajeProgramacion.descripcionSwBaseEstandarLenguajeProgramacion}" /></option>
 												</c:forEach>
 										</select></td>
-										<td>Otros.:</td>
-										<td><input type="text"
+										<td >&nbsp;</td>
+                <td>Otros.:<input type="text"
 											name="swBaseLenguajeProgramacionOtrosPRE"
 											id="swBaseLenguajeProgramacionOtrosPRE"
 											value="${preswBaseEstandarTecnologico.swBaseLenguajeProgramacionOtros}"
 											maxlength="50"  ”  disabled="disabled" /></td>
-									</tr>
-									<tr>
-										<td>Estándar - Gestor de base de datos.:</td>
+            </tr>
+             <tr>
+                <td>Estándar - Gestor de base de datos.:</td>
 										<td><select
 											onchange="cambiarEstandarGestorBaseDatos($(this));"
 											name="idSwBaseEstandarGestorBDPRE" id="idSwBaseEstandarGestorBDPRE">
@@ -2086,14 +2094,15 @@ window.onload = function () {
 															value="${pregestorBD.descripcionSwBaseEstandarGestorBD}" /></option>
 												</c:forEach>
 										</select></td>
-										<td>Otros.:</td>
-										<td><input type="text" name="swBaseGestorBDOtrosPRE"
+										<td >&nbsp;</td>
+                <td>Otros.:<input type="text" name="swBaseGestorBDOtrosPRE"
 											id="swBaseGestorBDOtrosPRE"
 											value="${preswBaseEstandarTecnologico.swBaseGestorBDOtros}"
 											maxlength="50"  disabled="disabled"” /></td>
-									</tr>
-									<tr>
-										<td>Estándar - Framework.:</td>
+            </tr>
+  <tr>
+ 
+                <td>Estándar - Framework.:</td>
 										<td><select onchange="cambiarEstandarFramework($(this));"
 											name="idSwBaseEstandarFrameworkPRE" id="idSwBaseEstandarFrameworkPRE">
 												<option value="">Seleccione</option>
@@ -2103,30 +2112,15 @@ window.onload = function () {
 															value="${preframework.descripcionSwBaseEstandarFramework}" /></option>
 												</c:forEach>
 										</select></td>
-										<td>Otros.:</td>
-										<td><input type="text" name="swBaseFrameworkOtrosPRE"
+										<td >&nbsp;</td>
+                						<td>Otros.:<input type="text" name="swBaseFrameworkOtrosPRE"
 											id="swBaseFrameworkOtrosPRE"
 											value="${preswBaseEstandarTecnologico.swBaseFrameworkOtros}"
 											maxlength="50"  disabled="disabled"” /></td>
-									</tr>
-									
-							</table>
 
-					</td>
-					<td width="10%">
-							
-							<table  >
-								<tr>
-										<td>Observaciones adicionales.:</td>
-										<td><TEXTAREA COLS=50 ROWS=5
-											name="swBaseObservacionesAdicionalesPRE"
-											value="${preswBaseEstandarTecnologico.swBaseObservacionesAdicionales}"
-											maxlength="500" /></TEXTAREA></td>
-									</tr>
-							</table>
-					</td>
-					</tr>
-			</table>
+
+        </tr>
+        </table>
 		
 							</fieldset>
 						</td>
@@ -2135,11 +2129,9 @@ window.onload = function () {
 						<td>
 							<fieldset>
 								<legend align="left">Pre Atención - Lineamiento</legend>
-								<table width="100%">
+								<table style="width: 100%"  border="0">
 									<tr>
-									<td width="90%">
-										<table width="100%">
-											<tr>
+									
 										<td>Accesos - Gestión de privilegios en los sistemas.:</td>
 										
 										<td><select name="idAccesosGestionPrivilegiosSistemasPRE"
@@ -2151,8 +2143,7 @@ window.onload = function () {
 															value="${preagps.descripcionAccesosGestionPrivilegiosSistemas}" /></option>
 												</c:forEach>
 										</select></td>
-										<td>
-										</td>
+										<td>&nbsp;</td>
 										<td>Accesos - Revisión de los privilegios de los
 											usuarios.:</td>
 										<td><select
@@ -2165,6 +2156,11 @@ window.onload = function () {
 															value="${prearpu.descripcionAccesosRevisionPrivilegiosUsuarios}" /></option>
 												</c:forEach>
 										</select></td>
+										<td >&nbsp;</td>
+										<td rowspan="5">Observaciones adicionales.:<textarea COLS=90 ROWS=7
+											name="swBaseObservacionesAdicionalesPRE"
+											value="${preswBaseEstandarTecnologico.swBaseObservacionesAdicionales}"
+											maxlength="500" /></textarea></td>
 									</tr>
 									<tr>
 										<td>Accesos - Gestión de contraseñas.:</td>
@@ -2177,6 +2173,8 @@ window.onload = function () {
 															value="${preagc.descripcionAccesosGestionContrasenas}" /></option>
 												</c:forEach>
 										</select></td>
+										<td>&nbsp;</td>
+										
 										<td>Accesos - Política de contraseñas.:</td>
 										<td><select name="idAccesosPoliticaContrasenasPRE"
 											id="idAccesosPoliticaContrasenasPRE">
@@ -2200,6 +2198,8 @@ window.onload = function () {
 															value="${preagc1.descripcionAccesosGestionClaves1}" /></option>
 												</c:forEach>
 										</select></td>
+										<td>&nbsp;</td>
+										
 										<td>Accesos - Gestión de claves 2.:</td>
 										<td><select name="idAccesosGestionClaves2PRE"
 											id="idAccesosGestionClaves2PRE">
@@ -2222,6 +2222,7 @@ window.onload = function () {
 															value="${preagc3.descripcionAccesosGestionClaves3}" /></option>
 												</c:forEach>
 										</select></td>
+										<td>&nbsp;</td>
 										<td>Auditoría - Registro de auditorías.:</td>
 										<td><select name="idAuditoriaRegistroAuditoriaPRE"
 											id="idAuditoriaRegistroAuditoriaPRE">
@@ -2249,6 +2250,7 @@ window.onload = function () {
 															value="${preproteccionRegistros.descripcionAuditoriaProteccionRegistrosAuditoria}" /></option>
 												</c:forEach>
 										</select></td>
+										<td>&nbsp;</td>
 										<td>Auditoría - Registro de eventos de los
 											administradores de los sistemas o administradores de
 											seguridad.:</td>
@@ -2277,6 +2279,7 @@ window.onload = function () {
 															value="${preconformidadPoliticas.descripcionAuditoriaConformidadPoliticas}" /></option>
 												</c:forEach>
 										</select></td>
+										<td>&nbsp;</td>
 										<td>Contingencia:</td>
 										<td><select name="idContingenciaPRE"
 											id="idContingenciaPRE">
@@ -2301,6 +2304,7 @@ window.onload = function () {
 															value="${preprocedimientosSw.descripcionControlCambiosProcedimientosSw}" /></option>
 												</c:forEach>
 										</select></td>
+										<td>&nbsp;</td>
 										<td>Control de cambios - Procedimientos de control de
 											cambios de infraestructura.:</td>
 										<td><select
@@ -2327,6 +2331,7 @@ window.onload = function () {
 															value="${predocumentacionManejo.descripcionDocumentacionManejo}" /></option>
 												</c:forEach>
 										</select></td>
+										<td>&nbsp;</td>
 										<td>Incidentes - Cumplimiento de las políticas<br>
 											de antivirus de la organización.:
 										</td>
@@ -2357,6 +2362,7 @@ window.onload = function () {
 															value="${precumplimientoCodigoMalicioso.descripcionIncidentesCumplimientoCodigoMalicioso}" /></option>
 												</c:forEach>
 										</select></td>
+										<td>&nbsp;</td>
 										<td>Incidentes - Cumplimiento con las políticas de
 											gestión de parches.:</td>
 										<td><select
@@ -2384,6 +2390,7 @@ window.onload = function () {
 															value="${predatosPrueba.descripcionIntegridadConfidencialidadDatosPrueba}" /></option>
 												</c:forEach>
 										</select></td>
+										<td>&nbsp;</td>
 										<td>Respaldos - Gestión de respaldo y recuperación.:</td>
 										<td><select
 											name=idRespaldosGestionRespaldoRecuperacionPRE
@@ -2400,21 +2407,7 @@ window.onload = function () {
 									
 										</table>
 
-								</td>
-								<td>
-								</td>
-								<td width="10%">
-							
-							<table  >
-								<tr>
-										<td>Observaciones adicionales.:</td>
-										<td><TEXTAREA COLS=50 ROWS=5 name="observaciones" id="observaciones" value="${preLineamientos.observaciones}"
-											maxlength="500"  ></TEXTAREA></td>
-									</tr>
-							</table>
-					</td>
-					</tr>
-							</table>
+								
 							</fieldset>
 						</td>
 					</tr>
@@ -2629,7 +2622,6 @@ window.onload = function () {
 							<div class="formularioBoton" align="right">
 
 								 <input
-									type="button" name="verGrafico" value="Ver Gráfico"></input>  <input
 									type="reset" name="Limpiar" value="Limpiar"></input>
 							</div>
 
@@ -2654,8 +2646,9 @@ window.onload = function () {
 							<fieldset>
 								<legend align="left">Post Atención - Software Base -
 									Estándares Tecnológicos</legend>
-								<table>
+								<table style="width: 100%"  border="0">
 									<tr>
+									
 										<td>Estándar - Sistema operativo.:</td>
 										<td><select
 											onchange="cambiarEstandarSistemaOperativoPOST($(this));"
@@ -2669,12 +2662,22 @@ window.onload = function () {
 															value="${sistemaOperativo.descripcionSwBaseEstandarSistemaOperativo}" /></option>
 												</c:forEach>
 										</select></td>
+										<td>&nbsp;</td>
 										<td>Otros.:</td>
 										<td><input type="text"
 											name="swBaseSistemaOperativoOtrosPOST"
 											id="swBaseSistemaOperativoOtrosPOST" maxlength="50"
 											value="${swBaseEstandarTecnologico.swBaseSistemaOperativoOtros}"
 											disabled="disabled" ”></td>
+										<td >&nbsp;</td>	
+										<td rowspan="5">Observaciones adicionales.:<TEXTAREA COLS=90 ROWS=7
+											name="swBaseObservacionesAdicionalesPOST"
+											value="${swBaseEstandarTecnologico.swBaseObservacionesAdicionales}" maxlength="500"/></TEXTAREA>
+										</td>	
+											
+											
+									</tr>
+									<tr>
 										<td>Estándar - Herramientas de programación.:</td>
 										<td><select
 											onchange="cambiarEstandarHerramientaProgramacionPOST($(this));"
@@ -2688,6 +2691,7 @@ window.onload = function () {
 															value="${herramientaProgramacion.descripcionSwBaseEstandarHerramientaProgramacion}" /></option>
 												</c:forEach>
 										</select></td>
+										<td>&nbsp;</td>
 										<td>Otros.:</td>
 										<td><input type="text"
 											name="swBaseHerramientaProgramacionOtrosPOST"
@@ -2710,12 +2714,15 @@ window.onload = function () {
 															value="${lenguajeProgramacion.descripcionSwBaseEstandarLenguajeProgramacion}" /></option>
 												</c:forEach>
 										</select></td>
+										<td>&nbsp;</td>
 										<td>Otros.:</td>
 										<td><input type="text"
 											name="swBaseLenguajeProgramacionOtrosPOST"
 											id="swBaseLenguajeProgramacionOtrosPOST"
 											value="${swBaseEstandarTecnologico.swBaseLenguajeProgramacionOtros}"
 											maxlength="50" disabled="disabled" ” /></td>
+									</tr>
+									<tr>
 										<td>Estándar - Gestor de base de datos.:</td>
 										<td><select
 											onchange="cambiarEstandarGestorBaseDatosPOST($(this));"
@@ -2727,6 +2734,7 @@ window.onload = function () {
 															value="${gestorBD.descripcionSwBaseEstandarGestorBD}" /></option>
 												</c:forEach>
 										</select></td>
+										<td>&nbsp;</td>
 										<td>Otros.:</td>
 										<td><input type="text" name="swBaseGestorBDOtrosPOST"
 											id="swBaseGestorBDOtrosPOST"
@@ -2745,19 +2753,15 @@ window.onload = function () {
 															value="${framework.descripcionSwBaseEstandarFramework}" /></option>
 												</c:forEach>
 										</select></td>
+										<td>&nbsp;</td>
 										<td>Otros.:</td>
 										<td><input type="text" name="swBaseFrameworkOtrosPOST"
 											id="swBaseFrameworkOtrosPOST"
 											value="${swBaseEstandarTecnologico.swBaseFrameworkOtros}" disabled="disabled"
 											maxlength="50"/></td>
-										<td>Observaciones adicionales.:</td>
-										<td><input type="text"
-											name="swBaseObservacionesAdicionalesPOST"
-											value="${swBaseEstandarTecnologico.swBaseObservacionesAdicionales}">
-										</td>
 									</tr>
-
-								</table>
+									</table>
+									
 							</fieldset>
 						</td>
 					</tr>
@@ -2765,8 +2769,9 @@ window.onload = function () {
 						<td>
 							<fieldset>
 								<legend align="left">Post atención - lineamiento</legend>
-								<table>
+								<table style="width: 100%"  border="0">
 									<tr>
+									
 										<td>Accesos - Gestión de privilegios en los sistemas.:</td>
 										<td><select
 											name="idAccesosGestionPrivilegiosSistemasPOST"
@@ -2778,6 +2783,7 @@ window.onload = function () {
 															value="${agps.descripcionAccesosGestionPrivilegiosSistemas}" /></option>
 												</c:forEach>
 										</select></td>
+										<td>&nbsp;</td>
 										<td>Accesos - Revisión de los privilegios de los
 											usuarios.:</td>
 										<td><select
@@ -2790,6 +2796,12 @@ window.onload = function () {
 															value="${arpu.descripcionAccesosRevisionPrivilegiosUsuarios}" /></option>
 												</c:forEach>
 										</select></td>
+										<td >&nbsp;</td>
+										<td rowspan="5">Observaciones adicionales.:<TEXTAREA COLS=90 ROWS=7 name="observacionesPost" id="observacionesPost" value="${postLineamientos.observacionesPost}" maxlength=500" ></TEXTAREA></td>
+								
+										
+									</tr>
+									<tr>
 										<td>Accesos - Gestión de contraseñas.:</td>
 										<td><select name="idAccesosGestionContrasenasPOST"
 											id="idAccesosGestionContrasenasPOST">
@@ -2800,6 +2812,7 @@ window.onload = function () {
 															value="${agc.descripcionAccesosGestionContrasenas}" /></option>
 												</c:forEach>
 										</select></td>
+										<td>&nbsp;</td>
 										<td>Accesos - Política de contraseñas.:</td>
 										<td><select name="idAccesosPoliticaContrasenasPOST"
 											id="idAccesosPoliticaContrasenasPOST">
@@ -2823,6 +2836,7 @@ window.onload = function () {
 															value="${agc1.descripcionAccesosGestionClaves1}" /></option>
 												</c:forEach>
 										</select></td>
+										<td>&nbsp;</td>
 										<td>Accesos - Gestión de claves 2.:</td>
 										<td><select name="idAccesosGestionClaves2POST"
 											id="idAccesosGestionClaves2POST">
@@ -2833,6 +2847,8 @@ window.onload = function () {
 															value="${agc2.descripcionAccesosGestionClaves2}" /></option>
 												</c:forEach>
 										</select></td>
+									</tr>
+									<tr>
 										<td>Accesos - Gestión de claves 3.:</td>
 										<td><select name="idAccesosGestionClaves3POST"
 											id="idAccesosGestionClaves3POST">
@@ -2843,6 +2859,7 @@ window.onload = function () {
 															value="${agc3.descripcionAccesosGestionClaves3}" /></option>
 												</c:forEach>
 										</select></td>
+										<td>&nbsp;</td>
 										<td>Auditoría - Registro de auditorías.:</td>
 										<td><select name="idAuditoriaRegistroAuditoriaPOST"
 											id="idAuditoriaRegistroAuditoriaPOST">
@@ -2870,6 +2887,7 @@ window.onload = function () {
 															value="${proteccionRegistros.descripcionAuditoriaProteccionRegistrosAuditoria}" /></option>
 												</c:forEach>
 										</select></td>
+										<td>&nbsp;</td>
 										<td>Auditoría - Registro de eventos de los
 											administradores de los sistemas o administradores de
 											seguridad.:</td>
@@ -2883,6 +2901,8 @@ window.onload = function () {
 															value="${registroEventos.descripcionAuditoriaRegistroEventosAdministradores}" /></option>
 												</c:forEach>
 										</select></td>
+									</tr>
+									<tr>
 										<td>Auditoría - Conformidad con las políticas de
 											seguridad y los estándares.:</td>
 										<td><select name="idAuditoriaConformidadPoliticasPOST"
@@ -2895,6 +2915,7 @@ window.onload = function () {
 															value="${conformidadPoliticas.descripcionAuditoriaConformidadPoliticas}" /></option>
 												</c:forEach>
 										</select></td>
+										<td>&nbsp;</td>
 										<td>Contingencia.:</td>
 										<td><select name="idContingenciaPOST"
 											id="idContingenciaPOST">
@@ -2921,6 +2942,7 @@ window.onload = function () {
 															value="${procedimientosSw.descripcionControlCambiosProcedimientosSw}" /></option>
 												</c:forEach>
 										</select></td>
+										<td>&nbsp;</td>
 										<td>Control de cambios - Procedimientos de control de
 											cambios de infraestructura.:</td>
 										<td><select
@@ -2934,6 +2956,8 @@ window.onload = function () {
 															value="${procedimientoInfraestructura.descripcionControlCambiosProcedimientosInfraestructura}" /></option>
 												</c:forEach>
 										</select></td>
+									</tr>
+									<tr>
 										<td>Documentación - Manejo de documentación.:</td>
 										<td><select name="idDocumentacionManejoPOST"
 											id="idDocumentacionManejoPOST">
@@ -2945,6 +2969,7 @@ window.onload = function () {
 															value="${documentacionManejo.descripcionDocumentacionManejo}" /></option>
 												</c:forEach>
 										</select></td>
+										<td>&nbsp;</td>
 										<td>Incidentes - Cumplimiento de las políticas de
 											antivirus de la organización.:</td>
 										<td><select
@@ -2975,6 +3000,7 @@ window.onload = function () {
 															value="${cumplimientoCodigoMalicioso.descripcionIncidentesCumplimientoCodigoMalicioso}" /></option>
 												</c:forEach>
 										</select></td>
+										<td>&nbsp;</td>
 										<td>Incidentes - Cumplimiento con las políticas de
 											gestión de parches.:</td>
 										<td><select
@@ -2987,6 +3013,8 @@ window.onload = function () {
 															value="${gestionParches.descripcionIncidentesCumplimientoGestionParches}" /></option>
 												</c:forEach>
 										</select></td>
+									</tr>
+									<tr>
 										<td>Integridad y confidencialidad - Protección de datos
 											de prueba.:</td>
 										<td><select
@@ -2999,6 +3027,7 @@ window.onload = function () {
 															value="${datosPrueba.descripcionIntegridadConfidencialidadDatosPrueba}" /></option>
 												</c:forEach>
 										</select></td>
+										<td>&nbsp;</td>
 										<td>Respaldos - Gestión de respaldo y recuperación.:</td>
 										<td><select
 											name="idRespaldosGestionRespaldoRecuperacionPOST"
@@ -3014,23 +3043,11 @@ window.onload = function () {
 									</tr>
 
 								</table>
+								
 							</fieldset>
 						</td>
 					</tr>
-					<tr>
-								<td>
-									<fieldset>
-										<legend align="left">Comentarios</legend>
-										<table>
-											<tr>
-												<td>Observaciones.:</td>
-												<td><TEXTAREA COLS=50 ROWS=5 name="observacionesPost" id="observacionesPost" value="${postLineamientos.observacionesPost}"
-											maxlength="500"></TEXTAREA></td>
-											</tr>
-										</table>
-									</fieldset>
-								</td>
-							</tr>
+				
 					<tr>
 						<td>
 						<div>
@@ -3232,7 +3249,6 @@ window.onload = function () {
 							<div class="formularioBoton" align="right">
 
 								<input
-									type="button" name="verGrafico" value="Ver Gráfico"></input></input> <input
 									type="reset" name="Limpiar" value="Limpiar"></input>
 							</div>
 

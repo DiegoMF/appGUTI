@@ -1,5 +1,5 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-					<table  border="1" width="100%" class="tablaGrilla">
+					<table  border="1" width="100%" class="tablaGrilla" id="resultados">
 						<thead>
 							<tr align="center">
 								<th>#</th>
@@ -26,4 +26,13 @@
 						</tbody>
 						<tr><td colspan="5"><a style="color: red">${mensajeInfo}</a></td></tr>
 					</table>
+					
+<div id="pageNavPosition"></div>
+<script type="text/javascript">  
+		alert("div num");
+        var pager = new Pager('resultados', 30); 
+        pager.init(); 
+        pager.showPageNav('pager', 'pageNavPosition'); 
+        pager.showPage(1);
+    </script>
 	

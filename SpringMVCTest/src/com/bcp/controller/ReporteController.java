@@ -203,73 +203,231 @@ public class ReporteController {
 	}
 	
 	
+	@RequestMapping(value = "/listaFiltro", method = RequestMethod.POST)
+	public ModelAndView listarFiltro(@ModelAttribute("listaConsulta") Consulta consulta)
+			throws Exception {
+
+		ArrayList<Consulta_Columna> listaDestino = null;
+
+		if (consulta.getComboFiltro() != null
+				&& consulta.getComboFiltro().compareTo("") != 0) {
+			ArrayList<Consulta_Columna> lista = Consulta_ColumnaDAO
+					.getInstancia().buscar(
+							Integer.parseInt(consulta.getComboFiltro()));
+
+			if (consulta.getFiltroDestino() != null) {
+				if (consulta.getFiltroDestino().size() != 0) {
+					listaDestino = new ArrayList<Consulta_Columna>();
+					listaDestino.addAll(lista);
+
+					for (Consulta_Columna cltLista : lista) {
+						for (int i = 0; i < consulta.getFiltroDestino().size(); i++) {
+							int value = Integer.parseInt(consulta
+									.getFiltroDestino().get(i));
+
+							if (cltLista.getIdConsulta_Columna() == value) {
+								listaDestino.remove(cltLista);
+								break;
+							}
+						}
+					}
+				} else {
+					listaDestino = new ArrayList<Consulta_Columna>();
+					listaDestino.addAll(lista);
+				}
+			} else {
+				listaDestino = new ArrayList<Consulta_Columna>();
+				listaDestino.addAll(lista);
+			}
+
+		} else {
+			listaDestino = new ArrayList<Consulta_Columna>();
+		}
+
+		ModelAndView modelo = new ModelAndView("Auxiliar/ListaReporteFiltro");
+		modelo.addObject("ListaReporteFiltro", listaDestino);
+
+		return modelo;
+	}
+
+	@RequestMapping(value = "/listaFiltro2", method = RequestMethod.POST)
+	public ModelAndView listarFiltro2(
+			@ModelAttribute("listaConsulta") Consulta consulta)
+			throws Exception {
+
+		ArrayList<Consulta_Columna> lista = Consulta_ColumnaDAO.getInstancia()
+				.buscar(Integer.parseInt(consulta.getComboFiltro()));
+
+		ArrayList<Consulta_Columna> listaDestino = null;
+
+		if (consulta.getFiltroDestino() != null) {
+			if (consulta.getFiltroDestino().size() != 0) {
+				listaDestino = new ArrayList<Consulta_Columna>();
+				listaDestino.addAll(lista);
+
+				for (Consulta_Columna cltLista : lista) {
+					for (int i = 0; i < consulta.getFiltroDestino().size(); i++) {
+						int value = Integer.parseInt(consulta
+								.getFiltroDestino().get(i));
+
+						if (cltLista.getIdConsulta_Columna() == value) {
+							listaDestino.remove(cltLista);
+							break;
+						}
+					}
+				}
+			} else {
+				listaDestino = new ArrayList<Consulta_Columna>();
+				listaDestino.addAll(lista);
+			}
+		} else {
+			listaDestino = new ArrayList<Consulta_Columna>();
+			listaDestino.addAll(lista);
+		}
+
+		ModelAndView modelo = new ModelAndView("Auxiliar/ListaReporteFiltro");
+		modelo.addObject("ListaReporteFiltro", listaDestino);
+
+		return modelo;
+	}
+
+	@RequestMapping(value = "/listaColumna", method = RequestMethod.POST)
+	public ModelAndView listarColumnas(
+			@ModelAttribute("listaConsulta") Consulta consulta)
+			throws Exception {
+
+		ArrayList<Consulta_Columna> listaDestino = null;
+
+		if (consulta.getComboFiltro() != null
+				&& consulta.getComboFiltro().compareTo("") != 0) {
+			ArrayList<Consulta_Columna> lista = Consulta_ColumnaDAO.getInstancia().buscar(Integer.parseInt(consulta.getComboColumna()));
+
+			if (consulta.getColumnaDestino() != null) {
+				if (consulta.getColumnaDestino().size() != 0) {
+					listaDestino = new ArrayList<Consulta_Columna>();
+					listaDestino.addAll(lista);
+
+					for (Consulta_Columna cltLista : lista) {
+						for (int i = 0; i < consulta.getColumnaDestino().size(); i++) {
+							int value = Integer.parseInt(consulta
+									.getColumnaDestino().get(i));
+
+							if (cltLista.getIdConsulta_Columna() == value) {
+								listaDestino.remove(cltLista);
+								break;
+							}
+						}
+					}
+				} else {
+					listaDestino = new ArrayList<Consulta_Columna>();
+					listaDestino.addAll(lista);
+				}
+			} else {
+				listaDestino = new ArrayList<Consulta_Columna>();
+				listaDestino.addAll(lista);
+			}
+
+		} else {
+			listaDestino = new ArrayList<Consulta_Columna>();
+		}
+
+		ModelAndView modelo = new ModelAndView("Auxiliar/ListaReporteAgrupacion");
+		modelo.addObject("ListaReporteAgrupacion", listaDestino);
+
+		return modelo;
+	}
+
+	
 	
 	
 	@RequestMapping(value = { "/BuscarFiltro" }, method = RequestMethod.POST)
-	public ModelAndView BuscarFiltro(HttpServletRequest request, ModelMap mod, HttpSession sesion)
+	public ModelAndView BuscarFiltro(
+			@ModelAttribute("listaConsulta") Consulta consulta)
 			throws Exception {
-		System.out.println("llega al buscar filtro reporte");
+		ArrayList<Consulta_Columna> listaDestino = null;
 
-		ArrayList<Consulta_Columna> lista = Consulta_ColumnaDAO.getInstancia().buscar(Integer.parseInt(request.getParameter("idConsulta_Seccion")));
-		
+		if (consulta.getCboSeccion() != null
+				&& consulta.getCboSeccion().compareTo("") != 0) {
+			ArrayList<Consulta_Columna> lista = Consulta_ColumnaDAO
+					.getInstancia().buscar(
+							Integer.parseInt(consulta.getCboSeccion()));
+
+			if (consulta.getFiltroDestino() != null) {
+				if (consulta.getFiltroDestino().size() != 0) {
+					listaDestino = new ArrayList<Consulta_Columna>();
+					listaDestino.addAll(lista);
+
+					for (Consulta_Columna cltLista : lista) {
+						for (int i = 0; i < consulta.getFiltroDestino().size(); i++) {
+							int value = Integer.parseInt(consulta
+									.getFiltroDestino().get(i));
+
+							if (cltLista.getIdConsulta_Columna() == value) {
+								listaDestino.remove(cltLista);
+								break;
+							}
+						}
+					}
+				} else {
+					listaDestino = new ArrayList<Consulta_Columna>();
+					listaDestino.addAll(lista);
+				}
+			} else {
+				listaDestino = new ArrayList<Consulta_Columna>();
+				listaDestino.addAll(lista);
+			}
+
+		} else {
+			listaDestino = new ArrayList<Consulta_Columna>();
+		}
 		ModelAndView model = new ModelAndView("Auxiliar/ListaReporteFiltro");
-		model.addObject("listaReporteFiltro", lista);
+		model.addObject("ListaReporteFiltro", listaDestino);
 
 		return model;
-		
+
 	}
-	
-	
-	@RequestMapping(value = { "/BuscarAgrupacion" }, method = RequestMethod.POST)
-	public ModelAndView BuscarAgrupacion(HttpServletRequest request, ModelMap mod, HttpSession sesion)
+
+	@RequestMapping(value = { "/BuscarFiltro2" }, method = RequestMethod.POST)
+	public ModelAndView BuscarFiltro2(
+			@ModelAttribute("listaConsulta") Consulta consulta)
 			throws Exception {
-				
-		ArrayList<Consulta_Columna> lista = Consulta_ColumnaDAO.getInstancia().buscar(Integer.parseInt(request.getParameter("idConsulta_Seccion")));
-		
-		ModelAndView model = new ModelAndView("Auxiliar/ListaReporteAgrupacion");
-		model.addObject("listaReporteAgrupacion", lista);
+
+		ArrayList<Consulta_Columna> lista = Consulta_ColumnaDAO.getInstancia()
+				.buscar(Integer.parseInt(consulta.getCboSeccion()));
+
+		ArrayList<Consulta_Columna> listaDestino = null;
+
+		if (consulta.getFiltroDestino() != null) {
+			if (consulta.getFiltroDestino().size() != 0) {
+				listaDestino = new ArrayList<Consulta_Columna>();
+				listaDestino.addAll(lista);
+
+				for (Consulta_Columna cltLista : lista) {
+					for (int i = 0; i < consulta.getFiltroDestino().size(); i++) {
+						int value = Integer.parseInt(consulta
+								.getFiltroDestino().get(i));
+
+						if (cltLista.getIdConsulta_Columna() == value) {
+							listaDestino.remove(cltLista);
+							break;
+						}
+					}
+				}
+			} else {
+				listaDestino = new ArrayList<Consulta_Columna>();
+				listaDestino.addAll(lista);
+			}
+		} else {
+			listaDestino = new ArrayList<Consulta_Columna>();
+			listaDestino.addAll(lista);
+		}
+
+		ModelAndView model = new ModelAndView("Auxiliar/ListaReporteFiltro");
+		model.addObject("ListaReporteFiltro", listaDestino);
 
 		return model;
 
 	}
-	
-	/*
-	
-	
-	
-	@RequestMapping(value = { "/BuscarFiltro" }, method = RequestMethod.POST)
-	public ModelAndView BuscarFiltro(HttpServletRequest request, ModelMap mod, HttpSession sesion)
-			throws Exception {
-				
-		ArrayList<Consulta_Columna> lista = Consulta_ColumnaDAO.getInstancia().buscar(Integer.parseInt(request.getParameter("idConsulta_Seccion")));
-		
-		ModelAndView model = new ModelAndView("Auxiliar/ListaConsulta_Filtro");
-		model.addObject("ListaConsulta_Filtro", lista);
-
-		return model;
-
-	}
-	
-	@RequestMapping(value = { "/AgregarColumna" }, method = RequestMethod.POST)
-	public ModelAndView AgregarColumna(HttpServletRequest request, ModelMap mod, HttpSession sesion) throws Exception {
-				
-		Consulta_Columna filtro = new Consulta_Columna();
-		filtro.setIdConsulta_Columna(Integer.parseInt(request.getParameter("idConsulta_Seccion")));
-		filtro.setDescripcion(request.getParameter("Descripcion"));	
-		
-		ArrayList<Consulta_Columna> ListaConsulta_Columna = new ArrayList<>();
-		
-		if (sesion.getAttribute("ListaFiltroSesion")!= null){
-			ListaConsulta_Columna = (ArrayList<Consulta_Columna>)sesion.getAttribute("ListaFiltroSesion");
-		}	
-		
-		ListaConsulta_Columna.add(filtro);
-		sesion.setAttribute("ListaFiltroSesion", ListaConsulta_Columna);	
-		ModelAndView model = new ModelAndView("Auxiliar/ListaConsulta_Columna");
-		model.addObject("ListaConsulta_Columna", ListaConsulta_Columna);
-		return model;
-
-	}*/
 
 	@RequestMapping(value="/grabarReporte", method = RequestMethod.POST)
 	public ModelAndView submitConsultaForm(@ModelAttribute("listaReporte") Consulta consulta,HttpServletRequest request) throws Exception {
@@ -321,13 +479,14 @@ public class ReporteController {
 		
 		}
 	
-		message="Se registró correctamente";
-		
-		
-		modelo.addObject("mesajeInfo", message);
+		System.out.println("Se grabó");
 		
 		}else {
 			System.out.println("Ingresar valores");
+			message="Se registró correctamente";
+			
+			
+			modelo.addObject("mesajeInfo", message);
 		}
 		
 		} catch (SQLException ex) {
@@ -404,7 +563,17 @@ public class ReporteController {
 		
 		ModelAndView model = new ModelAndView("Auxiliar/GraficoNivelCumplimiento");
 	
-		model.addObject("listaFiltros", listaFiltros);
+		
+		
+		if(listaFiltros.getNivelCumplimientoEstandaresPorcentaje()==0.0 || listaFiltros.getNivelCumplimientoLineamientosPorcentaje()==0.0 || listaFiltros.getNivelCumplimientoTotal()==0.0){
+			message="No se encontró información";
+			
+			model.addObject("mensajeInfo", message);
+		}else {
+			model.addObject("listaFiltros", listaFiltros);
+
+		}
+		
 		
 		return model;
 		
@@ -457,5 +626,234 @@ public class ReporteController {
 		return model;
 
 	}
+	
+	
+
+	
+	@RequestMapping(value = { "/GenerarFiltroReporte" })
+	public ModelAndView GenerarFiltroReporte(HttpServletRequest request,
+			ModelMap mod) throws Exception {
+
+		
+		ArrayList<ConsultaFiltro> lista = ConsultaFiltroDAO.getInstancia().obtenerFiltroReporte(request.getParameter("consulta").toString());
+		String html = "<table>";
+
+		for (int i = 0; i < lista.size(); i++) {
+
+			if (lista.get(i).isForaneo()) {
+
+				html = html
+						+ "<tr><td>"
+						+ lista.get(i).getDescripcion().toString()
+						+ ": </td><td><select name=\""
+						+ lista.get(i).getColumnaForanea().toString()
+						+ "\">"
+						+ ConsultaFiltroDAO.getInstancia().listarcombos(
+								"select "
+										+ lista.get(i).getColumnaForanea()
+												.toString()
+										+ ","
+										+ lista.get(i).getDescripcionForanea()
+												.toString() + " from "
+										+ lista.get(i).getTabla().toString())
+						+ "</select></td></tr>";
+
+			} else {
+
+				html = html + "<tr><td>"
+						+ lista.get(i).getDescripcion().toString()
+						+ ": </td><td><input type=\"text\" name=\""
+						+ lista.get(i).getColumnaForanea().toString()
+						+ "\" /></td></tr>";
+
+			}
+
+		}
+
+		html = html
+				+ "<tr style=\"background-color: #C0C0C0\"><td><input	type=\"button\" value=\"Generar Reporte\" onclick=\"buscargrafico(); return false;\" /></td><td><input type= \"reset\" name=\"limpiar\" value= \"Limpiar\"></td></tr></table>";
+
+		
+		ModelAndView model = new ModelAndView("Auxiliar/ListaFiltroReporte");
+		model.addObject("filtro", html);
+		
+		return model;
+		
+	}
+	
+
+	@RequestMapping(value = { "/BuscarAgrupacion" }, method = RequestMethod.POST)
+	public ModelAndView BuscarAgrupacion(
+			@ModelAttribute("listaAgrupacion") Consulta consulta)
+			throws Exception {
+
+		ArrayList<Consulta_Columna> listaDestino = null;
+
+		if (consulta.getComboColumna() != null
+				&& consulta.getComboColumna().compareTo("") != 0) {
+			ArrayList<Consulta_Columna> lista = Consulta_ColumnaDAO
+					.getInstancia().buscar(
+							Integer.parseInt(consulta.getComboColumna()));
+
+			if (consulta.getColumnaDestino() != null) {
+				if (consulta.getColumnaDestino().size() != 0) {
+					listaDestino = new ArrayList<Consulta_Columna>();
+					listaDestino.addAll(lista);
+
+					for (Consulta_Columna cltLista : lista) {
+						for (int i = 0; i < consulta.getColumnaDestino().size(); i++) {
+							int value = Integer.parseInt(consulta
+									.getColumnaDestino().get(i));
+
+							if (cltLista.getIdConsulta_Columna() == value) {
+								listaDestino.remove(cltLista);
+								break;
+							}
+						}
+					}
+				} else {
+					listaDestino = new ArrayList<Consulta_Columna>();
+					listaDestino.addAll(lista);
+				}
+			} else {
+				listaDestino = new ArrayList<Consulta_Columna>();
+				listaDestino.addAll(lista);
+			}
+
+		} else {
+			listaDestino = new ArrayList<Consulta_Columna>();
+		}
+
+		ModelAndView model = new ModelAndView("Auxiliar/ListaReporteAgrupacion");
+		model.addObject("ListaReporteAgrupacion", listaDestino);
+
+		return model;
+
+	}
+	
+	@RequestMapping(value = { "/BuscarAgrupacion2" }, method = RequestMethod.POST)
+	public ModelAndView BuscarAgrupacion2(
+			@ModelAttribute("listaAgrupacion") Consulta consulta)
+			throws Exception {
+
+		ArrayList<Consulta_Columna> lista = Consulta_ColumnaDAO
+				.getInstancia().buscar(
+						Integer.parseInt(consulta.getComboColumna()));
+
+		ArrayList<Consulta_Columna> listaDestino = null;
+
+		if (consulta.getColumnaDestino() != null) {
+			if (consulta.getColumnaDestino().size() != 0) {
+				listaDestino = new ArrayList<Consulta_Columna>();
+				listaDestino.addAll(lista);
+
+				for (Consulta_Columna cltLista : lista) {
+					for (int i = 0; i < consulta.getColumnaDestino().size(); i++) {
+						int value = Integer.parseInt(consulta
+								.getColumnaDestino().get(i));
+
+						if (cltLista.getIdConsulta_Columna() == value) {
+							listaDestino.remove(cltLista);
+							break;
+						}
+					}
+				}
+			} else {
+				listaDestino = new ArrayList<Consulta_Columna>();
+				listaDestino.addAll(lista);
+			}
+		} else {
+			listaDestino = new ArrayList<Consulta_Columna>();
+			listaDestino.addAll(lista);
+		}
+
+		ModelAndView model = new ModelAndView("Auxiliar/ListaReporteAgrupacion");
+		model.addObject("ListaReporteAgrupacion", listaDestino);
+
+		return model;
+
+	}
+	
+
+	@RequestMapping(value = { "/ReporteGeneral" })
+	public ModelAndView ReporteGeneral(HttpServletRequest request, ModelMap mod)
+			throws Exception {
+
+		int consulta = 90;
+
+		if (request.getParameter("valor") != null) {
+			consulta = Integer.parseInt(request.getParameter("valor"));
+		}
+
+		ArrayList<ConsultaFiltro> lista = ConsultaFiltroDAO.getInstancia()
+				.obtener(consulta);
+		String html = "<table>";
+
+		for (int i = 0; i < lista.size(); i++) {
+
+			if (lista.get(i).isForaneo()) {
+
+				html = html
+						+ "<tr><td>"
+						+ lista.get(i).getDescripcion().toString()
+						+ ": </td><td><select name=\""
+						+ lista.get(i).getColumnaForanea().toString()
+						+ "\">"
+						+ ConsultaFiltroDAO.getInstancia().listarcombos(
+								"select "
+										+ lista.get(i).getColumnaForanea()
+												.toString()
+										+ ","
+										+ lista.get(i).getDescripcionForanea()
+												.toString() + " from "
+										+ lista.get(i).getTabla().toString())
+						+ "</select></td></tr>";
+
+			} else {
+
+				html = html + "<tr><td>"
+						+ lista.get(i).getDescripcion().toString()
+						+ ": </td><td><input type=\"text\" name=\""
+						+ lista.get(i).getColumnaForanea().toString()
+						+ "\" /></td></tr>";
+
+			}
+
+		}
+
+		html = html
+				+ "<tr style=\"background-color: #C0C0C0\"><td><input	type=\"button\" value=\"Buscar\" onclick=\"buscar(); return false;\" /></td><td><input type= \"reset\" name=\"limpiar\" value= \"Limpiar\"></td></tr></table>";
+
+		ArrayList<ConsultaColumnaColumna> listacolumna = ConsultaColumnaColumnaDAO
+				.getInstancia().obtener(consulta);
+
+		String html2 = "<table>";
+
+		for (int i = 0; i < listacolumna.size(); i++) {
+
+			html2 = html2 + "<tr>";
+
+			html2 = html2 + "<td>"+listacolumna.get(i).getDescripcion()+"</td>";
+			html2 = html2 + "<td><input type=\"checkbox\" name=\""+listacolumna.get(i).getDescripcionForanea()+"\" value=\""+listacolumna.get(i).getIdConsultaColumna()+"\">"+listacolumna.get(i).getDescripcion()+"</input></td>";
+			
+			html2 = html2 + "</tr>";
+		
+		}
+
+		html2 = html2 + "</table>";
+
+		
+		ModelAndView model = new ModelAndView("reporteGeneral");
+		model.addObject("filtro", html);
+		model.addObject("checks", html2);
+
+		return model;
+
+	}
+
+	
+	
+
+	
 	
 }

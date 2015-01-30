@@ -1452,123 +1452,123 @@ function nuevo() {
 						<table style="width: 100%" class="tablaDatos">
 							<tr>
 								<td>
-									<fieldset>
-										<legend align="left">Pre atención - Software base -
-											Estándares tecnológicos</legend>
-										<table>
-											<tr>
-												<td>Estándar - Sistema operativo.:</td>
-												<td><select
-													onchange="cambiarEstandarSistemaOperativo($(this));"
-													name="idSwBaseEstandarSistemaOperativoPRE"
-													id="idSwBaseEstandarSistemaOperativoPRE">
-														<option value="">Seleccione</option>
-														<c:forEach items="${presistemaOperativo}"
-															var="presistemaOperativo">
-															<option
-																value="<c:out value="${presistemaOperativo.idSwBaseEstandarSistemaOperativo}" />"><c:out
-																	value="${presistemaOperativo.descripcionSwBaseEstandarSistemaOperativo}" /></option>
-														</c:forEach>
-												</select></td>
-												<td>Otros.:</td>
-												<td><input type="text"
-													name="swBaseSistemaOperativoOtrosPRE"
-													id="swBaseSistemaOperativoOtrosPRE" maxlength="50"
-													disabled=”disabled”
-													value="${preswBaseEstandarTecnologico.swBaseSistemaOperativoOtros}" />
-												</td>
-												</tr>
-												<tr>
-												<td>Estándar - Herramientas de programación.:</td>
-												<td><select
-													onchange="cambiarEstandarHerramientaProgramacion($(this));"
-													name="idSwBaseEstandarHeramientaProgramacionPRE"
-													id="idSwBaseEstandarHeramientaProgramacionPRE">
-														<option value="">Seleccione</option>
-														<c:forEach items="${preherramientaProgramacion}"
-															var="preherramientaProgramacion">
-															<option
-																value="<c:out value="${preherramientaProgramacion.idSwBaseEstandarHerramientaProgramacion}" />"><c:out
-																	value="${preherramientaProgramacion.descripcionSwBaseEstandarHerramientaProgramacion}" /></option>
-														</c:forEach>
-												</select></td>
-												<td>Otros.:</td>
-												<td><input type="text"
-													name="swBaseHerramientaProgramacionOtrosPRE"
-													id="swBaseHerramientaProgramacionOtrosPRE"
-													value="${preswBaseEstandarTecnologico.swBaseHerramientaProgramacionOtros}"
-													maxlength="50" disabled=”disabled” /></td>
-											</tr>
-											<tr>
-												<td>Lenguaje de programación.:</td>
-												<td><select
-													onchange="cambiarEstandarLenguajeProgramacion($(this));"
-													name="idSwBaseEstandarLenguajeProgramacionPRE"
-													id="cbxPreLenguajeProgramacion">
-														<option value="">Seleccione</option>
-														<c:forEach items="${prelenguajeProgramacion}"
-															var="prelenguajeProgramacion">
-															<option
-																value="<c:out value="${prelenguajeProgramacion.idSwBaseEstandarLenguajeProgramacion}" />"><c:out
-																	value="${prelenguajeProgramacion.descripcionSwBaseEstandarLenguajeProgramacion}" /></option>
-														</c:forEach>
-												</select></td>
-												<td>Otros.:</td>
-												<td><input type="text"
-													name="swBaseLenguajeProgramacionOtrosPRE"
-													id="swBaseLenguajeProgramacionOtrosPRE"
-													value="${preswBaseEstandarTecnologico.swBaseLenguajeProgramacionOtros}"
-													maxlength="50" disabled=”disabled” /></td>
-												<td>Estándar - Gestor de base de datos.:</td>
-												<td><select
-													onchange="cambiarEstandarGestorBaseDatos($(this));"
-													name="idSwBaseEstandarGestorBDPRE" id="cbxPreGestorBD">
-														<option value="">Seleccione</option>
-														<c:forEach items="${pregestorBD}" var="pregestorBD">
-															<option
-																value="<c:out value="${pregestorBD.idSwBaseEstandarGestorBD}" />"><c:out
-																	value="${pregestorBD.descripcionSwBaseEstandarGestorBD}" /></option>
-														</c:forEach>
-												</select></td>
-												<td>Otros.:</td>
-												<td><input type="text" name="swBaseGestorBDOtrosPRE"
-													id="swBaseGestorBDOtrosPRE"
-													value="${preswBaseEstandarTecnologico.swBaseGestorBDOtros}"
-													maxlength="50" disabled=”disabled” /></td>
-											</tr>
-											<tr>
-												<td>Estándar - Framework.:</td>
-												<td><select
-													onchange="cambiarEstandarFramework($(this));"
-													name="idSwBaseEstandarFrameworkPRE" id="cbxPreFramework">
-														<option value="">Seleccione</option>
-														<c:forEach items="${preframework}" var="preframework">
-															<option
-																value="<c:out value="${preframework.idSwBaseEstandarFramework}" />"><c:out
-																	value="${preframework.descripcionSwBaseEstandarFramework}" /></option>
-														</c:forEach>
-												</select></td>
-												<td>Otros.:</td>
-												<td><input type="text" name="swBaseFrameworkOtrosPRE"
-													id="swBaseFrameworkOtrosPRE"
-													value="${preswBaseEstandarTecnologico.swBaseFrameworkOtros}"
-													maxlength="50" disabled=”disabled” /></td>
-												<td>Observaciones adicionales.:</td>
-												<td><input type="text"
-													name="swBaseObservacionesAdicionalesPRE"
-													value="${preswBaseEstandarTecnologico.swBaseObservacionesAdicionales}"
-													maxlength="50" /></td>
-											</tr>
+																<fieldset>
+								<legend align="left">Pre atención - Software base - Estándares tecnológicos</legend>
+					       <table style="width: 100%"  border="0"> 
+            <tr>
+               
+                <td>Estándar - Sistema operativo.:</td>
 
-										</table>
-									</fieldset>
+                	<td>
+                	<select onchange="cambiarEstandarSistemaOperativo($(this));"
+											name="idSwBaseEstandarSistemaOperativoPRE"
+											id="idSwBaseEstandarSistemaOperativoPRE">
+												<option value="">Seleccione</option>
+												<c:forEach items="${presistemaOperativo}"
+													var="presistemaOperativo">
+													<option
+														value="<c:out value="${presistemaOperativo.idSwBaseEstandarSistemaOperativo}" />"><c:out
+															value="${presistemaOperativo.descripcionSwBaseEstandarSistemaOperativo}" /></option>
+												</c:forEach>
+										</select>
+
+									</td>
+                <td style="width: 15%">Otros.:<input type="text"	name="swBaseSistemaOperativoOtrosPRE"	id="swBaseSistemaOperativoOtrosPRE" maxlength="50"
+											”
+											value="${preswBaseEstandarTecnologico.swBaseSistemaOperativoOtros}" disabled="disabled"/>
+										</td>
+ <td rowspan="5">Observaciones adicionales.:<textarea COLS=90 ROWS=7
+											name="swBaseObservacionesAdicionalesPRE"
+											value="${preswBaseEstandarTecnologico.swBaseObservacionesAdicionales}"
+											maxlength="500" /></textarea></td>
+
+            </tr>
+            <tr>
+                <td>Estándar - Herramientas de programación.:</td>
+
+                	<td><select
+											onchange="cambiarEstandarHerramientaProgramacion($(this));"
+											name="idSwBaseEstandarHeramientaProgramacionPRE"
+											id="idSwBaseEstandarHeramientaProgramacionPRE">
+												<option value="">Seleccione</option>
+												<c:forEach items="${preherramientaProgramacion}"
+													var="preherramientaProgramacion">
+													<option
+														value="<c:out value="${preherramientaProgramacion.idSwBaseEstandarHerramientaProgramacion}" />"><c:out
+															value="${preherramientaProgramacion.descripcionSwBaseEstandarHerramientaProgramacion}" /></option>
+												</c:forEach>
+										</select></td>
+                <td>Otros.:<input type="text"
+											name="swBaseHerramientaProgramacionOtrosPRE"
+											id="swBaseHerramientaProgramacionOtrosPRE"
+											value="${preswBaseEstandarTecnologico.swBaseHerramientaProgramacionOtros}"
+											maxlength="50" disabled="disabled" ” /></td>
+            </tr>
+            <tr>
+                <td>Lenguaje de programación.:</td>
+										<td><select
+											onchange="cambiarEstandarLenguajeProgramacion($(this));"
+											name="idSwBaseEstandarLenguajeProgramacionPRE"
+											id="idSwBaseEstandarLenguajeProgramacionPRE">
+												<option value="">Seleccione</option>
+												<c:forEach items="${prelenguajeProgramacion}"
+													var="prelenguajeProgramacion">
+													<option
+														value="<c:out value="${prelenguajeProgramacion.idSwBaseEstandarLenguajeProgramacion}" />"><c:out
+															value="${prelenguajeProgramacion.descripcionSwBaseEstandarLenguajeProgramacion}" /></option>
+												</c:forEach>
+										</select></td>
+                <td>Otros.:<input type="text"
+											name="swBaseLenguajeProgramacionOtrosPRE"
+											id="swBaseLenguajeProgramacionOtrosPRE"
+											value="${preswBaseEstandarTecnologico.swBaseLenguajeProgramacionOtros}"
+											maxlength="50"  ”  disabled="disabled" /></td>
+            </tr>
+             <tr>
+                <td>Estándar - Gestor de base de datos.:</td>
+										<td><select
+											onchange="cambiarEstandarGestorBaseDatos($(this));"
+											name="idSwBaseEstandarGestorBDPRE" id="idSwBaseEstandarGestorBDPRE">
+												<option value="">Seleccione</option>
+												<c:forEach items="${pregestorBD}" var="pregestorBD">
+													<option
+														value="<c:out value="${pregestorBD.idSwBaseEstandarGestorBD}" />"><c:out
+															value="${pregestorBD.descripcionSwBaseEstandarGestorBD}" /></option>
+												</c:forEach>
+										</select></td>
+                <td>Otros.:<input type="text" name="swBaseGestorBDOtrosPRE"
+											id="swBaseGestorBDOtrosPRE"
+											value="${preswBaseEstandarTecnologico.swBaseGestorBDOtros}"
+											maxlength="50"  disabled="disabled"” /></td>
+            </tr>
+  <tr>
+ 
+                <td>Estándar - Framework.:</td>
+										<td><select onchange="cambiarEstandarFramework($(this));"
+											name="idSwBaseEstandarFrameworkPRE" id="idSwBaseEstandarFrameworkPRE">
+												<option value="">Seleccione</option>
+												<c:forEach items="${preframework}" var="preframework">
+													<option
+														value="<c:out value="${preframework.idSwBaseEstandarFramework}" />"><c:out
+															value="${preframework.descripcionSwBaseEstandarFramework}" /></option>
+												</c:forEach>
+										</select></td>
+                						<td>Otros.:<input type="text" name="swBaseFrameworkOtrosPRE"
+											id="swBaseFrameworkOtrosPRE"
+											value="${preswBaseEstandarTecnologico.swBaseFrameworkOtros}"
+											maxlength="50"  disabled="disabled"” /></td>
+
+
+        </tr>
+        </table>
+							</fieldset>
 								</td>
 							</tr>
 							<tr>
 								<td>
 									<fieldset>
 										<legend align="left">Pre Atención - Lineamiento</legend>
-										<table>
+										<table style="width: 100%"  border="0">
 											<tr>
 												<td>Accesos - Gestión de privilegios en los sistemas.:</td>
 												<td><select
@@ -1593,6 +1593,9 @@ function nuevo() {
 																	value="${prearpu.descripcionAccesosRevisionPrivilegiosUsuarios}" /></option>
 														</c:forEach>
 												</select></td>
+												
+												</tr>
+												<tr>
 												<td>Accesos - Gestión de contraseñas.:</td>
 												<td><select name="idAccesosGestionContrasenasPRE"
 													id="cbxPreGestionContrasenas">
@@ -1613,10 +1616,11 @@ function nuevo() {
 																	value="${preapc.descripcionAccesosPoliticaContrasenas}" /></option>
 														</c:forEach>
 												</select></td>
+												
 											</tr>
 											<tr>
 
-												<td>Accesos - Gestión de claves 1.:</td>
+												<td>Accesos -  Gestión de <br> claves 1.:</td>
 												<td><select name="idAccesosGestionClaves1PRE"
 													id="cbxPreGestionClaves1">
 														<option value="">Seleccione</option>
@@ -1626,7 +1630,7 @@ function nuevo() {
 																	value="${preagc1.descripcionAccesosGestionClaves1}" /></option>
 														</c:forEach>
 												</select></td>
-												<td>Accesos - Gestión de claves 2.:</td>
+												<td>Accesos -  Gestión de <br> claves 2.:</td>
 												<td><select name="idAccesosGestionClaves2PRE"
 													id="cbxPreGestionClaves2">
 														<option value="">Seleccione</option>
@@ -1636,7 +1640,9 @@ function nuevo() {
 																	value="${preagc2.descripcionAccesosGestionClaves2}" /></option>
 														</c:forEach>
 												</select></td>
-												<td>Accesos - Gestión de claves 3.:</td>
+												</tr>
+												<tr>
+												<td>Accesos - Gestión de <br> claves 3.:</td>
 												<td><select name="idAccesosGestionClaves3PRE"
 													id="cbxPreGestionClaves3">
 														<option value="">Seleccione</option>
@@ -1657,6 +1663,10 @@ function nuevo() {
 																	value="${preregistroAuditoria.descripcionAuditoriaRegistroAuditoria}" /></option>
 														</c:forEach>
 												</select></td>
+												<td rowspan="5">Observaciones adicionales.:<textarea COLS=90 ROWS=7
+											name="observaciones" id="observaciones"
+											value="${preswBaseEstandarTecnologico.swBaseObservacionesAdicionales}"
+											maxlength="500" /></textarea></td>
 											</tr>
 											<tr>
 
@@ -1674,7 +1684,7 @@ function nuevo() {
 														</c:forEach>
 												</select></td>
 												<td>Auditoría - Registro de eventos de los
-													administradores de los sistemas o administradores de
+													adm. de los sistemas o de
 													seguridad.:</td>
 												<td><select
 													name="idAuditoriaRegistroEventosAdministradoresPRE"
@@ -1687,6 +1697,8 @@ function nuevo() {
 																	value="${preregistroEventos.descripcionAuditoriaRegistroEventosAdministradores}" /></option>
 														</c:forEach>
 												</select></td>
+												</tr>
+												<tr>
 												<td>Auditoría - Conformidad con las políticas de
 													seguridad y los estándares.:</td>
 												<td><select name="idAuditoriaConformidadPoliticasPRE"
@@ -1737,6 +1749,8 @@ function nuevo() {
 																	value="${preprocedimientoInfraestructura.descripcionControlCambiosProcedimientosInfraestructura}" /></option>
 														</c:forEach>
 												</select></td>
+												</tr>
+												<tr>
 												<td>Documentación- Manejo de documentación.:</td>
 												<td><select name="idDocumentacionManejoPRE"
 													id="cbxPreDocumentacionManejo">
@@ -1791,6 +1805,8 @@ function nuevo() {
 																	value="${pregestionParches.descripcionIncidentesCumplimientoGestionParches}" /></option>
 														</c:forEach>
 												</select></td>
+												</tr>
+												<tr>
 												<td>Integridad y confidencialidad Protección de datos
 													de prueba.:</td>
 												<td><select
@@ -1820,19 +1836,7 @@ function nuevo() {
 									</fieldset>
 								</td>
 							</tr>
-							<tr>
-								<td>
-									<fieldset>
-										<legend align="left">Comentarios</legend>
-										<table>
-											<tr>
-												<td>Observaciones.:</td>
-												<td><TEXTAREA COLS=130 ROWS=5 name="observaciones" id="observaciones"></TEXTAREA></td>
-											</tr>
-										</table>
-									</fieldset>
-								</td>
-							</tr>
+							
 								<td>
 
 							<div class="formularioBoton" align="right">

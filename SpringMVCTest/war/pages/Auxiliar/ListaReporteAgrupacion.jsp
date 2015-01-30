@@ -2,7 +2,7 @@
 
 <select name="cOrigen" id="cOrigen" multiple="multiple" class="filtro"
 	style="min-width: 300px; min-height: 400px;">
-	<c:forEach var="listValue" items="${listaReporteAgrupacion}">
+	<c:forEach var="listValue" items="${ListaReporteAgrupacion}">
 		<option value="${listValue.idConsulta_Columna}">${listValue.descripcion}</option>
 	</c:forEach>
 </select>

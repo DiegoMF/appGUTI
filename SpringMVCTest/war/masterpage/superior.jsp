@@ -187,7 +187,9 @@ function Pager(tableName, itemsPerPage) {
                                  <li><a href="/Reporte/loadCumplimiento">Reporte de Nivel de
                                               Cumplimiento</a></li>
                                  <li><a href="/Reporte/LoadReporteVariacion">Reporte de Variación</a></li>
-
+ 								<li><a href="/pages/detalleAplicacionesEspecializadas.jsp">Probar detalle de aplicaciones</a></li>
+								<li><a
+					href="/aplicacionEspecializada/verDetalle&ID_APLICACION_ESPECIALIZADA=1270&ID_VERSION=2">Ver</a><li>
                           </ul></li>
                     <li><a href="#">Gestión de Reportes</a></li>
                     <li><a href="#">Seguridad</a>

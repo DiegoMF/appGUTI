@@ -13,6 +13,32 @@
 
 function buscar() {
 	
+	var cadena = "";
+	var cantidad = 0;
+	$("#filtroDestino option").each(function(index){cantidad++;});
+	$("#filtroDestino option").each(function(index){   
+		
+		if (index < cantidad - 1){
+			cadena = cadena +('SELECT 0 as idConsulta_filtro, c.idConsulta_Columna, 0 as idConsulta, c.Descripcion, c.Tabla, c.Foraneo,c.TablaSeccion,c.ColumnaForanea,c.DescripcionForanea FROM consulta_columna c WHERE c.idConsulta_Columna = '+ $(this).val() +' UNION ');	
+		}
+		else{
+			cadena = cadena +('SELECT 0 as idConsulta_filtro, c.idConsulta_Columna, 0 as idConsulta, c.Descripcion, c.Tabla, c.Foraneo,c.TablaSeccion,c.ColumnaForanea,c.DescripcionForanea FROM consulta_columna c WHERE c.idConsulta_Columna = '+ $(this).val() +';');
+		}
+		
+	});
+	
+
+	var url = "/Reporte/GenerarFiltroReporte";
+	var data = {"consulta":cadena};
+	
+    $.post(url,data, function(resultado){  
+        $("#divFiltro").html(resultado);
+    });
+	
+
+}
+
+function buscargrafico(){
 	
 	var url = "/Reporte/generarReporteVariacion";
 	var data = $("#reporteNivelCumplimiento").serialize();
@@ -23,11 +49,7 @@ function buscar() {
         var chart = new CanvasJS.Chart("chartContainer",
         		{
 
-        			title:{
-        				text: "Site Traffic",
-        				fontSize: 30
-        			},
-                                animationEnabled: true,
+        			
         			axisX:{
 
         				gridColor: "Silver",
@@ -121,59 +143,55 @@ function buscar() {
         
     });  
 	
-	
-	          
-
-
 }
 
-
-
 </script>
 
 <script>
-	$().ready(
-			function() {
-				
-				
-				$('#estado > option[value="${listaReporte.estado}"]').attr('selected', 'selected');
-				
-				$('.agregar').click(
-						function() {
-							return !$('#fOrigen option:selected').remove().appendTo('#filtroDestino');});
-				$('.quitar').click(
-						function() {
-							return !$('#filtroDestino option:selected').remove().appendTo('#fOrigen');});
-
-				$('.agregarC').click(
-						function() {
-							return !$('#cOrigen option:selected').remove().appendTo('#columnaDestino');});
-				$('.quitarC').click(
-						function() {
-							return !$('#columnaDestino option:selected').remove().appendTo('#cOrigen');});
-
-				$('.submit').click(function() {
-					$('#destino option').prop('selected', 'selected');
-				});
+$().ready(
+		function() {
+			$('.agregar').click(
+					function() {
+						return !$('#fOrigen option:selected').remove().appendTo('#filtroDestino');});
+			$('.quitar').click(
+					function() {
+						$('#filtroDestino option:selected').remove();
+						$('#filtroDestino option').prop('selected', 'selected');
+						ListarFiltro2()
+						;
+						return ;});
+			$('.agregarC').click(						
+					function() {							
+						return !$('#cOrigen option:selected').remove().appendTo('#columnaDestino');});
+			$('.quitarC').click(
+					function() {
+						$('#columnaDestino option:selected').remove();
+						$('#columnaDestino option').prop('selected', 'selected');
+						ListarColumna()
+						;
+						return ;});
+						
+			$('.submit').click(function() {
+				$('#destino option').prop('selected', 'selected');
 			});
+		});
+
+function ListarFiltro2() {
+	var data = $("#formulario").serialize();
+	var url = "/Reporte/listaFiltro2";
+	$.post(url, data, function(resultado) {	$("#divListaFiltro").html(resultado);});
+}
 </script>
 <script>
-	function ListarAgrupacion(combo) {
-
-		var idConsulta_Seccion = combo.val();
-		var url = "/Reporte/BuscarAgrupacion";
-		var data = {"idConsulta_Seccion" : idConsulta_Seccion};
-		$.post(url, data, function(resultado) {	$("#divListaAgrupacion").html(resultado);});
-
-	}
-
-	function ListarFiltro(combo) {
-
-		var idConsulta_Seccion = combo.val();
-		var url = "/Reporte/BuscarFiltro";
-		var data = {"idConsulta_Seccion" : idConsulta_Seccion};	
-		$.post(url, data, function(resultado) {	$("#divListaFiltro").html(resultado);});
-
+function ListarFiltro() {
+	var data = $("#formulario").serialize();
+	var url = "/Reporte/listaFiltro";
+	$.post(url, data, function(resultado) {	$("#divListaFiltro").html(resultado);});
+}
+	function ListarColumna() {
+		var data = $("#formulario").serialize();
+		var url = "/Reporte/listaColumna";
+		$.post(url,data,  function(resultado) {	$("#divListaColumna").html(resultado);});
 	}
 
 
@@ -182,18 +200,18 @@ function buscar() {
 <body>
 <div class="formulario">
 				<div class="cabecera">
-					<h2>.:: Reporte Nivel de Cumplimiento</h2>
+					<h2>.:: Reporte de Variación </h2>
 					<hr>
 				</div>
 
-	<form action="<c:url value="/Reporte/generarReporteVariacion"/>"  method="POST" id="reporteNivelCumplimiento">
+	<form action="<c:url value="/Reporte/generarReporteVariacion"/>"  method="POST" id="formulario">
 					
-				<table class="tablaDatos">
+				<table class="tablaDatos" width="100%">
 					<tr>
-					<td >
-						<fieldset>
+					<td width="40%">
+						<fieldset width="100%">
 							<legend >Base del Reporte</legend>
-							<table >
+							<table width="100%">
 								<tr>
 									<td >
 									<select id="comboFiltro" name="comboFiltro" onchange="ListarFiltro($(this)); return false;">
@@ -227,17 +245,19 @@ function buscar() {
 						</fieldset>
 
 					</td>
-					<td>
-						<fieldset>
+					<td width="20%">
+						<fieldset width="100%">
 							<legend >Rango de Tiempo</legend>
-							<table  >
+							<table width="100%">
 								<tr>
 									<td>Periodo:</td>
-									<td ><select id="comboColumna" name="comboColumna" onchange="ListaAgrupacion(); return false;">
-											<option value="">Seleccione</option>
-											<c:forEach var="listValue" items="${listaReporteFiltro}">
-												<option value="${listValue.idConsulta_Columna}">${listValue.Descripcion}</option>
-											</c:forEach>
+									<td ><select id="periodo" name="periodo" onchange="Periodo(); return false;">
+											<option value="0">Seleccione</option>
+											<option value="1">Anual</option>
+											<option value="2">Semestral</option>
+											<option value="3">Trimestral</option>
+											<option value="4">Mensual</option>
+										
 									</select></td>
 				
 								</tr>
@@ -245,12 +265,12 @@ function buscar() {
 							</table>
 						</fieldset>
 					</td>
-					<td>
+					<td width="40%">
 						<fieldset>
 							<legend >Criterios de Agrupación</legend>
 							<table  >
 								<tr>
-									<td ><select id="pantallas" name="D3" onchange="ListarAgrupacion($(this)); return false;">
+									<td ><select id="comboColumna" name="comboColumna" onchange="ListarColumna(); return false;">
 											<option value="">Seleccione</option>
 											<c:forEach var="listValue" items="${reporteSeccionLista}">
 												<option value="${listValue.idConsulta_Seccion}">${listValue.descripcion}</option>
@@ -261,7 +281,7 @@ function buscar() {
 								</tr>
 								<tr>
 									<td style="min-width: 300px; ">
-										<div id="divListaAgrupacion">
+										<div id="divListaColumna">
 											<select name="cOrigen" id="cOrigen" multiple="multiple" class="filtro" style="min-width: 300px; min-height: 400px;"></select>
 										</div>
 									</td>
@@ -272,14 +292,8 @@ function buscar() {
 										</div>
 									</td>
 									<td style="min-width: 300px; ">
-									<div id="divListaAgrupacionSeleccionado">
-									<select name="columnaDestino" id="columnaDestino" multiple="multiple" size="8" class="filtro" style="min-width: 300px; min-height: 400px;" required>
-										<c:forEach var="listValue" items="${datosReporteAgrupacion}">
-													<option value="${listValue.idConsultaColumnaColumna}">${listValue.nombreColumna}</option>
-
-
-										</c:forEach>
-									</select>
+									<div id="divListaColumnaSeleccionado">
+									<select name="columnaDestino" id="columnaDestino" multiple="multiple" size="8" class="filtro" style="min-width: 300px; min-height: 400px;"></select>
 									</div>
 									</td>
 								</tr>
@@ -294,13 +308,18 @@ function buscar() {
 
 				<table class="tablaBotones">
 					<tr>
-						<td><input	type="button" value="Generar Reporte" onclick="buscar(); return false;" />
+						<td><input	type="button" value="Buscar" onclick="buscar(); return false;" />
 						 <input type="button" value="Regresar" 	onclick="nuevo(); return false;" />
 						 <input type="reset" name="limpiar" value="Limpiar"></input></td>
 					</tr>
 				</table>
 				&nbsp; &nbsp; &nbsp; &nbsp;
-				<div id="divGraficoReporte">
+				<table width="100%">
+					<tr>
+						<td width="25%" id="divFiltro"></td>
+						<td width="75%" id="divGraficoReporte"></td>
+					</tr>
+				</table>
 					<table  border="1" width="100%" class="tablaGrilla">
 					
 						<tr><td colspan="5"><a style="color: red">${mensajeInfo}</a></td></tr>
@@ -308,6 +327,11 @@ function buscar() {
 				</div>
 				</form>
 			</div>
+			
+			
+			
+			
+			
 </body>
 
 <jsp:include page="../masterpage/inferior.jsp" />

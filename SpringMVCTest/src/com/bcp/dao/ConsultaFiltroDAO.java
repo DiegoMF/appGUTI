@@ -156,5 +156,36 @@ public class ConsultaFiltroDAO {
 		}
 		return fila;
 	}
+	
+	public ArrayList<ConsultaFiltro> obtenerFiltroReporte(String consulta) throws Exception {
+		ArrayList<ConsultaFiltro> lista = new ArrayList<ConsultaFiltro>();
+		try {
+			cnn = Conexion.getConexion();
+			CallableStatement cs = null;
+			cs = cnn.prepareCall(consulta);
+			
+			rs = cs.executeQuery();
+			while (rs.next()) {
+				ConsultaFiltro objeto = new ConsultaFiltro();
+
+				objeto.setIdConsultaFiltro(rs.getInt("idConsulta_filtro"));
+				objeto.setIdConsultaColumna(rs.getInt("idConsulta_columna"));
+				objeto.setIdConsulta(rs.getInt("idConsulta"));
+				objeto.setDescripcion(rs.getString("Descripcion"));
+				objeto.setTabla(rs.getString("tabla"));
+				objeto.setForaneo(rs.getBoolean("foraneo"));
+				objeto.setTablaSeccion(rs.getString("TablaSeccion"));
+				objeto.setColumnaForanea(rs.getString("ColumnaForanea"));
+				objeto.setDescripcionForanea(rs.getString("DescripcionForanea"));
+				lista.add(objeto);
+			}
+
+			cnn.close();
+			cs.close();
+		} catch (SQLException ex) {
+			throw ex;
+		}
+		return lista;
+	}
 
 }
